@@ -2,6 +2,7 @@ package com.dao;
 
 import java.util.List;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -160,4 +161,47 @@ public class StorageDAO extends HibernateDaoSupport {
 	public static StorageDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (StorageDAO) ctx.getBean("StorageDAO");
 	}
+	
+	//按条件查询，包含分页设置
+			public List findAll(String pname,String stkWarehouse,int page,int rows) {
+
+				    String hql="from Storage where 1=1";
+					if(pname!=null&&!pname.trim().equals("")){
+						String hql1=" and product.prodName ='"+pname+"'";
+						hql+=hql1;
+					}
+					if(stkWarehouse!=null&&!stkWarehouse.trim().equals("")){
+						String hql2=" and stkWarehouse='"+stkWarehouse+"'";
+						hql+=hql2;
+					}
+					
+					hql+=" order by stkId";//排序
+					Query qy=getSession().createQuery(hql);
+					qy.setFirstResult((page-1)*rows);
+					qy.setMaxResults(rows);
+					return qy.list();
+
+			}
+
+			
+			//查找最大行
+		
+			public int findMaxRow(String pname,String stkWarehouse){
+				int maxrow=0;
+				String hql="select count(*) from Storage where 1=1";
+				
+				if(pname!=null&&!pname.trim().equals("")){
+					String hql1=" and product.prodName ='"+pname+"'";
+					hql+=hql1;
+				}
+				if(stkWarehouse!=null&&!stkWarehouse.trim().equals("")){
+					String hql2=" and stkWarehouse='"+stkWarehouse+"'";
+					hql+=hql2;
+				}
+				
+				Query qy=getSession().createQuery(hql);
+				maxrow=Integer.parseInt(qy.list().get(0).toString());
+				return maxrow;
+			}
+
 }

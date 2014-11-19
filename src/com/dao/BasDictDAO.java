@@ -3,6 +3,7 @@ package com.dao;
 import java.math.BigDecimal;
 import java.util.List;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -107,17 +108,53 @@ public class BasDictDAO extends HibernateDaoSupport {
 		return findByProperty(DICT_VALUE, dictValue);
 	}
 
-	public List findAll() {
-		log.debug("finding all BasDict instances");
-		try {
-			String queryString = "from BasDict";
-			return getHibernateTemplate().find(queryString);
-		} catch (RuntimeException re) {
-			log.error("find all failed", re);
-			throw re;
-		}
+	//按条件查询，包含分页设置
+	public List findAll(String dtype,String ditem,String dvalue,int page,int rows) {
+
+			String hql = "from BasDict where 1=1";
+			if(dtype!=null&&!dtype.trim().equals("")){
+				String hql1=" and dictType='"+dtype+"'";
+				hql+=hql1;
+			}
+			if(ditem!=null&&!ditem.trim().equals("")){
+				String hql2=" and dictItem='"+ditem+"'";
+				hql+=hql2;
+			}
+			if(dvalue!=null&&!dvalue.trim().equals("")){
+				String hql3=" and dictValue='"+dvalue+"'";
+				hql+=hql3;
+			}
+			hql+=" order by dictId";//排序
+			Query qy=getSession().createQuery(hql);
+			qy.setFirstResult((page-1)*rows);
+			qy.setMaxResults(rows);
+			return qy.list();
+
 	}
 
+	
+	public int findMaxRow(String dtype,String ditem,String dvalue){
+		int maxrow=0;
+		String hql="select count(*) from BasDict where 1=1";
+		
+		if(dtype!=null&&!dtype.trim().equals("")){
+			String hql1=" and dictType='"+dtype+"'";
+			hql+=hql1;
+		}
+		if(ditem!=null&&!ditem.trim().equals("")){
+			String hql2=" and dictItem='"+ditem+"'";
+			hql+=hql2;
+		}
+		if(dvalue!=null&&!dvalue.trim().equals("")){
+			String hql3=" and dictValue='"+dvalue+"'";
+			hql+=hql3;
+		}
+		
+		Query qy=getSession().createQuery(hql);
+		maxrow=Integer.parseInt(qy.list().get(0).toString());
+		return maxrow;
+	}
+	
 	public BasDict merge(BasDict detachedInstance) {
 		log.debug("merging BasDict instance");
 		try {

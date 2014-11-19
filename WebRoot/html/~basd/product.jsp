@@ -1,100 +1,95 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+	<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
+
+
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../script/common.js"></script>
+<script>
+$(document).ready(function(){
+	//----æ¡ä»¶æŸ¥è¯¢---------------------------------		
+	$("#select").click(function(){	
+
+		$("#tt").datagrid({
+			queryParams: {
+				pname:$("#pname").val(),
+				ptype:$("#ptype").val(),
+				pbatch:$("#pbatch").val()
+			}
+		
+		}
+		); 
+
+		//æ¸…ç©ºæŸ¥è¯¢é¡¹
+		$("#pname").val("");
+		$("#ptype").val("");
+		$("#pbatch").val("");
+		
+		
+});
+	
+	});
+
+</script>
 </head>
 <body>
 
-<div class="page_title">²úÆ·²éÑ¯</div>
+<div class="page_title">äº§å“æŸ¥è¯¢</div>
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="reload();">²éÑ¯</button>  
+	<button class="common_button" onclick="help('');">å¸®åŠ©</button>
+	<button class="common_button" id="select">æŸ¥è¯¢</button>  
 </div>
 <table class="query_form_table">
 	<tr>
-		<th>Ãû³Æ</th>
-		<td><input /></td>
-		<th>ÐÍºÅ</th>
-		<td><input /></td>
-		<th>Åú´Î</th>
-		<td><input /></td>
+		<th>åç§°</th>
+		<td><input id="pname" name="pname" /></td>
+		<th>åž‹å·</th>
+		<td><input id="ptype" name="ptype" /></td>
+		<th>æ‰¹æ¬¡</th>
+		<td><input id="pbatch" name="pbatch"/></td>
 	</tr>
 </table>
 <br />
-<table class="data_list_table">
-	<tr>
-		<th>±àºÅ</th>
-		<th>Ãû³Æ</th>
-		<th>ÐÍºÅ</th>
-		<th>µÈ¼¶/Åú´Î</th>
-		<th>µ¥Î»</th>
-		<th>µ¥¼Û£¨Ôª£©</th>
-		<th>±¸×¢</th>
-	</tr>
-	<tr>
-		<td class="list_data_number">1</td>
-		<td class="list_data_ltext">ÐÒ¸£ÅÆµçÊÓ»ú</td>
-		<td class="list_data_text">818 FFT</td>
-		<td class="list_data_text">2388 EA03</td>
-		<td class="list_data_text">Ì¨</td>
-		<td class="list_data_number">7500</td>
-		<td class="list_data_ltext">´úÉú²ú&nbsp;</td>		
-	</tr>
-	<tr>
-		<td class="list_data_number">2</td>
-		<td class="list_data_ltext">ÐÒ¸£ÅÆÊÕÒô»ú</td>
-		<td class="list_data_text">ÌìÓï007</td>
-		<td class="list_data_text">7878 006A</td>
-		<td class="list_data_text">Ì¨</td>
-		<td class="list_data_number">36</td>
-		<td class="list_data_ltext">´úÉú²ú&nbsp;</td>		
-	</tr>
-	<tr>
-		<td class="list_data_number">3</td>
-		<td class="list_data_ltext">º£Áú±Ê¼Ç±¾µçÄÔ</td>
-		<td class="list_data_text">i60 </td>
-		<td class="list_data_text">2688 9966</td>
-		<td class="list_data_text">Ì¨</td>
-		<td class="list_data_number">9800</td>
-		<td class="list_data_ltext">&nbsp;</td>		
-	</tr>
-	<tr>
-		<td class="list_data_number">4</td>
-		<td class="list_data_ltext">º£Áú±Ê¼Ç±¾µçÄÔ</td>
-		<td class="list_data_text">i61 </td>
-		<td class="list_data_text">2689 6688</td>
-		<td class="list_data_text">Ì¨</td>
-		<td class="list_data_number">16800</td>
-		<td class="list_data_ltext">&nbsp;</td>		
-	</tr>
-	<tr>
-		<td class="list_data_number">5</td>
-		<td class="list_data_ltext">º£Áú±Ê¼Ç±¾µçÄÔ</td>
-		<td class="list_data_text">i61 </td>
-		<td class="list_data_text">2689 6689</td>
-		<td class="list_data_text">Ì¨</td>
-		<td class="list_data_number">15800</td>
-		<td class="list_data_ltext">&nbsp;</td>		
-	</tr>
-	<tr>
-		<th colspan="100" class="pager">
-<div class="pager">
-	¹²59Ìõ¼ÇÂ¼ Ã¿Ò³<input value="10" size="2" />Ìõ
-	µÚ<input value="1" size="2"/>Ò³/¹²5Ò³
-	<a href="#">µÚÒ»Ò³</a>
-	<a href="#">ÉÏÒ»Ò³</a>
-	<a href="#">ÏÂÒ»Ò³</a>
-	<a href="#">×îºóÒ»Ò³</a>
-	×ªµ½<input value="1" size="2" />Ò³
-	<button width="20" onclick="reload();">GO</button>
-</div>
-		</th>
-	</tr>
-</table>
+<table class="easyui-datagrid" style="height:425px;"   
+        data-options="
+        url:'../../findAll_Product.action?t=<%=new Date().getTime() %>',
+        fitColumns:true, 
+        singleSelect:true"         
+        pagination="true" 
+        rownumbers="true" 
+        pageSize="10" 
+        pageList="[10,20,30,40]" 
+        loadMsg="æ­£åœ¨åœ¨åŠ è½½è¿œç¨‹æ•°æ®ï¼Œè¯·ç¨åŽ......"
+        align="center" id="tt"
+        >   
+	    <thead>   
+	        <tr>   
+	            <th data-options="field:'prodId',width:70,align:'center'">ç¼–å·</th>   
+	            <th data-options="field:'prodName',width:200,align:'center'">åç§°</th>   
+	            <th data-options="field:'prodType',width:135,align:'center'">åž‹å·</th>   
+	            <th data-options="field:'prodBatch',width:135,align:'center'">ç­‰çº§/æ‰¹æ¬¡</th>   
+	            <th data-options="field:'prodUnit',width:135,align:'center'">å•ä½</th>
+	            <th data-options="field:'prodPrice',width:135,align:'center'">å•ä»·(å…ƒ)</th>
+	            <th data-options="field:'prodMemo',width:135,align:'center'">å¤‡æ³¨</th>    
+	            <th data-options="field:'opt',width:100,align:'center'"></th>   
+	        </tr>   
+	    </thead>   
+	</table> 
 </body>
 </html>

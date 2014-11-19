@@ -1,150 +1,143 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<link href="../css/style.css" rel="stylesheet" type="text/css">
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+	<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css"></link>
 <script src="../script/common.js"></script>
+
+
+<script>
+$(document).ready(function(){
+	//----æ¡ä»¶æŸ¥è¯¢---------------------------------		
+	$("#select").click(function(){	
+
+		$("#tt").datagrid({
+			queryParams: {
+				dtype:$("#dtype").val(),
+				ditem:$("#ditem").val(),
+				dvalue:$("#dvalue").val()
+			}
+		
+		}
+		); 
+
+		//æ¸…ç©ºæŸ¥è¯¢é¡¹
+		$("#dtype").val("");
+		$("#ditem").val("");
+		$("#dvalue").val("");
+		
+		
+});
+	
+	});
+	
+function dodel(bid){
+	alert("ä½ é€‰æ‹©è¦åˆ é™¤çš„ç¼–å·ä¸ºï¼š"+bid);
+	var t=new Date().getTime();
+	$.messager.confirm("æç¤º","è¦çœŸçš„åˆ é™¤å—?",function(r){
+		if(r){
+			//æ‰§è¡Œåˆ é™¤
+			$.get("../../delById_BasDict.action?bid="+bid,dodelCallBack);
+		}
+	})
+	
+}
+//åˆ é™¤çš„å›è°ƒæ–¹æ³•
+function dodelCallBack(msg){
+			if(msg=='1'){
+				
+				$.messager.alert('æç¤º','å·²åˆ é™¤æˆåŠŸ'); 	
+				$('#tt').datagrid('reload');    // é‡æ–°è½½å…¥å½“å‰é¡µé¢æ•°æ®  
+				
+			}else{
+				$.messager.alert('æç¤º','åˆ é™¤å¤±è´¥ï¼');
+			}
+		}
+</script>
+
+
 </head>
 <body>
 
-<div class="page_title">Êı¾İ×Öµä¹ÜÀí</div>
+<div class="page_title">æ•°æ®å­—å…¸ç®¡ç†</div>
+
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="to('dict_add.jsp');">ĞÂ½¨</button>
-	<button class="common_button" onclick="reload();">²éÑ¯</button>  
+	<button class="common_button" onclick="help('');">å¸®åŠ©</button>
+	<button class="common_button" onclick="to('dict_add.jsp');">æ–°å»º</button>
+	<button id="select" class="common_button">æŸ¥è¯¢</button>  
 </div>
+
 <table class="query_form_table">
 	<tr>
-		<th>Àà±ğ</th>
-		<td><input /></td>
-		<th>ÌõÄ¿</th>
-		<td><input /></td>
-		<th>Öµ</th>
-		<td><input /></td>
+		<th>ç±»åˆ«</th>
+		<td><input id="dtype" name="dtype"/></td>
+		<th>æ¡ç›®</th>
+		<td><input id="ditem" name="ditem"/></td>
+		<th>å€¼</th>
+		<td><input id="dvalue" name="dvalue" onclick=""/></td>
 	</tr>
 </table>
 <br />
-<table class="data_list_table">
-	<tr>
-		<th>±àºÅ</th>
-		<th>Àà±ğ</th>
-		<th>ÌõÄ¿</th>
-		<th>Öµ</th>
-		<th>ÊÇ·ñ¿É±à¼­</th>
-		<th>²Ù×÷</th>
-	</tr>
-	<tr>
-		<td class="list_data_number">1</td>
-		<td class="list_data_ltext">ÆóÒµ¿Í»§µÈ¼¶</td>
-		<td class="list_data_text">ÆÕÍ¨¿Í»§</td>
-		<td class="list_data_text">1</td>
-		<td class="list_data_text">·ñ</td>
-		<td class="list_data_op">¡¡</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">2</td>
-		<td class="list_data_ltext">ÆóÒµ¿Í»§µÈ¼¶</td>
-		<td class="list_data_text">ÖØµã¿ª·¢¿Í»§</td>
-		<td class="list_data_text">2</td>
-		<td class="list_data_text">·ñ</td>
-		<td class="list_data_op">¡¡</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">3</td>
-		<td class="list_data_ltext">ÆóÒµ¿Í»§µÈ¼¶</td>
-		<td class="list_data_text">´ó¿Í»§</td>
-		<td class="list_data_text">3</td>
-		<td class="list_data_text">·ñ</td>
-		<td class="list_data_op">¡¡</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">4</td>
-		<td class="list_data_ltext">ÆóÒµ¿Í»§µÈ¼¶</td>
-		<td class="list_data_text">ºÏ×÷»ï°é</td>
-		<td class="list_data_text">4</td>
-		<td class="list_data_text">·ñ</td>
-		<td class="list_data_op">¡¡</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">5</td>
-		<td class="list_data_ltext">ÆóÒµ¿Í»§µÈ¼¶</td>
-		<td class="list_data_text">Õ½ÂÔºÏ×÷»ï°é</td>
-		<td class="list_data_text">5</td>
-		<td class="list_data_text">·ñ</td>
-		<td class="list_data_op">¡¡</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">6</td>
-		<td class="list_data_ltext">·şÎñÀàĞÍ</td>
-		<td class="list_data_text">×ÉÑ¯</td>
-		<td class="list_data_text">×ÉÑ¯</td>
-		<td class="list_data_text">ÊÇ</td>
-		<td class="list_data_op">
-			<img onclick="to('dict_edit.jsp');" title="±à¼­" src="../images/bt_edit.gif" class="op_button" />
-			<img onclick="del('¡°·şÎñÀàĞÍ£º×ÉÑ¯¡±');" title="É¾³ı" src="../images/bt_del.gif" class="op_button" />
-		</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">7</td>
-		<td class="list_data_ltext">·şÎñÀàĞÍ</td>
-		<td class="list_data_text">Í¶Ëß</td>
-		<td class="list_data_text">Í¶Ëß</td>
-		<td class="list_data_text">ÊÇ</td>
-		<td class="list_data_op">
-			<img onclick="to('dict_edit.jsp');" title="±à¼­" src="../images/bt_edit.gif" class="op_button" />
-			<img onclick="del('¡°·şÎñÀàĞÍ£ºÍ¶Ëß¡±');" title="É¾³ı" src="../images/bt_del.gif" class="op_button" />
-		</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">8</td>
-		<td class="list_data_ltext">·şÎñÀàĞÍ</td>
-		<td class="list_data_text">½¨Òé</td>
-		<td class="list_data_text">½¨Òé</td>
-		<td class="list_data_text">ÊÇ</td>
-		<td class="list_data_op">
-			<img onclick="to('dict_edit.jsp');" title="±à¼­" src="../images/bt_edit.gif" class="op_button" />
-			<img onclick="del('¡°·şÎñÀàĞÍ£º½¨Òé¡±');" title="É¾³ı" src="../images/bt_del.gif" class="op_button" />
-		</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">9</td>
-		<td class="list_data_ltext">µØÇø</td>
-		<td class="list_data_text">±±¾©</td>
-		<td class="list_data_text">1</td>
-		<td class="list_data_text">ÊÇ</td>
-		<td class="list_data_op">
-			<img onclick="to('dict_edit.jsp');" title="±à¼­" src="../images/bt_edit.gif" class="op_button" />
-			<img onclick="del('¡°·şÎñÀàĞÍ£º½¨Òé¡±');" title="É¾³ı" src="../images/bt_del.gif" class="op_button" />
-		</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">10</td>
-		<td class="list_data_ltext">µØÇø</td>
-		<td class="list_data_text">»ª±±</td>
-		<td class="list_data_text">2</td>
-		<td class="list_data_text">ÊÇ</td>
-		<td class="list_data_op">
-			<img onclick="to('dict_edit.jsp');" title="±à¼­" src="../images/bt_edit.gif" class="op_button" />
-			<img onclick="del('¡°·şÎñÀàĞÍ£º½¨Òé¡±');" title="É¾³ı" src="../images/bt_del.gif" class="op_button" />
-		</td>
-	</tr>
-	<tr>
-		<th colspan="6" class="pager">
-<div class="pager">
-	¹²59Ìõ¼ÇÂ¼ Ã¿Ò³<input value="10" size="2" />Ìõ
-	µÚ<input value="1" size="2"/>Ò³/¹²5Ò³
-	<a href="#">µÚÒ»Ò³</a>
-	<a href="#">ÉÏÒ»Ò³</a>
-	<a href="#">ÏÂÒ»Ò³</a>
-	<a href="#">×îºóÒ»Ò³</a>
-	×ªµ½<input value="1" size="2" />Ò³
-	<button width="20" onclick="reload();">GO</button>
-</div>
-		</th>
-	</tr>
-</table>
+<table  class="easyui-datagrid" style="height:425px;"   
+        data-options="
+        url:'../../findAll_BasDict.action?t=<%=new Date().getTime() %>',
+        fitColumns:true, 
+        singleSelect:true"         
+        pagination="true" 
+        rownumbers="true" 
+        pageSize="10" 
+        pageList="[10,20,30,40]" 
+        loadMsg="æ­£åœ¨åœ¨åŠ è½½è¿œç¨‹æ•°æ®ï¼Œè¯·ç¨å......"
+        align="center" id="tt"
+        >   
+	    <thead>   
+	        <tr>   
+	            <th data-options="field:'dictId',width:50,align:'center'">ç¼–å·</th>   
+	            <th data-options="field:'dictType',width:100,align:'center'">ç±»åˆ«</th>   
+	            <th data-options="field:'dictItem',width:50,align:'center'">æ¡ç›®</th>   
+	            <th data-options="field:'dictValue',width:120,align:'center'">å€¼</th>   
+	            <th data-options="field:'dictIsEditable',width:100,align:'center',
+											        		 formatter: function(value,row,index){
+																if (value=='0'){
+																	return 'å¦';
+																} 
+																if (value=='1'){
+																	return 'æ˜¯';
+																} 
+															}
+	           											 ">æ˜¯å¦å¯ç¼–è¾‘</th>   
+ 
+	            <th data-options="field:'opt',
+	            				width:100,
+	            				align:'center',
+	            				formatter:function(value,row,index){
+                                return '<a href=# onclick=dodel('+row.dictId+')>åˆ é™¤</a> '
+                                +'<a href=../../findById_BasDict.action?bid='+row.dictId+'&t=<%=new Date().getTime() %>>ä¿®æ”¹</a>'										
+	            							}
+	            	
+	            ">æ“ä½œ</th>   
+	        </tr>   
+	    </thead>   
+	</table> 
+
 </body>
 </html>

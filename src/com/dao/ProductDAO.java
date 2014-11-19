@@ -3,6 +3,7 @@ package com.dao;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -176,4 +177,54 @@ public class ProductDAO extends HibernateDaoSupport {
 	public static ProductDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (ProductDAO) ctx.getBean("ProductDAO");
 	}
+	
+	
+	//按条件查询，包含分页设置
+	public List findAll(String pname,String ptype,String pbatch,int page,int rows) {
+
+			String hql = "from Product where 1=1";
+			if(pname!=null&&!pname.trim().equals("")){
+				String hql1=" and prodName='"+pname+"'";
+				hql+=hql1;
+			}
+			if(ptype!=null&&!ptype.trim().equals("")){
+				String hql2=" and prodType='"+ptype+"'";
+				hql+=hql2;
+			}
+			if(pbatch!=null&&!pbatch.trim().equals("")){
+				String hql3=" and prodBatch='"+pbatch+"'";
+				hql+=hql3;
+			}
+			hql+=" order by prodId";//排序
+			Query qy=getSession().createQuery(hql);
+			qy.setFirstResult((page-1)*rows);
+			qy.setMaxResults(rows);
+			return qy.list();
+
+	}
+
+	
+	//查找最大行
+	public int findMaxRow(String pname,String ptype,String pbatch){
+		int maxrow=0;
+		String hql="select count(*) from Product where 1=1";
+		
+		if(pname!=null&&!pname.trim().equals("")){
+			String hql1=" and prodName='"+pname+"'";
+			hql+=hql1;
+		}
+		if(ptype!=null&&!ptype.trim().equals("")){
+			String hql2=" and prodType='"+ptype+"'";
+			hql+=hql2;
+		}
+		if(pbatch!=null&&!pbatch.trim().equals("")){
+			String hql3=" and prodBatch='"+pbatch+"'";
+			hql+=hql3;
+		}
+		
+		Query qy=getSession().createQuery(hql);
+		maxrow=Integer.parseInt(qy.list().get(0).toString());
+		return maxrow;
+	}
+
 }

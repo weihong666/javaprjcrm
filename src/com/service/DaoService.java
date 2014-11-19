@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.dao.BasDictDAO;
 import com.dao.CstActivityDAO;
 import com.dao.CstCustomerDAO;
 import com.dao.CstLinkmanDAO;
@@ -12,6 +13,8 @@ import com.dao.CstServiceDAO;
 import com.dao.OrdersDAO;
 import com.dao.OrdersLineDAO;
 import com.dao.PageDao;
+import com.dao.ProductDAO;
+import com.dao.StorageDAO;
 
 @Service("DaoService")
 public class DaoService {
@@ -37,11 +40,45 @@ public class DaoService {
 	
 	@Resource(name = "OrdersLineDAO")
 	private OrdersLineDAO ordersLineDAO;
+	
+	@Resource(name="ProductDAO")
+	private ProductDAO productDAO;
+	
+	@Resource(name="StorageDAO")
+	private StorageDAO storageDAO;
+	
+	@Resource(name="BasDictDAO")
+	private BasDictDAO basDictDAO;
+	
 	// ----------------------------------------------------
 	
 	
 	public CstCustomerDAO getCustomerdao() {
 		return customerdao;
+	}
+
+	public ProductDAO getProductDAO() {
+		return productDAO;
+	}
+
+	public void setProductDAO(ProductDAO productDAO) {
+		this.productDAO = productDAO;
+	}
+
+	public StorageDAO getStorageDAO() {
+		return storageDAO;
+	}
+
+	public void setStorageDAO(StorageDAO storageDAO) {
+		this.storageDAO = storageDAO;
+	}
+
+	public BasDictDAO getBasDictDAO() {
+		return basDictDAO;
+	}
+
+	public void setBasDictDAO(BasDictDAO basDictDAO) {
+		this.basDictDAO = basDictDAO;
 	}
 
 	public OrdersLineDAO getOrdersLineDAO() {

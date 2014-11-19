@@ -1,102 +1,109 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech毕业设计项目</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptech姣曚笟璁捐椤圭洰</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+	<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
+
+
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../script/common.js"></script>
+
+<script>
+$(document).ready(function(){
+	//----鏉′欢鏌ヨ---------------------------------		
+	$("#select").click(function(){	
+
+		$("#tt").datagrid({
+			queryParams: {
+				pname:$("#pname").val(),
+				stkWarehouse:$("#stkWarehouse").val()
+			}
+		
+		}
+		); 
+
+		//娓呯┖鏌ヨ椤�
+		$("#pname").val("");
+		$("#stkWarehouse").val("");
+
+});
+	
+	});
+
+</script>
+
 </head>
 <body>
 
-<div class="page_title">产品查询</div>
+<div class="page_title">浜у搧鏌ヨ</div>
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">帮助</button>
-	<button class="common_button" onclick="reload();">查询</button>  
+	<button class="common_button" onclick="help('');">甯姪</button>
+	<button class="common_button" id="select">鏌ヨ</button>  
 </div>
 <table class="query_form_table">
 	<tr>
-		<th>产品</th>
-		<td><input /></td>
-		<th>仓库</th>
-		<td><input /></td>
+		<th>浜у搧</th>
+		<td><input id="pname" name="pname" /></td>
+		<th>浠撳簱</th>
+		<td><input id="stkWarehouse" name="stkWarehouse" /></td>
 		<th>&nbsp;</th>
 		<td>&nbsp;</td>
 	</tr>
 </table>
 <br />
-<table class="data_list_table">
-	<tr>
-		<th>序号</th>
-		<th>产品</th>
-		<th>仓库</th>
-		<th>货位</th>
-		<th>件数</th>
-		<th>备注</th>
-	</tr>
-	<tr>
-		<td class="list_data_number">1</td>
-		<td class="list_data_ltext">幸福牌电视机-818 FFT-2388 EA03</td>
-		<td class="list_data_ltext">北京-西直门库</td>
-		<td class="list_data_text">EC-D2</td>
-		<td class="list_data_number">16</td>
-		<td class="list_data_ltext">&nbsp;</td>		
-	</tr>
-	<tr>
-		<td class="list_data_number">2</td>
-		<td class="list_data_ltext">海龙笔记本电脑-i60-2688 9966</td>
-		<td class="list_data_ltext">北京-大钟寺库</td>
-		<td class="list_data_text">EA-B8</td>
-		<td class="list_data_number">12</td>
-		<td class="list_data_ltext">&nbsp;</td>		
-	</tr>
-	<tr>
-		<td class="list_data_number">3</td>
-		<td class="list_data_ltext">海龙笔记本电脑-i60-2688 9966</td>
-		<td class="list_data_ltext">北京-马甸库</td>
-		<td class="list_data_text">EA-A6</td>
-		<td class="list_data_number">8</td>
-		<td class="list_data_ltext">&nbsp;</td>		
-	</tr>
-	<tr>
-		<td class="list_data_number">4</td>
-		<td class="list_data_ltext">海龙笔记本电脑-i61-2689 6688</td>
-		<td class="list_data_ltext">天津-恒远电子C库</td>
-		<td class="list_data_text">北26位</td>
-		<td class="list_data_number">36</td>
-		<td class="list_data_ltext">&nbsp;</td>		
-	</tr>
-		<tr>
-		<td class="list_data_number">5</td>
-		<td class="list_data_ltext">海龙笔记本电脑-i61-2689 6688</td>
-		<td class="list_data_ltext">天津-恒远电子C库</td>
-		<td class="list_data_text">北27位</td>
-		<td class="list_data_number">36</td>
-		<td class="list_data_ltext">&nbsp;</td>		
-	</tr>
-		<tr>
-		<td class="list_data_number">6</td>
-		<td class="list_data_ltext">海龙笔记本电脑-i61-2689 6688</td>
-		<td class="list_data_ltext">天津-恒远电子C库</td>
-		<td class="list_data_text">北28位</td>
-		<td class="list_data_number">30</td>
-		<td class="list_data_ltext">&nbsp;</td>		
-	</tr>
-	<tr>
-		<th colspan="100" class="pager">
-<div class="pager">
-	共59条记录 每页<input value="10" size="2" />条
-	第<input value="1" size="2"/>页/共5页
-	<a href="#">第一页</a>
-	<a href="#">上一页</a>
-	<a href="#">下一页</a>
-	<a href="#">最后一页</a>
-	转到<input value="1" size="2" />页
-	<button width="20" onclick="reload();">GO</button>
-</div>
-		</th>
-	</tr>
-</table>
+<table class="easyui-datagrid" style="height:425px;"   
+        data-options="
+        url:'../../findAll_Storage.action?t=<%=new Date().getTime() %>',
+        fitColumns:true, 
+        singleSelect:true"         
+        pagination="true" 
+        rownumbers="true" 
+        pageSize="10" 
+        pageList="[10,20,30,40]" 
+        loadMsg="姝ｅ湪鍦ㄥ姞杞借繙绋嬫暟鎹紝璇风◢鍚�......"
+        align="center" id="tt"
+        >   
+	    <thead>   
+	        <tr>   
+	            <th data-options="field:'stkId',width:70,align:'center'">搴忓彿</th>   
+	            <th data-options="field:'dName',width:145,align:'center',
+	           											formatter: function(value,row,index){
+															if (row.product){
+																return row.product.prodName;
+															} 
+														}
+
+	            ">浜у搧</th>   
+	            <th data-options="field:'stkWarehouse',width:145,align:'center'">浠撳簱</th>   
+	            <th data-options="field:'stkWare',width:145,align:'center'">璐т綅</th>
+	            <th data-options="field:'stkCount',width:145,align:'center'">浠舵暟</th>   
+	            <th data-options="field:'stkMemo',width:145,align:'center'">澶囨敞</th><%--  
+	            <th data-options="field:'stkMemo',width:145,align:'center'
+	              formatter: function(value,row,index){
+	           return <input id="cc" class="easyui-combobox" name="dept"   
+              data-options="valueField:'id',
+              textField:'text',
+              url:'get_data.php'" />
+              }
+              ">鍒嗛厤缁�</th>
+	            
+	        --%></tr>   
+	    </thead>   
+	</table> 
+
 </body>
 </html>

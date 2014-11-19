@@ -21,7 +21,7 @@ public class BasDict implements java.io.Serializable {
 	private String dictType;
 	private String dictItem;
 	private String dictValue;
-	private BigDecimal dictIsEditable;
+	private Integer dictIsEditable;
 
 	// Constructors
 
@@ -31,7 +31,7 @@ public class BasDict implements java.io.Serializable {
 
 	/** full constructor */
 	public BasDict(String dictType, String dictItem, String dictValue,
-			BigDecimal dictIsEditable) {
+			Integer dictIsEditable) {
 		this.dictType = dictType;
 		this.dictItem = dictItem;
 		this.dictValue = dictValue;
@@ -79,11 +79,11 @@ public class BasDict implements java.io.Serializable {
 	}
 
 	@Column(name = "DICT_IS_EDITABLE", precision = 22, scale = 0)
-	public BigDecimal getDictIsEditable() {
+	public Integer getDictIsEditable() {
 		return this.dictIsEditable;
 	}
 
-	public void setDictIsEditable(BigDecimal dictIsEditable) {
+	public void setDictIsEditable(Integer dictIsEditable) {
 		this.dictIsEditable = dictIsEditable;
 	}
 

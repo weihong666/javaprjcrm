@@ -4,12 +4,15 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.biz.IBasDictBiz;
 import com.biz.ICstActivityBiz;
 import com.biz.ICstCustomerBiz;
 import com.biz.ICstLinkmanBiz;
 import com.biz.ICstLostBiz;
 import com.biz.IOrdersBiz;
 import com.biz.IOrdersLineBiz;
+import com.biz.IProductBiz;
+import com.biz.IStorageBiz;
 
 @Service("BizService")
 public class BizService {
@@ -26,9 +29,40 @@ public class BizService {
 	@Resource(name = "CstLostBiz")
 	private ICstLostBiz lostBiz;
 	
+	@Resource(name="BasDictBiz")
+	private IBasDictBiz basDictBiz;
+	
+	@Resource(name="ProductBiz")
+	private IProductBiz productBiz;
+	
+	@Resource(name="StorageBiz")
+	private IStorageBiz storageBiz;
 	
 	
-	
+
+	public IBasDictBiz getBasDictBiz() {
+		return basDictBiz;
+	}
+
+	public void setBasDictBiz(IBasDictBiz basDictBiz) {
+		this.basDictBiz = basDictBiz;
+	}
+
+	public IProductBiz getProductBiz() {
+		return productBiz;
+	}
+
+	public void setProductBiz(IProductBiz productBiz) {
+		this.productBiz = productBiz;
+	}
+
+	public IStorageBiz getStorageBiz() {
+		return storageBiz;
+	}
+
+	public void setStorageBiz(IStorageBiz storageBiz) {
+		this.storageBiz = storageBiz;
+	}
 
 	public ICstLostBiz getLostBiz() {
 		return lostBiz;
