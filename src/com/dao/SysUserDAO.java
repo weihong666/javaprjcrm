@@ -2,12 +2,14 @@ package com.dao;
 
 import java.util.List;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Service;
 
+import com.po.CstCustomer;
 import com.po.SysUser;
 
 /**
@@ -160,4 +162,72 @@ public class SysUserDAO extends HibernateDaoSupport {
 	public static SysUserDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (SysUserDAO) ctx.getBean("SysUserDAO");
 	}
+	
+	/***
+	 * 
+	 * 登录
+	 * **/
+	public SysUser check(SysUser us){
+		String sql="from SysUser where usrName=? and usrPassword=?";
+		Query qy=getSession().createQuery(sql);
+		qy.setParameter(0, us.getUsrName());
+		qy.setParameter(1, us.getUsrPassword());
+		List<SysUser> ls=qy.list();
+		if(ls!=null&&!ls.isEmpty()){
+			return  ls.get(0);
+		}
+		return null;
+	}
+	
+	//===============获取最大行数=====================
+			public int findMaxRow(String usrId,String usrName,String usrRoleName,String usrAlevel){
+				int maxrow=0;
+				String sql="select count(*) from SysUser where 1=1";
+				if(usrId!=null&&!usrId.trim().equals("")){
+					String sql1=" and usrId='"+usrId+"'";
+					sql+=sql1;
+				}
+				if(usrName!=null&&!usrName.trim().equals("")){
+					String sql2=" and usrName='"+usrName+"'";
+					sql+=sql2;
+				}
+				if(usrRoleName!=null&&!usrRoleName.trim().equals("")){
+					String sql3=" and usrRoleName='"+usrRoleName+"'";
+					sql+=sql3;
+				}
+				if(usrAlevel!=null&&!usrAlevel.trim().equals("")){
+					String sql4=" and usrAlevel='"+usrAlevel+"'";
+					sql+=sql4;
+				}
+				
+				Query qy=getSession().createQuery(sql);
+				maxrow=Integer.parseInt(qy.list().get(0).toString());
+				return maxrow;
+			}
+			public List<SysUser> findAll(String usrId,String usrName,String usrRoleName,String usrAlevel,int page,int rows){
+				System.out.println("=============SysUser================");
+				String sql="from SysUser where 1=1";
+				if(usrId!=null&&!usrId.trim().equals("")){
+					String sql1=" and usrId='"+usrId+"'";
+					sql+=sql1;
+				}
+				if(usrName!=null&&!usrName.trim().equals("")){
+					String sql2=" and usrName='"+usrName+"'";
+					sql+=sql2;
+				}
+				if(usrRoleName!=null&&!usrRoleName.trim().equals("")){
+					String sql3=" and usrRoleName='"+usrRoleName+"'";
+					sql+=sql3;
+				}
+				if(usrAlevel!=null&&!usrAlevel.trim().equals("")){
+					String sql4=" and usrAlevel='"+usrAlevel+"'";
+					sql+=sql4;
+				}
+				
+				Query qy=getSession().createQuery(sql);
+				qy.setFirstResult((page-1)*rows);
+				qy.setMaxResults(rows);
+				return qy.list();
+			}
+	
 }

@@ -15,6 +15,7 @@ import com.dao.OrdersLineDAO;
 import com.dao.PageDao;
 import com.dao.ProductDAO;
 import com.dao.StorageDAO;
+import com.dao.SysUserDAO;
 
 @Service("DaoService")
 public class DaoService {
@@ -50,11 +51,22 @@ public class DaoService {
 	@Resource(name="BasDictDAO")
 	private BasDictDAO basDictDAO;
 	
+	@Resource(name="SysUserDAO")
+	private SysUserDAO sysUserDAO;
+	
 	// ----------------------------------------------------
 	
 	
 	public CstCustomerDAO getCustomerdao() {
 		return customerdao;
+	}
+
+	public SysUserDAO getSysUserDAO() {
+		return sysUserDAO;
+	}
+
+	public void setSysUserDAO(SysUserDAO sysUserDAO) {
+		this.sysUserDAO = sysUserDAO;
 	}
 
 	public ProductDAO getProductDAO() {

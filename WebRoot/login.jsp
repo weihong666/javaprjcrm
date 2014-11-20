@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <HTML>
 <HEAD>
 <TITLE>login_</TITLE>
@@ -65,21 +66,31 @@
 			<IMG SRC="html/images/login/login_09.jpg" WIDTH=15 HEIGHT=141 ALT=""></TD>
 		
     <TD COLSPAN=2 ROWSPAN=2 background="html/images/login/login_10.jpg" >
+    <form action="check_SysUser.action" method="post">
 <table width="100%">
         <tr> 
           <th>”√ªß√˚</th>
-          <td><input size="10" maxlength="20" /></td>
+          <td><input size="10" maxlength="20" name="sysUser.usrName" /></td>
         </tr>
         <tr> 
           <th>√‹¬Î</th>
-          <td><input type="password" size="10" maxlength="20" /></td>
+          <td><input type="password" size="10" maxlength="20" name="sysUser.usrPassword"/></td>
         </tr>
         <tr> 
           <td>&nbsp;</td>
-          <td><img onclick="window.location.href='html/index.jsp'" src="html/images/login/login_button.jpg" width="73" height="25"></td>
+          <td>
+          <input type="submit" value="<img  src=html/images/login/login_button.jpg width=73 height=25>"/><%--
+          <img  src="html/images/login/login_button.jpg" width="73" height="25">
+          
+          --%></td>
+        </tr>
+        <tr>
+        <td>
+        <font color="red"><s:property value="#session.error"/></font>
+        </td>
         </tr>
       </table>
-
+</form>
 	
     </TD>
 		<TD COLSPAN=2>

@@ -922,7 +922,9 @@ function initialise() {
 	L0501 = theMenu.addChild(L05, "Document", "数据字典管理", "~basd/dict.jsp", "数据字典管理...");
 	L0502 = theMenu.addChild(L05, "Document", "查询产品信息", "~basd/product.jsp", "查询产品信息...");
 	L0503 = theMenu.addChild(L05, "Document", "查询库存", "~basd/storage.jsp", "查询库存...");
-        
+	
+	L06 = theMenu.addChild(l2ID, "Folder", "用户管理", "", "用户管理..."); 
+	L0601 = theMenu.addChild(L06, "Document", "用户管理", "user.jsp", "用户管理...");
 	theMenu.entry[l2ID].isopen = true;
 }
 

@@ -13,6 +13,7 @@ import com.biz.IOrdersBiz;
 import com.biz.IOrdersLineBiz;
 import com.biz.IProductBiz;
 import com.biz.IStorageBiz;
+import com.biz.ISysUserBiz;
 
 @Service("BizService")
 public class BizService {
@@ -38,7 +39,18 @@ public class BizService {
 	@Resource(name="StorageBiz")
 	private IStorageBiz storageBiz;
 	
+	@Resource(name="SysUserBiz")
+	private ISysUserBiz sysUserBiz;
 	
+	
+
+	public ISysUserBiz getSysUserBiz() {
+		return sysUserBiz;
+	}
+
+	public void setSysUserBiz(ISysUserBiz sysUserBiz) {
+		this.sysUserBiz = sysUserBiz;
+	}
 
 	public IBasDictBiz getBasDictBiz() {
 		return basDictBiz;

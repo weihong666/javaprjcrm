@@ -38,8 +38,10 @@
 		<th>编号</th>
 		<td>${oldbasdict.dictId }</td>
 		<th>类别</th>
-		<td><input value="${oldbasdict.dictType }" id="dictType" name="basDict.dictType" class="easyui-validatebox" data-options="required:true"/><span class="red_star">*</span><br /></td>
-	     <input type="hidden" id="dictType" name="basDict.dictId" value="${oldbasdict.dictId }" />
+		<td><input value="${oldbasdict.dictType }" id="dictType" name="basDict.dictType" class="easyui-validatebox" data-options="required:true"/>
+		<input type="hidden" id="dictType" name="basDict.dictId" value="${oldbasdict.dictId }" />
+		<span class="red_star">*</span><br /></td>
+	     
 	</tr>
 	<tr>
 		<th>条目</th>
