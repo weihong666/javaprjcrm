@@ -38,7 +38,7 @@ request.setAttribute("custName", custName);
 <div class="button_bar">
 	<button class="common_button" onclick="help('');">帮助</button>
 	<button class="common_button" onclick="to('linkman_add.jsp');">新建</button>  
-	<button class="common_button" onclick="back();">返回</button>  
+	<button class="common_button" onclick="back();" type="button">返回</button>  
 </div>
 <table class="query_form_table">
 	<tr>

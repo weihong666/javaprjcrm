@@ -21,7 +21,7 @@
 	<button class="common_button" onclick="to('activities.jsp');">交往记录</button>
 	<button class="common_button" onclick="to('orders.jsp');">历史订单</button>
 	
-	<button class="common_button" onclick="back();">返回</button>
+	<button class="common_button" onclick="back();" type="button">返回</button>
 	<button class="common_button" type="submit" >保存</button>
 </div>
 <table class="query_form_table">
@@ -50,14 +50,15 @@
 			--%><span class="red_star">*</span></td>
 		<th>客户经理</th>
 		<td>
-			<select name="customer.custManagerName">
+		<s:select name="customer.custManagerName"  list="#session.lsUsers" listKey="usrName" listValue="usrName" value="#session.oldcustomer.custManagerName"></s:select>
+			<%--<select name="customer.custManagerName">
 				<option>请选择...</option>
 				<option selected>小明</option>
 				<option>旺财</option>
 				<option>球球</option>
 				<option>孙小美</option>
 				<option>周洁轮</option>
-			</select><span class="red_star">*</span>
+			</select>--%><span class="red_star">*</span>
 		</td>
 	</tr>	
 	<tr>

@@ -20,7 +20,7 @@ public class SysUser implements java.io.Serializable {
 	private String usrName;
 	private String usrPassword;
 	private String usrRoleName;
-	private Short usrAlevel;
+	private Integer usrAlevel;
 
 	// Constructors
 
@@ -30,7 +30,7 @@ public class SysUser implements java.io.Serializable {
 
 	/** full constructor */
 	public SysUser(String usrName, String usrPassword, String usrRoleName,
-			Short usrAlevel) {
+			Integer usrAlevel) {
 		this.usrName = usrName;
 		this.usrPassword = usrPassword;
 		this.usrRoleName = usrRoleName;
@@ -78,11 +78,11 @@ public class SysUser implements java.io.Serializable {
 	}
 
 	@Column(name = "USR_ALEVEL", precision = 4, scale = 0)
-	public Short getUsrAlevel() {
+	public Integer getUsrAlevel() {
 		return this.usrAlevel;
 	}
 
-	public void setUsrAlevel(Short usrAlevel) {
+	public void setUsrAlevel(Integer usrAlevel) {
 		this.usrAlevel = usrAlevel;
 	}
 

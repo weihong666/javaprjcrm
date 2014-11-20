@@ -15,7 +15,7 @@
 <div class="button_bar">
 	<button class="common_button" onclick="help('');">帮助</button>
 	
-	<button class="common_button" onclick="back();" type="button">返回</button>
+	<button class="common_button" onclick="back();" type="button" type="button">返回</button>
 	<button class="common_button" onclick="to('confirm.jsp');">确认流失</button>
 	<button class="common_button" type="submit">保存</button>
 </div>

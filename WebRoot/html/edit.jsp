@@ -15,7 +15,7 @@
 
 <div class="page_title">客户信息管理 > 用户信息信息 >编辑用户</div>
 
-<form action="../update_SysUser.action" method="post">
+<form action="../update_SysUser.action?t=<%=new Date().getTime() %>" method="post">
 <div class="button_bar">
 	<button class="common_button" onclick="help('');">帮助</button>
 	<button class="common_button" onclick="back();" type="button">返回</button>
@@ -27,7 +27,7 @@
 		<td>
 		<s:textfield  name="sysUser.usrName" value="%{#session.user.usrName}" size="20" /><span class="red_star">*</span>
 		<s:hidden name="sysUser.usrId"  value="%{#session.user.usrId}"/>
-		<s:hidden name="sysUser.usrAlevel"  value="%{#session.userr.usrAlevel}"/>
+		<s:hidden name="sysUser.usrAlevel"  value="%{#session.user.usrAlevel}"/>
       
       
 		</td>

@@ -123,6 +123,16 @@ public class SysUserDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+	public List findAll(Integer usrAlevel) {
+		log.debug("finding all SysUser instances");
+		try {
+			String queryString = "from SysUser where usrAlevel=?";
+			return getHibernateTemplate().find(queryString,usrAlevel);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
 
 	public SysUser merge(SysUser detachedInstance) {
 		log.debug("merging SysUser instance");

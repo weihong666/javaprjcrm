@@ -15,4 +15,5 @@ public interface ISysUserBiz {
 	public SysUser check(SysUser user);
 	public int findMaxRow(String usrId,String usrName,String usrRoleName,Integer usrAlevel);
 	public List<SysUser> findAll(String usrId,String usrName,String usrRoleName,Integer usrAlevel,int page,int rows);
+	public List findAllUser(Integer usrAlevel);
 }

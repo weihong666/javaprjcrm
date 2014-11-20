@@ -18,14 +18,14 @@
 <form action="../../../update_CstActivity" method="post">
 <div class="button_bar">
 	<button class="common_button" onclick="help('');">帮助</button>
-	<button class="common_button" onclick="back();">返回</button>
+	<button class="common_button" onclick="back();" type="button">返回</button>
 	<button type="submit" class="common_button">保存</button>  
 </div>
 <table class="query_form_table" id="table1">
 	<tr>
 		<th>时间</th>
 		<td>
-		<s:textfield name="activity.atvDate" value="%{#session.oldcstActivity.atvDate.toLocaleString()}" size="20" />
+		<s:textfield name="activity.atvDate"  class="easyui-datebox" value="%{#session.oldcstActivity.atvDate.toLocaleString()}" size="20" />
       	<s:hidden name="activity.atvId"  value="%{#session.oldcstActivity.atvId}"/>
       	<s:hidden name="activity.cstCustomer.custId"  value="%{#session.oldcstActivity.cstCustomer.custId}"/>
       

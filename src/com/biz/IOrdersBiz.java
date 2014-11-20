@@ -12,4 +12,5 @@ public interface IOrdersBiz {
 	public List<Orders> findAll();
 	public int findMaxRow();
 	public List<Orders> findAll(Integer odrId);
+	public boolean saveOrder(Orders orders) ;
 }

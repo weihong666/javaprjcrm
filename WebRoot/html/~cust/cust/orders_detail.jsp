@@ -26,7 +26,7 @@
 <div class="page_title">客户信息管理 &gt; 客户信息 &gt; 历史订单 &gt; 订单明细 </div>
 <div class="button_bar">
 	<button class="common_button" onclick="help('');">帮助</button>
-	<button class="common_button" onclick="back();">返回</button>  
+	<button class="common_button" onclick="back();" type="button">返回</button>  
 </div>
 <table class="query_form_table" height="59">
 	<tr>

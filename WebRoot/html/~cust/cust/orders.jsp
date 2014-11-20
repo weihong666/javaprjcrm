@@ -38,7 +38,7 @@ request.setAttribute("custName", custName);
 <div class="page_title">客户信息管理 > 客户信息 > 历史订单 </div>
 <div class="button_bar">
 	<button class="common_button" onclick="help('');">帮助</button>  
-	<button class="common_button" onclick="back();">返回</button>  
+	<button class="common_button" onclick="back();" type="button">返回</button>  
 </div>
 <table class="query_form_table">
 	<tr>

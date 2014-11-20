@@ -95,5 +95,10 @@ public class SysUserBiz implements ISysUserBiz {
 		// TODO Auto-generated method stub
 		return daoService.getSysUserDAO().findAll(usrId, usrName, usrRoleName, usrAlevel, page, rows);
 	}
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public List findAllUser(Integer usrAlevel) {
+		// TODO Auto-generated method stub
+		return daoService.getSysUserDAO().findAll(usrAlevel);
+	}
 
 }

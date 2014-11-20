@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 
 import com.po.BasDict;
 import com.po.CstCustomer;
+import com.po.SysUser;
 import com.service.BizService;
 import com.service.DaoService;
 import com.alibaba.fastjson.JSONObject;
@@ -229,11 +230,13 @@ public class CstCustomerAction implements ICstCustomerAction {
 			custLevelLabel = "";
 		}
 		List<BasDict> lscustRegion=bizService.getBasDictBiz().findAll("地区");
-		System.out.println("=============^^^^^*****%%%%%#####==========action"+lscustRegion.size());
+		
 		session.setAttribute("lscustRegion", lscustRegion);
 		List<BasDict> lscustLevelLabel=bizService.getBasDictBiz().findAll("企业客户等级");
-		
 		session.setAttribute("lscustLevelLabel", lscustLevelLabel);
+		List<SysUser> lsUsers=bizService.getSysUserBiz().findAllUser(1);
+		session.setAttribute("lsUsers", lsUsers);
+		System.out.println("=============^^^^^*****%%%%%#####==========action"+lsUsers.size());
 		// 获取总行数
 		int total = bizService.getCustomerBiz().findMaxRow(custNo, custName,
 				custRegion, custManagerName, custLevelLabel);
@@ -274,6 +277,11 @@ public class CstCustomerAction implements ICstCustomerAction {
 
 		PrintWriter out = getOut();
 		out.print(lsusjsonstr);
+		return null;
+	}
+
+	public String findAllUser() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

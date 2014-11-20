@@ -17,7 +17,7 @@
 <form action="../../../update_CstLinkman.action" method="post">
 <div class="button_bar">
 	<button class="common_button" onclick="help('');">帮助</button>
-	<button class="common_button" onclick="back();">返回</button>
+	<button class="common_button" onclick="back();" type="button">返回</button>
 	<button class="common_button" type="submit">保存</button>  
 </div>
 <table class="query_form_table" id="table1">

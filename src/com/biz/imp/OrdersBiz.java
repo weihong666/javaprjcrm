@@ -1,5 +1,6 @@
 package com.biz.imp;
 
+import java.text.DateFormat;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.biz.IOrdersBiz;
 import com.po.Orders;
+import com.po.OrdersLine;
 import com.service.DaoService;
 @Service("OrdersBiz")
 @Transactional
@@ -26,6 +28,31 @@ public class OrdersBiz implements IOrdersBiz {
 		this.daoService = daoService;
 	}
 //-------------------------------
+	
+	public boolean saveOrder(Orders orders) {
+		//处理订单总金额
+		int total=0;
+		List<OrdersLine> lsOrdersLines=daoService.getOrdersLineDAO().findAll(orders.getOdrId());
+		if (lsOrdersLines!=null&&!lsOrdersLines.isEmpty()) {
+			for (OrdersLine orderLine : lsOrdersLines) {
+				int price=orderLine.getProduct().getProdPrice();
+				String num=orderLine.getProduct().getProdBatch();
+				int mm=Integer.parseInt(num);
+				total+=price*mm;
+			}
+		}
+		orders.setOdrTotal(total);
+		
+		try {
+			daoService.getOrdersdao().save(orders);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public boolean save(Orders orders) {
 		try {
 			daoService.getOrdersdao().save(orders);
@@ -61,8 +88,20 @@ public class OrdersBiz implements IOrdersBiz {
 	}
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public Orders findById(Integer odrId) {
-		// TODO Auto-generated method stub
-		return daoService.getOrdersdao().findById(odrId);
+		//处理订单总金额
+				int total=0;
+				List<OrdersLine> lsOrdersLines=daoService.getOrdersLineDAO().findAll(odrId);
+				if (lsOrdersLines!=null&&!lsOrdersLines.isEmpty()) {
+					for (OrdersLine orderLine : lsOrdersLines) {
+						int price=orderLine.getProduct().getProdPrice();
+						String num=orderLine.getProduct().getProdBatch();
+						int mm=Integer.parseInt(num);
+						total+=price*mm;
+					}
+				}
+				Orders orders=daoService.getOrdersdao().findById(odrId);
+				orders.setOdrTotal(total);
+		return orders;
 	}
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<Orders> findAll() {
@@ -79,5 +118,5 @@ public class OrdersBiz implements IOrdersBiz {
 		// TODO Auto-generated method stub
 		return daoService.getOrdersdao().findAll(odrId);
 	}
-
+	
 }

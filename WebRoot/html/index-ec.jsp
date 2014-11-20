@@ -893,7 +893,7 @@ function initialise() {
 	var level5ID = -1;
 	//level表示最高级，level2子级，level3子子级，Document文件，folder文件夹。
 	//Set the initial state of the folder to "open"
-	l2ID = theMenu.addEntry(-1, "Folder", "客户关系管理系统", "mywork.htm", "客户关系管理系统");
+	l2ID = theMenu.addEntry(-1, "Folder", "客户关系管理系统", "mywork.jsp", "客户关系管理系统");
 	
 	L01 = theMenu.addChild(l2ID, "Folder", "营销管理", "", "营销管理...");
 	L0101 = theMenu.addChild(L01, "Document", "销售机会管理", "~sale/list.jsp", "销售机会管理...");
