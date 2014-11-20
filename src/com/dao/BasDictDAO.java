@@ -193,4 +193,16 @@ public class BasDictDAO extends HibernateDaoSupport {
 	public static BasDictDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (BasDictDAO) ctx.getBean("BasDictDAO");
 	}
+	//----------------------------------------------
+	public List findAll(String dictType) {
+		log.debug("finding all BasDict instances");
+		try {
+			String queryString = "from BasDict where dictType=?";
+			System.out.println("12345++++++++++++++===================");
+			return getHibernateTemplate().find(queryString,dictType );
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
 }

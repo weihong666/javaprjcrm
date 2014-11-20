@@ -1,10 +1,10 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <HTML>
 <HEAD>
 <TITLE>login_</TITLE>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=GB2312">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
 <style>
 	th{
 		font-size:12px;
@@ -69,11 +69,14 @@
     <form action="check_SysUser.action" method="post">
 <table width="100%">
         <tr> 
-          <th>ÓÃ»§Ãû</th>
-          <td><input size="10" maxlength="20" name="sysUser.usrName" /></td>
+          <th>ç”¨æˆ·å</th>
+          <td>
+          <input size="10" maxlength="20" name="sysUser.usrName" />
+          <input type="hidden" name="sysUser.usrId"/>
+          </td>
         </tr>
         <tr> 
-          <th>ÃÜÂë</th>
+          <th>å¯†ç </th>
           <td><input type="password" size="10" maxlength="20" name="sysUser.usrPassword"/></td>
         </tr>
         <tr> 
@@ -121,7 +124,7 @@
 	<TR>
 		
     <TD COLSPAN=7 background="html/images/login/login_16.jpg" style="text-align:right;padding-right:25px;"> 
-			&copy; 2008 ±±¾©°¢²©Ì©¿Ë±±´óÇàÄñÐÅÏ¢¼¼ÊõÓÐÏÞ¹«Ë¾
+			&copy; 2008 åŒ—äº¬é˜¿åšæ³°å…‹åŒ—å¤§é’é¸Ÿä¿¡æ¯æŠ€æœ¯æœ‰é™å…¬å¸
     </TD>
 		<TD>
 			<IMG SRC="html/images/login/spacer.gif" WIDTH=1 HEIGHT=55 ALT=""></TD>

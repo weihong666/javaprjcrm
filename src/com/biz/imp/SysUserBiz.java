@@ -26,23 +26,42 @@ public class SysUserBiz implements ISysUserBiz {
 	}
 
 	public boolean save(SysUser user) {
-		// TODO Auto-generated method stub
+		try {
+			daoService.getSysUserDAO().save(user);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	public boolean update(SysUser user) {
-		// TODO Auto-generated method stub
+		try {
+			daoService.getSysUserDAO().merge(user);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	public boolean delById(Integer usrId) {
-		// TODO Auto-generated method stub
+		SysUser user=daoService.getSysUserDAO().findById(usrId);
+		try {
+			daoService.getSysUserDAO().delete(user);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public SysUser findById(Integer usrId) {
 		// TODO Auto-generated method stub
-		return null;
+		return daoService.getSysUserDAO().findById(usrId);
 	}
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<SysUser> findAll() {
@@ -66,13 +85,13 @@ public class SysUserBiz implements ISysUserBiz {
 	}
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public int findMaxRow(String usrId, String usrName, String usrRoleName,
-			String usrAlevel) {
+			Integer usrAlevel) {
 		// TODO Auto-generated method stub
 		return daoService.getSysUserDAO().findMaxRow(usrId, usrName, usrRoleName, usrAlevel);
 	}
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<SysUser> findAll(String usrId, String usrName,
-			String usrRoleName, String usrAlevel, int page, int rows) {
+			String usrRoleName, Integer usrAlevel, int page, int rows) {
 		// TODO Auto-generated method stub
 		return daoService.getSysUserDAO().findAll(usrId, usrName, usrRoleName, usrAlevel, page, rows);
 	}

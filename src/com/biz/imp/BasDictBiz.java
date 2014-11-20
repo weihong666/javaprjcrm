@@ -79,5 +79,10 @@ public class BasDictBiz implements IBasDictBiz {
 		// TODO Auto-generated method stub
 		return daos.getBasDictDAO().findMaxRow(dtype, ditem, dvalue);
 	}
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public List<BasDict> findAll(String dictType) {
+		// TODO Auto-generated method stub
+		return daos.getBasDictDAO().findAll(dictType);
+	}
 
 }

@@ -924,7 +924,8 @@ function initialise() {
 	L0503 = theMenu.addChild(L05, "Document", "查询库存", "~basd/storage.jsp", "查询库存...");
 	
 	L06 = theMenu.addChild(l2ID, "Folder", "用户管理", "", "用户管理..."); 
-	L0601 = theMenu.addChild(L06, "Document", "用户管理", "user.jsp", "用户管理...");
+	L0601 = theMenu.addChild(L06, "Document", "用户列表", "user.jsp", "用户列表...");
+	L0602 = theMenu.addChild(L06, "Document", "用户信息", "edit.jsp", "用户信息...");
 	theMenu.entry[l2ID].isopen = true;
 }
 

@@ -38,7 +38,8 @@
 	<tr>
 		<th>地区</th>
 		<td>
-			<select name="customer.custRegion">
+		<s:select name="customer.custRegion"  list="#session.lscustRegion" listKey="dictItem" listValue="dictItem" value="#session.oldcustomer.custRegion"></s:select>
+			<%--<select name="customer.custRegion">
 				<option>请选择...</option>
 				<option selected>北京</option>
 				<option>华北</option>
@@ -46,7 +47,7 @@
 				<option>东北</option>
 				<option>西部</option>
 			</select>
-			<span class="red_star">*</span></td>
+			--%><span class="red_star">*</span></td>
 		<th>客户经理</th>
 		<td>
 			<select name="customer.custManagerName">
@@ -62,14 +63,17 @@
 	<tr>
 		<th>客户等级</th>
 		<td>
-			<select name="customer.custLevelLabel">
+		<s:select name="customer.custLevelLabel"  list="#session.lscustLevelLabel" listKey="dictItem" listValue="dictItem" value="#session.oldcustomer.custLevelLabel"></s:select>
+			<%--<select name="customer.custLevelLabel">
 				<option>请选择...</option>
 				<option selected>战略合作伙伴</option>
 				<option>合作伙伴</option>
 				<option>大客户</option>
 				<option>重点开发客户</option>
 				<option>普通客户</option>
-			</select><span class="red_star">*</span>
+			</select>
+			
+			--%><span class="red_star">*</span>
 		</td>
 		<th>　</th>
 		<td>　</td>

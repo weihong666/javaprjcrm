@@ -180,7 +180,7 @@ public class SysUserDAO extends HibernateDaoSupport {
 	}
 	
 	//===============获取最大行数=====================
-			public int findMaxRow(String usrId,String usrName,String usrRoleName,String usrAlevel){
+			public int findMaxRow(String usrId,String usrName,String usrRoleName,Integer usrAlevel){
 				int maxrow=0;
 				String sql="select count(*) from SysUser where 1=1";
 				if(usrId!=null&&!usrId.trim().equals("")){
@@ -195,7 +195,7 @@ public class SysUserDAO extends HibernateDaoSupport {
 					String sql3=" and usrRoleName='"+usrRoleName+"'";
 					sql+=sql3;
 				}
-				if(usrAlevel!=null&&!usrAlevel.trim().equals("")){
+				if(usrAlevel!=null&&!usrAlevel.equals("")){
 					String sql4=" and usrAlevel='"+usrAlevel+"'";
 					sql+=sql4;
 				}
@@ -204,7 +204,7 @@ public class SysUserDAO extends HibernateDaoSupport {
 				maxrow=Integer.parseInt(qy.list().get(0).toString());
 				return maxrow;
 			}
-			public List<SysUser> findAll(String usrId,String usrName,String usrRoleName,String usrAlevel,int page,int rows){
+			public List<SysUser> findAll(String usrId,String usrName,String usrRoleName,Integer usrAlevel,int page,int rows){
 				System.out.println("=============SysUser================");
 				String sql="from SysUser where 1=1";
 				if(usrId!=null&&!usrId.trim().equals("")){
@@ -219,7 +219,7 @@ public class SysUserDAO extends HibernateDaoSupport {
 					String sql3=" and usrRoleName='"+usrRoleName+"'";
 					sql+=sql3;
 				}
-				if(usrAlevel!=null&&!usrAlevel.trim().equals("")){
+				if(usrAlevel!=null&&!usrAlevel.equals("")){
 					String sql4=" and usrAlevel='"+usrAlevel+"'";
 					sql+=sql4;
 				}

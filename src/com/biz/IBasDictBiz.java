@@ -9,4 +9,5 @@ public interface IBasDictBiz {
       public BasDict findById(Integer id);
       public List<BasDict> findAll(String dtype,String ditem,String dvalue,int page,int rows);
   	  public int findMaxRow(String dtype,String ditem,String dvalue);
+  	  public List<BasDict> findAll(String dictType);
 }

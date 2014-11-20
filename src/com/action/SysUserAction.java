@@ -17,8 +17,6 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.stereotype.Controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.PropertyFilter;
-import com.po.CstCustomer;
 import com.po.SysUser;
 import com.service.BizService;
 
@@ -36,8 +34,18 @@ public class SysUserAction implements ISysUserAction {
 	private String usrId; 
 	private String usrName; 
 	private String usrRoleName;
-	private String usrAlevel;
+	private Integer usrAlevel;
+	private int userId;
 	
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public String getUsrId() {
 		return usrId;
 	}
@@ -62,11 +70,11 @@ public class SysUserAction implements ISysUserAction {
 		this.usrRoleName = usrRoleName;
 	}
 
-	public String getUsrAlevel() {
+	public Integer getUsrAlevel() {
 		return usrAlevel;
 	}
 
-	public void setUsrAlevel(String usrAlevel) {
+	public void setUsrAlevel(Integer usrAlevel) {
 		this.usrAlevel = usrAlevel;
 	}
 
@@ -119,35 +127,91 @@ public class SysUserAction implements ISysUserAction {
 	}
 
 	// --------------------------------------------------
+	@Action(value = "save_SysUser", results = {
+			@Result(name = "ok", location = "${path}", type = "redirect"),
+			@Result(name = "fail", location = "${path}", type = "redirect") })
 	public String save() {
-		// TODO Auto-generated method stub
-		return null;
+		boolean bl = bizService.getSysUserBiz().save(sysUser);
+		
+		if (bl) {
+			path = "html/user.jsp";
+			return "ok";
+		} else {
+			path = "error.jsp";
+			return "fail";
+		}
 	}
 
+	@Action(value = "update_SysUser", results = {
+			@Result(name = "ok", location = "${path}", type = "redirect"),
+			@Result(name = "fail", location = "${path}", type = "redirect") })
 	public String update() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		boolean bl = bizService.getSysUserBiz().update(sysUser);
+		if (bl) {
+			
+			path = "html/user.jsp";
+			return "ok";
+		} else {
+			path = "error.jsp";
+			return "fail";
+		}
 	}
 
+	@Action(value = "delById_SysUser", results = {
+			@Result(name = "ok", location = "${path}", type = "redirect"),
+			@Result(name = "fail", location = "${path}", type = "redirect") })
 	public String delById() {
-		// TODO Auto-generated method stub
+		boolean bl = bizService.getSysUserBiz().delById(id);
+		if (bl) {
+			path = "html/user.jsp";
+			return "ok";
+		} else {
+			path = "error.jsp";
+			return "fail";
+		}
+	}
+	@Action(value = "findById_SysUser", results = { @Result(name = "ok", location = "${path}", type = "redirect") })
+	public String findById() {
+		HttpSession session=ServletActionContext.getRequest().getSession();	
+		/*session.setAttribute("id", id);
+		session.setAttribute("custName", bizService.getCustomerBiz().findById(id).getCustName());*/
+		SysUser oldUser = bizService.getSysUserBiz().findById(id);
+		if(oldUser!=null){
+			session.setAttribute("oldUser", oldUser);
+			path = "html/edit.jsp";
+			return "ok";
+		}
+		
 		return null;
 	}
-
-	public String findById() {
-		// TODO Auto-generated method stub
+	@Action(value = "findByUserId_SysUser", results = { @Result(name = "ok", location = "${path}", type = "redirect") })
+	public String findByUserId() {
+		HttpSession session=ServletActionContext.getRequest().getSession();	
+		/*session.setAttribute("id", id);
+		session.setAttribute("custName", bizService.getCustomerBiz().findById(id).getCustName());*/
+		SysUser oldUserId = bizService.getSysUserBiz().findById(userId);
+		if(oldUserId!=null){
+			session.setAttribute("oldUserId", oldUserId);
+			path = "html/edit.jsp";
+			return "ok";
+		}
+		
 		return null;
 	}
 @Action(value="findAll_SysUser")
 	public String findAll() {
 		page = page == 0 ? 1 : page;
 		rows = rows == 0 ? 5 : rows;
-		/*System.out.println("=======================action");
-		if (custRegion != null && custRegion == "全部") {
-			custRegion = "";
+	/*	if (usrAlevel != null && usrAlevel == "全部") {
+			usrAlevel = "";
 		}
-		if (custLevelLabel != null && custLevelLabel == "全部") {
-			custLevelLabel = "";
+		if (usrAlevel != null && usrAlevel == "客户经理") {
+			usrAlevel = 1;
+		}
+		if (usrAlevel != null && usrAlevel == "普通员工") {
+			usrAlevel = 0;
 		}*/
 		// 获取总行数
 		int total = bizService.getSysUserBiz().findMaxRow(usrId,usrName,usrRoleName,usrAlevel);
@@ -160,29 +224,7 @@ public class SysUserAction implements ISysUserAction {
 		map.put("total", total);
 		map.put("rows", lsSysUsers);
 
-		// 编写属性过滤器,过滤掉集合属性
-		/*PropertyFilter propertyFilter = new PropertyFilter() {
-
-			public boolean apply(Object arg0, String pname, Object arg2) {
-				if (pname.equals("orderses")) {
-					return false;
-				}
-				if (pname.equals("cstLosts")) {
-					return false;
-				}
-				if (pname.equals("cstLinkmans")) {
-					return false;
-				}
-				if (pname.equals("cstActivities")) {
-					return false;
-				}
-				if (pname.equals("cstServices")) {
-					return false;
-				}
-				return true;
-			}
-		};*/
-
+		
 		String lsusjsonstr = JSONObject.toJSONString(map);
 
 		PrintWriter out = getOut();
@@ -201,7 +243,7 @@ public class SysUserAction implements ISysUserAction {
 			session.setAttribute("user", user);
 			List<SysUser> lsus = bizService.getSysUserBiz().findAll();
 			session.setAttribute("elsus", lsus);
-			path = "html/index.jsp";
+				path = "html/index.jsp";		
 			return "ok";
 		} else {
 			session.setAttribute("error", "用户名或者密码错误！");

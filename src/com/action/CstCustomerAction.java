@@ -16,8 +16,10 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.stereotype.Controller;
 
+import com.po.BasDict;
 import com.po.CstCustomer;
 import com.service.BizService;
+import com.service.DaoService;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.PropertyFilter;
 
@@ -127,7 +129,7 @@ public class CstCustomerAction implements ICstCustomerAction {
 	}
 
 	public String save() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -173,7 +175,8 @@ public class CstCustomerAction implements ICstCustomerAction {
 	 * **/
 	@Action(value = "findById_CstCustomer", results = { @Result(name = "ok", location = "${path}", type = "redirect") })
 	public String findById() {
-		HttpSession session=ServletActionContext.getRequest().getSession();	
+		HttpSession session=ServletActionContext.getRequest().getSession();
+		
 		session.setAttribute("id", id);
 		session.setAttribute("custName", bizService.getCustomerBiz().findById(id).getCustName());
 		CstCustomer oldcustomer = bizService.getCustomerBiz().findById(id);
@@ -215,15 +218,22 @@ public class CstCustomerAction implements ICstCustomerAction {
 
 	@Action(value = "findAll_CstCustomer")
 	public String findAll() {
+		HttpSession session=ServletActionContext.getRequest().getSession();
 		page = page == 0 ? 1 : page;
 		rows = rows == 0 ? 5 : rows;
-		System.out.println("=======================action");
+		
 		if (custRegion != null && custRegion == "全部") {
 			custRegion = "";
 		}
 		if (custLevelLabel != null && custLevelLabel == "全部") {
 			custLevelLabel = "";
 		}
+		List<BasDict> lscustRegion=bizService.getBasDictBiz().findAll("地区");
+		System.out.println("=============^^^^^*****%%%%%#####==========action"+lscustRegion.size());
+		session.setAttribute("lscustRegion", lscustRegion);
+		List<BasDict> lscustLevelLabel=bizService.getBasDictBiz().findAll("企业客户等级");
+		
+		session.setAttribute("lscustLevelLabel", lscustLevelLabel);
 		// 获取总行数
 		int total = bizService.getCustomerBiz().findMaxRow(custNo, custName,
 				custRegion, custManagerName, custLevelLabel);
