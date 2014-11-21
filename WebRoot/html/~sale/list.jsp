@@ -1,72 +1,109 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<link href="../css/style.css" rel="stylesheet" type="text/css">
-<script src="../script/common.js"></script>
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+     <link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+	<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
+	<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="../script/common.js"></script>
+    <script type="text/javascript">
+    //=====================================
+ 	
+    //----ç»„åˆæŸ¥è¯¢---------------------------------
+    $(document).ready(function(){		
+	 $("#find").click(function(){	
+
+		$("#tt").datagrid({
+			queryParams: {
+				chcCustName:$("#chcCustName").val(),
+				chcLinkman:$("#chcLinkman").val(),
+				chcTitle:$("#chcTitle").val()
+				
+
+			}
+		
+		}
+		); 
+
+		//æ¸…ç©ºæŸ¥è¯¢é¡¹
+		$("#chcCustName").val("");
+		$("#chcLinkman").val("");
+		$("#chcTitle").val("");
+		
+
+		
+		
+});
+	
+	});
+    </script>
 </head>
 <body>
 
-<div class="page_title">ÏúÊÛ»ú»á¹ÜÀí</div>
-<div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="to('add.jsp');">ÐÂ½¨</button>  
-	<button class="common_button" onclick="reload();">²éÑ¯</button> 
+<div class="page_title">é”€å”®æœºä¼šç®¡ç†</div>
+
+<div class="button_bar" >
+	<button class="common_button" onclick="help('');" id="help">å¸®åŠ©</button>
+	<button class="common_button" onclick="to('add.jsp');" id="save">æ–°å»º</button>  
+	<button class="common_button" id="find">æŸ¥è¯¢</button> 
 	</div>
+
 <table class="query_form_table">
 	<tr>
-		<th>¿Í»§Ãû³Æ</th>
-		<td><input /></td>
-		<th>¸ÅÒª</th>
-		<td><input /></td>
-		<th>ÁªÏµÈË</th>
-		<td>
-			<input name="T1" size="20" />
-		</td>
+		<th>å®¢æˆ·åç§°</th>
+		<td><input name="chcCustName" id="chcCustName"/></td>
+		<th>æ¦‚è¦</th>
+		<td><input name="chcTitle" id="chcTitle"/></td>
+		<th>è”ç³»äºº</th>
+		<td><input name="chcLinkman" id="chcLinkman" size="20" /></td>
 	</tr>
 	</table>
 <br />
-<table class="data_list_table">
-	<tr>
-		<th>±àºÅ</th>
-		<th>¿Í»§Ãû³Æ</th>
-		<th>¸ÅÒª</th>
-		<th>ÁªÏµÈË</th>
-		<th>ÁªÏµÈËµç»°</th>
-		<th>´´½¨Ê±¼ä</th>
-		<th>²Ù×÷</th>
-	</tr>
-	<tr>
-		<td class="list_data_number">1</td>
-		<td class="list_data_text">î£ÖÇÊýÂë</td>
-		<td class="list_data_ltext">²É¹º±Ê¼Ç±¾µçÄÔÒâÏò</td>
-		<td class="list_data_text">ÁõÏÈÉú</td>
-		<td class="list_data_text">13729239239</td>
-		<td class="list_data_text">2007Äê12ÔÂ06ÈÕ</td>
-		<td class="list_data_op">
-			<img onclick="to('dispatch.jsp');" title="Ö¸ÅÉ" src="../images/bt_linkman.gif" class="op_button" />
-			<img onclick="to('edit.jsp');" title="±à¼­" src="../images/bt_edit.gif" class="op_button" />
-			<img onclick="del('¡°ÏúÊÛ»ú»á£º²É¹º±Ê¼Ç±¾µçÄÔÒâÏò¡±');" title="É¾³ý" src="../images/bt_del.gif" class="op_button" />
-			
-		</td>
-	</tr>
-	<tr>
-		<th colspan="7" class="pager">
-<div class="pager">
-	¹²59Ìõ¼ÇÂ¼ Ã¿Ò³<input value="10" size="2" />Ìõ
-	µÚ<input value="1" size="2"/>Ò³/¹²5Ò³
-	<a href="#">µÚÒ»Ò³</a>
-	<a href="#">ÉÏÒ»Ò³</a>
-	<a href="#">ÏÂÒ»Ò³</a>
-	<a href="#">×îºóÒ»Ò³</a>
-	×ªµ½<input value="1" size="2" />Ò³
-	<button width="20" onclick="reload();">GO</button>
-</div>
-		</th>
-	</tr>
+<div align="center">
+<table class="easyui-datagrid" style=" height: 430px"
+	data-options="url:'../../findAll_SalChance.action?t=<%=new Date().getTime()%>',
+        fitColumns:true,
+        singleSelect:true"
+		pagination="true"
+		rownumbers="true"
+	    pageList="[5,10,15,20]"
+		pageSize="5" 
+		loadMsg="æ­£åœ¨åŠ è½½è¿œç¨‹æ•°æ®è¯·ç¨åŽã€‚ã€‚ã€‚ã€‚"
+		align="center" id="tt"
+		>
+		<thead>
+		<tr>
+			<th data-options="field:'chcId',width:100,align:'center'">ç¼–å·</th>
+			<th data-options="field:'chcCustName',width:100,align:'center'">å®¢æˆ·åç§°</th>
+			<th data-options="field:'chcTitle',width:100,align:'center'">æ¦‚è¦</th>
+			<th data-options="field:'chcLinkman',width:100,align:'center'">è”ç³»äºº</th>
+			<th data-options="field:'chcTel',width:100,align:'center'">è”ç³»äººç”µè¯</th>
+			<th data-options="field:'chcCreateDate',width:100,align:'center'">åˆ›å»ºæ—¶é—´</th>
+          
+			<th data-options="field:'opt',width:100,align:'center',formatter: function(value,row,index){
+																		
+				return '<a href=../../init_SalChance.action?chcId='+row.chcId+'&t=<%=new Date().getTime()%>><img title=æŒ‡æ´¾ src=../images/bt_linkman.gif class=op_button /></a>'
+				+'<a href=../../findById_SalChance.action?chcId='+row.chcId+'&t=<%=new Date().getTime()%>><img title=ç¼–è¾‘ src=../images/bt_edit.gif class=op_button /></a>'
+				+'<a href=../../delById_SalChance.action?chcId='+row.chcId+'&t=<%=new Date().getTime()%>><img title=åˆ é™¤ src=../images/bt_del.gif class=op_button /></a>';
+																			} 
+			">æ“ä½œ</th>
+					</tr>
+	   </thead>
 </table>
+</div>	
 </body>
 </html>
+ 

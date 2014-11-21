@@ -3,12 +3,14 @@ package com.dao;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Service;
 
+import com.po.SalChance;
 import com.po.SalPlan;
 
 /**
@@ -151,4 +153,64 @@ public class SalPlanDAO extends HibernateDaoSupport {
 	public static SalPlanDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (SalPlanDAO) ctx.getBean("SalPlanDAO");
 	}
+	
+	//==================================
+		@SuppressWarnings("unchecked")
+		public List<SalChance> findAll(String chcCustName,String chcTitle,String chcLinkman,int page,int rows){
+			int pnum=(page-1)*rows;
+			String sql="from SalChance where 1=1";
+			if(chcCustName!=null&&!chcCustName.trim().equals("")){
+				String sql1=" and chcCustName='"+chcCustName+"'";
+				
+				sql+=sql1;
+				
+			}
+			if(chcTitle!=null&&!chcTitle.trim().equals("")){
+				String sql2=" and chcTitle='"+chcTitle+"'";
+				sql+=sql2;
+			}
+			if(chcLinkman!=null&&!chcLinkman.trim().equals("")){
+				String sql3=" and chcLinkman='"+chcLinkman+"'";
+				sql+=sql3;
+				System.out.println("================================="+"sql");
+			}
+			Query query=getSession().createQuery(sql);
+			query.setFirstResult(pnum);
+			query.setMaxResults(rows);
+			List<SalChance> lisalChance=query.list();
+			return lisalChance;
+		}
+		public int findMaxRow(String chcCustName,String chcTitle,String chcLinkman){
+			int maxrow=0;
+			String sql="select count(*) from SalChance where 1=1";
+			if(chcCustName!=null&&!chcCustName.trim().equals("")){
+				String sql1=" and chcCustName='"+chcCustName+"'";
+				sql+=sql1;
+			}
+			if(chcTitle!=null&&!chcTitle.trim().equals("")){
+				String sql2=" and chcTitle='"+chcTitle+"'";
+				sql+=sql2;
+			}
+			if(chcLinkman!=null&&!chcLinkman.trim().equals("")){
+				String sql3=" and chcLinkman='"+chcLinkman+"'";
+				sql+=sql3;
+			}
+			Query query=getSession().createQuery(sql);
+			maxrow=Integer.parseInt(query.list().get(0).toString());
+			return maxrow;
+			
+		}
+		//=======================================
+		public List findAll(Integer chcId) {
+			System.out.println(chcId+"====dao======");
+			log.debug("finding all SalPlan instances");
+			try {
+				String queryString = "from SalPlan where salChance.chcId=? order by plaId";
+				return getHibernateTemplate().find(queryString, chcId);
+			} catch (RuntimeException re) {
+				log.error("find all failed", re);
+				throw re;
+			}
+		}
+
 }

@@ -14,6 +14,8 @@ import com.dao.OrdersDAO;
 import com.dao.OrdersLineDAO;
 import com.dao.PageDao;
 import com.dao.ProductDAO;
+import com.dao.SalChanceDAO;
+import com.dao.SalPlanDAO;
 import com.dao.StorageDAO;
 import com.dao.SysUserDAO;
 
@@ -53,12 +55,31 @@ public class DaoService {
 	
 	@Resource(name="SysUserDAO")
 	private SysUserDAO sysUserDAO;
-	
+	@Resource(name="SalChanceDAO")
+	private SalChanceDAO salchanceDAO;
+	@Resource(name="SalPlanDAO")
+	private SalPlanDAO salplanDAO;
 	// ----------------------------------------------------
 	
 	
 	public CstCustomerDAO getCustomerdao() {
 		return customerdao;
+	}
+
+	public SalChanceDAO getSalchanceDAO() {
+		return salchanceDAO;
+	}
+
+	public void setSalchanceDAO(SalChanceDAO salchanceDAO) {
+		this.salchanceDAO = salchanceDAO;
+	}
+
+	public SalPlanDAO getSalplanDAO() {
+		return salplanDAO;
+	}
+
+	public void setSalplanDAO(SalPlanDAO salplanDAO) {
+		this.salplanDAO = salplanDAO;
 	}
 
 	public SysUserDAO getSysUserDAO() {

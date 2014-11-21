@@ -1,77 +1,130 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@page import="java.math.BigDecimal"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<link href="../css/style.css" rel="stylesheet" type="text/css">
-<script src="../script/common.js"></script>
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script src="../script/common.js" charset="gb2312"></script>
+<script type="text/javascript">
+	function save() {
+		if (document.getElementById("chcCustName").value == "") {
+			alert("è¯·è¾“å…¥å®¢æˆ·åç§°");
+			document.getElementById("chcCustName").focus();
+			return;
+		}
+		if (document.getElementById("chcRate").value == "") {
+			alert("è¯·è¾“å…¥æˆåŠŸæœºç‡");
+			document.getElementById("chcRate").focus();
+			return;
+		}
+		if (document.getElementById("chcTitle").value == "") {
+			alert("è¯·è¾“å…¥æ¦‚è¦");
+			document.getElementById("chcTitle").focus();
+			return;
+		}
+		if (document.getElementById("chcDesc").value == "") {
+			alert("è¯·è¾“å…¥æœºä¼šæè¿°");
+			document.getElementById("chcDesc").focus();
+			return;
+		}
+		document.forms['ff'].submit();
+	}
+</script>
+
 </head>
 <body>
 
-<div class="page_title">ÏúÊÛ»ú»á¹ÜÀí&nbsp; &gt; ĞÂ½¨ÏúÊÛ»ú»á</div>
-<div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="back();">·µ»Ø</button>
-	<button class="common_button" onclick="add('list.jsp');">±£´æ</button>  
-</div>
-<table class="query_form_table">
-	<tr>
-		<th>±àºÅ</th>
-		<td><input readonly /></td>
-		<th>»ú»áÀ´Ô´</th>
-		<td>
-			<input name="T4" size="20" /></td>
-	</tr>
-	<tr>
-		<th>¿Í»§Ãû³Æ</th>
-		<td><input /><span class="red_star">*</span></td>
-		<th>³É¹¦»úÂÊ</th>
-		<td><input /><span class="red_star">*</span></td>
-	</tr>	
-	<tr>
-		<th>¸ÅÒª</th>
-		<td colspan="3"><input name="T0" size="52" /><span class="red_star">*</span></td>
-	</tr>
-	<tr>
-		<th>ÁªÏµÈË</th>
-		<td><input name="T21" size="20" /></td>
-		<th>ÁªÏµÈËµç»°</th>
-		<td><input name="T5" size="20" /></td>
-	</tr>
-	<tr>
-		<th>»ú»áÃèÊö</th>
-		<td colspan="3"><textarea rows="6" cols="50" name="S1"></textarea><span class="red_star">*</span></td>
-	</tr>
-	<tr>
-		<th>´´½¨ÈË</th>
-		<td><input name="T19" value="ÁõÓ±" readonly size="20" /><span class="red_star">*</span></td>
-		<th>´´½¨Ê±¼ä</th>
-		<td><input id="t1" name="T15" readonly size="20" /><span class="red_star">*</span></td>
-	</tr>
-</table>
-<br />
-<table disabled class="query_form_table" id="table1">
-	<tr>
-		<th>Ö¸ÅÉ¸ø</th>
-		<td>
-			<select name="D1">
-				<option>ÇëÑ¡Ôñ...</option>
-				<option>Ğ¡Ã÷</option>
-				<option>Íú²Æ</option>
-				<option>ÇòÇò</option>
-				<option>ËïĞ¡ÃÀ</option>
-				<option>ÖÜ½àÂÖ</option>
-			</select> <span class="red_star">*</span></td>
-		<th>Ö¸ÅÉÊ±¼ä</th>
-		<td>
-			<input id="t2" name="T20" readonly size="20" /><span class="red_star">*</span></td>
-	</tr>
-</table>
-<script>
-	setCurTime('t1');
-	setCurTime('t2');
-</script>
+	<div class="page_title">é”€å”®æœºä¼šç®¡ç†&nbsp; &gt; æ–°å»ºé”€å”®æœºä¼š</div>
+	<form action="../../save_SalChance.action" method="post" name="form1"
+		id="ff">
+		<div class="button_bar">
+
+			<button class="common_button" onclick="help('');">å¸®åŠ©</button>
+			<button class="common_button" onclick="back();" type="button">è¿”å›</button>
+			<button class="common_button" onclick="save()">ä¿å­˜</button>
+		</div>
+		<table class="query_form_table">
+			<tr>
+				<th>ç¼–å·</th>
+				<td><input name="salChance.chcId" readonly />
+				</td>
+				<th>æœºä¼šæ¥æº</th>
+				<td><input name="salChance.chcSource" size="20" />
+				</td>
+			</tr>
+			<tr>
+				<th>å®¢æˆ·åç§°</th>
+				<td><input name="salChance.chcCustName" id="chcCustName" /><span
+					class="red_star">*</span>
+				</td>
+				<th>æˆåŠŸæœºç‡</th>
+				<td><input name="salChance.chcRate" id="chcRate" /><span
+					class="red_star">*</span>
+				</td>
+			</tr>
+			<tr>
+				<th>æ¦‚è¦</th>
+				<td colspan="3"><input name="salChance.chcTitle" size="52"
+					id="chcTitle" /><span class="red_star">*</span>
+				</td>
+			</tr>
+			<tr>
+				<th>è”ç³»äºº</th>
+				<td><input name="salChance.chcLinkman" size="20" />
+				</td>
+				<th>è”ç³»äººç”µè¯</th>
+				<td><input name="salChance.chcTel" size="20" />
+				</td>
+			</tr>
+			<tr>
+				<th>æœºä¼šæè¿°</th>
+				<td colspan="3"><textarea rows="6" cols="50"
+						name="salChance.chcDesc" id="chcDesc" /></textarea><span class="red_star">*</span>
+				</td>
+			</tr>
+			<tr>
+				<th>åˆ›å»ºäºº</th>
+				<td><input name="salChance.chcCreateBy" value="ç°å¤ªç‹¼" readonly
+					size="20" id="chcCreateBy" /> <span class="red_star">*</span></td>
+				<th>åˆ›å»ºæ—¶é—´</th>
+				<td><input id="t1" name="salChance.chcCreateDate" readonly
+					size="20" /><span class="red_star">*</span>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<table disabled class="query_form_table" id="table1">
+			<tr>
+				<th>æŒ‡æ´¾ç»™</th>
+				<td><select name="D1">
+						<option>è¯·é€‰æ‹©...</option>
+				</select> <span class="red_star">*</span>
+				</td>
+				<th>æŒ‡æ´¾æ—¶é—´</th>
+				<td><input id="t2" name="salChance.chcDueDate" readonly
+					size="20" /><span class="red_star">*</span>
+				</td>
+			</tr>
+		</table>
+		<script>
+			setCurTime('t1');
+			setCurTime('t2');
+		</script>
+	</form>
 </body>
 </html>

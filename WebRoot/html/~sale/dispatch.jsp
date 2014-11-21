@@ -1,76 +1,114 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
-<script src="../script/common.js"></script>
+<script src="../script/common.js" charset="gb2312"></script>
+<%--<script type="text/javascript">
+	function save(){
+		alert("ä¿å­˜æˆåŠŸ!");
+		}
+	document.forms['ff'].submit();  
+	}	
+	
+	</script>
+--%>
 </head>
 <body>
 
-<div class="page_title">ÏúÊÛ»ú»á¹ÜÀí&nbsp; &gt; Ö¸ÅÉÏúÊÛ»ú»á</div>
-<div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="back();">·µ»Ø</button>
-	<button class="common_button" onclick="save('list.jsp');">±£´æ</button>  
-</div>
-<table class="query_form_table">
-	<tr>
-		<th>±àºÅ</th>
-		<td>1</td>
-		<th>»ú»áÀ´Ô´</th>
-		<td>
-			¡¡</td>
-	</tr>
-	<tr>
-		<th>¿Í»§Ãû³Æ</th>
-		<td>î£ÖÇµçÄÔ</td>
-		<th>³É¹¦»úÂÊ£¨%£©</th>
-		<td>&nbsp;70</td>
-	</tr>	
-	<tr>
-		<th>¸ÅÒª</th>
-		<td colspan="3">²É¹º±Ê¼Ç±¾µçÄÔÒâÏò</td>
-	</tr>
-	<tr>
-		<th>ÁªÏµÈË</th>
-		<td>ÁõÏÈÉú</td>
-		<th>ÁªÏµÈËµç»°</th>
-		<td>13729239239</td>
-	</tr>
-	<tr>
-		<th>»ú»áÃèÊö</th>
-		<td colspan="3">...</td>
-	</tr>
-	<tr>
-		<th>´´½¨ÈË</th>
-		<td>ÁõÓ±</td>
-		<th>´´½¨Ê±¼ä</th>
-		<td>2007Äê12ÔÂ06ÈÕ 16Ê±09·Ö08Ãë</td>
-	</tr>
-</table>
-<br />
-<table class="query_form_table" id="table1">
-	<tr>
-		<th>Ö¸ÅÉ¸ø</th>
-		<td>
-			<select name="D1">
-				<option>ÇëÑ¡Ôñ...</option>
-				<option>Ğ¡Ã÷</option>
-				<option>Íú²Æ</option>
-				<option>ÇòÇò</option>
-				<option>ËïĞ¡ÃÀ</option>
-				<option>ÖÜ½àÂÖ</option>
-			</select> <span class="red_star">*</span></td>
-		<th>Ö¸ÅÉÊ±¼ä</th>
-		<td>
-			<input id="t2" name="T20" readonly size="20" /><span class="red_star">*</span></td>
-	</tr>
-</table>
-<script>
-	setCurTime('t2');
-</script>
+	<div class="page_title">é”€å”®æœºä¼šç®¡ç†&nbsp; &gt; æŒ‡æ´¾é”€å”®æœºä¼š</div>
+	<s:form action="../../update_SalChance.action" method="post"
+		name="form1" id="ff">
+		<div class="button_bar">
+			<button class="common_button" onclick="help('');">å¸®åŠ©</button>
+			<button class="common_button" onclick="back();" type="button">è¿”å›</button>
+			<button class="common_button" type="submit">ä¿å­˜</button>
+		</div>
+		<table class="query_form_table">
+			<tr>
+				<th>ç¼–å·</th>
+				<td>${oldsalChance1.chcId} <s:hidden name="salChance.chcId"
+						value="%{#session.oldsalChance1.chcId}" /></td>
+				<th>æœºä¼šæ¥æº</th>
+				<td>${oldsalChance1.chcSource} <s:hidden
+						name="salChance.chcSource"
+						value="%{#session.oldsalChance1.chcSource}" /></td>
+			</tr>
+			<tr>
+				<th>å®¢æˆ·åç§°</th>
+				<td>${oldsalChance1.chcCustName} <s:hidden
+						name="salChance.chcCustName"
+						value="%{#session.oldsalChance1.chcCustName}" /></td>
+				<th>æˆåŠŸæœºç‡ï¼ˆ%ï¼‰</th>
+				<td>${oldsalChance1.chcRate} <s:hidden name="salChance.chcRate"
+						value="%{#session.oldsalChance1.chcRate}" /></td>
+			</tr>
+			<tr>
+				<th>æ¦‚è¦</th>
+				<td colspan="3">${oldsalChance1.chcTitle} <s:hidden
+						name="salChance.chcTitle"
+						value="%{#session.oldsalChance1.chcTitle}" /></td>
+			</tr>
+			<tr>
+				<th>è”ç³»äºº</th>
+				<td>${oldsalChance1.chcLinkman} <s:hidden
+						name="salChance.chcLinkman"
+						value="%{#session.oldsalChance1.chcLinkman}" /></td>
+				<th>è”ç³»äººç”µè¯</th>
+				<td>${oldsalChance1.chcTel} <s:hidden name="salChance.chcTel"
+						value="%{#session.oldsalChance1.chcTel}" /></td>
+			</tr>
+			<tr>
+				<th>æœºä¼šæè¿°</th>
+				<td colspan="3">${oldsalChance1.chcDesc} <s:hidden
+						name="salChance.chcDesc" value="%{#session.oldsalChance1.chcDesc}" />
+				</td>
+			</tr>
+			<tr>
+				<th>åˆ›å»ºäºº</th>
+				<td>ç°å¤ªç‹¼ <s:hidden name="salChance.chcCreateBy" value="'ç°å¤ªç‹¼'" />
+					<s:hidden name="salChance.chcCreateId"></s:hidden> <s:hidden
+						name="salChance.chcStatus"></s:hidden></td>
+				<th>åˆ›å»ºæ—¶é—´</th>
+				<td>${oldsalChance1.chcCreateDate} <s:hidden
+						name="salChance.chcCreateDate"
+						value="%{#session.oldsalChance1.chcCreateDate}" /></td>
+			</tr>
+		</table>
+		<br />
+		<table class="query_form_table" id="table1">
+			<tr>
+				<th>æŒ‡æ´¾ç»™</th>
+				<td><s:select name="salChance.chcDueTo"
+						list="#session.lisysuser" listKey="usrName" listValue="usrName"
+						value="%{#session.lisysuser.usrName}"></s:select> <span
+					class="red_star">*</span>
+				</td>
+				<th>æŒ‡æ´¾æ—¶é—´</th>
+				<td><s:textfield name="salChance.chcDueDate" id="dispatch_date"
+						readonly="true"></s:textfield> <span class="red_star">*</span>
+				</td>
+			</tr>
+		</table>
+		<script>
+			setCurTime('dispatch_date');
+		</script>
+	</s:form>
 </body>
 </html>

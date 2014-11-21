@@ -13,6 +13,8 @@ import com.biz.ICstServiceBiz;
 import com.biz.IOrdersBiz;
 import com.biz.IOrdersLineBiz;
 import com.biz.IProductBiz;
+import com.biz.ISalChanceBiz;
+import com.biz.ISalPlanBiz;
 import com.biz.IStorageBiz;
 import com.biz.ISysUserBiz;
 
@@ -47,7 +49,28 @@ public class BizService {
 	@Resource(name="CstServiceBiz")
 	private ICstServiceBiz cstServiceBiz;
 	
+	@Resource(name="SalChanceBiz")
+	private ISalChanceBiz salchancebiz;
+	@Resource(name="SalPlanBiz")
+	private ISalPlanBiz salplanbiz;
+
 	
+	
+	public ISalChanceBiz getSalchancebiz() {
+		return salchancebiz;
+	}
+
+	public void setSalchancebiz(ISalChanceBiz salchancebiz) {
+		this.salchancebiz = salchancebiz;
+	}
+
+	public ISalPlanBiz getSalplanbiz() {
+		return salplanbiz;
+	}
+
+	public void setSalplanbiz(ISalPlanBiz salplanbiz) {
+		this.salplanbiz = salplanbiz;
+	}
 
 	public ICstServiceBiz getCstServiceBiz() {
 		return cstServiceBiz;

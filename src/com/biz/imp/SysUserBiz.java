@@ -63,10 +63,11 @@ public class SysUserBiz implements ISysUserBiz {
 		// TODO Auto-generated method stub
 		return daoService.getSysUserDAO().findById(usrId);
 	}
+	@SuppressWarnings("unchecked")
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<SysUser> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return daoService.getSysUserDAO().findAll();
 	}
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public int findMaxRow() {

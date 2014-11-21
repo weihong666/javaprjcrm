@@ -1,97 +1,188 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
-<script src="../script/common.js"></script>
+<script src="../script/common.js" charset="gb2312"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+		$("#btsave").click(function() {
+			$('#ff').form('submit', {    
+			    url:'../../save_SalPlan',    
+			    onSubmit: function(){    
+			     // return $(this).form('validate'); 
+			     return true;
+			    },    
+			    success:function(data){
+			    	if(data==1){ 
+			    		alert("ä¿å­˜æˆåŠŸ");
+			    		$('#tt').datagrid('reload');
+			    	}else{
+			    		alert("ä¿å­˜å¤±è´¥");
+			    	}
+			           
+			    }    
+			});  
+		});
+	});
+	function dodel(id) {
+		$.messager.confirm('ç¡®è®¤åˆ é™¤å¯¹è¯æ¡†', 'æ‚¨æƒ³è¦åˆ é™¤è¯¥æ•°æ®å—ï¼Ÿ', function(r){
+			if (r){
+				$.post("../../delById_SalPlan?plaId="+id,callBackDodel);
+			}
+		});
+
+	}
+	function callBackDodel(data) {
+		if(data==1){ 
+    		alert("åˆ é™¤æˆåŠŸ");
+    		$('#tt').datagrid('reload');
+    	}else{
+    		alert("åˆ é™¤å¤±è´¥");
+    	}
+	}
+	function update(id) {
+		//åŠ¨æ€æ”¹å˜formè¡¨å•çš„idå¹¶å–å€¼
+		$('#'+id).form('submit', {    
+		    url:'../../update_SalPlan',    
+		    onSubmit: function(){ 
+		        return true;   
+		    },    
+		    success:function(data){
+		    	if(data==1){ 
+		    		alert("ä¿®æ”¹æˆåŠŸ");
+		    		$('#tt').datagrid('reload');
+		    	}else{
+		    		alert("ä¿®æ”¹å¤±è´¥");
+		    	}
+		           
+		    }    
+		});  
+	}
+</script>
 </head>
 <body>
 
-<div class="page_title">¿Í»§¿ª·¢¼Æ»® &gt; ÖÆ¶¨¼Æ»®</div>
-<div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="to('dev_execute.jsp');">Ö´ĞĞ¼Æ»®</button>
-	<button class="common_button" onclick="back();">·µ»Ø</button>
-</div>
-<table class="query_form_table">
-	<tr>
-		<th>±àºÅ</th>
-		<td>1</td>
-		<th>»ú»áÀ´Ô´</th>
-		<td>
-			¡¡</td>
-	</tr>
-	<tr>
-		<th>¿Í»§Ãû³Æ</th>
-		<td>î£ÖÇµçÄÔ</td>
-		<th>³É¹¦»úÂÊ£¨%£©</th>
-		<td>&nbsp;70</td>
-	</tr>	
-	<tr>
-		<th>¸ÅÒª</th>
-		<td colspan="3">²É¹º±Ê¼Ç±¾µçÄÔÒâÏò</td>
-	</tr>
-	<tr>
-		<th>ÁªÏµÈË</th>
-		<td>ÁõÏÈÉú</td>
-		<th>ÁªÏµÈËµç»°</th>
-		<td>13729239239</td>
-	</tr>
-	<tr>
-		<th>»ú»áÃèÊö</th>
-		<td colspan="3">...</td>
-	</tr>
-	<tr>
-		<th>´´½¨ÈË</th>
-		<td>ÁõÓ±</td>
-		<th>´´½¨Ê±¼ä</th>
-		<td>2007Äê12ÔÂ06ÈÕ 16Ê±09·Ö08Ãë</td>
-	</tr>
-	<tr>
-		<th>Ö¸ÅÉ¸ø</th>
-		<td>
-			¹ùĞ¡ÃÀ</td>
-		<th>Ö¸ÅÉÊ±¼ä</th>
-		<td>
-			2007Äê12ÔÂ07ÈÕ 09Ê±00·Ö38Ãë</td>
-	</tr>
-</table>
-<br />
-<table class="data_list_table" id="table1">
-	<tr>
-		<th width="150px">ÈÕÆÚ</th>
-		<th height="31">¼Æ»®Ïî</th>
-	</tr>
-	<tr>
-		<td class="list_data_text" height="24">2008Äê01ÔÂ18ÈÕ</td>
-		<td class="list_data_ltext" height="24"><input size="50" value="³õ²½½Ó´¥£¬ÁË½â¿Í»§ÒâÏò¡£" />
-	<button class="common_button" onclick="save('dev_plan.jsp');">±£´æ</button>
-	<button class="common_button" onclick="del('');">É¾³ı</button>
-		</td>
-	</tr>
-	<tr>
-		<td class="list_data_text">2008Äê02ÔÂ22ÈÕ</td>
-		<td class="list_data_ltext"><input size="50" value="ÍÆ½é²úÆ·¡£" name="T1" />
-	<button class="common_button" onclick="save('dev_plan.jsp');">±£´æ</button>
-	<button class="common_button" onclick="del('');">É¾³ı</button>
-		</td>
-	</tr>
-</table>
-<div class="button_bar">
-	<button class="common_button" onclick="add('dev_plan.jsp');">±£´æ</button>
+	<div class="page_title">å®¢æˆ·å¼€å‘è®¡åˆ’ &gt; åˆ¶å®šè®¡åˆ’</div>
+	<div class="button_bar">
+		<button class="common_button" onclick="help('');">å¸®åŠ©</button>
+		<button class="common_button" onclick="to('dev_execute.jsp');">æ‰§è¡Œè®¡åˆ’</button>
+		<button class="common_button" onclick="back();" type="button">è¿”å›</button>
 	</div>
-<table class="query_form_table" id="table2">
-	<tr>
-		<th>ÈÕÆÚ</th>
-		<td><input /><span class="red_star">*</span></td>
-		<th>¼Æ»®Ïî</th>
-		<td>
-			<input size="50" name="T2" /><span class="red_star">*</span>
-		</td>
-	</tr>
-</table>
+	<table class="query_form_table">
+		<tr>
+			<th>ç¼–å·</th>
+			<td>${oldsalChance2.chcId}</td>
+			<th>æœºä¼šæ¥æº</th>
+			<td>${oldsalChance2.chcSource}</td>
+		</tr>
+		<tr>
+			<th>å®¢æˆ·åç§°</th>
+			<td>${oldsalChance2.chcCustName}</td>
+			<th>æˆåŠŸæœºç‡ï¼ˆ%ï¼‰</th>
+			<td>${oldsalChance2.chcRate}</td>
+		</tr>
+		<tr>
+			<th>æ¦‚è¦</th>
+			<td colspan="3">${oldsalChance2.chcTitle}</td>
+		</tr>
+		<tr>
+			<th>è”ç³»äºº</th>
+			<td>${oldsalChance2.chcLinkman}</td>
+			<th>è”ç³»äººç”µè¯</th>
+			<td>${oldsalChance2.chcTel}</td>
+		</tr>
+		<tr>
+			<th>æœºä¼šæè¿°</th>
+			<td colspan="3">${oldsalChance2.chcDesc}</td>
+		</tr>
+		<tr>
+			<th>åˆ›å»ºäºº</th>
+			<td>${oldSalChance2.chcCreateBy }</td>
+			<th>åˆ›å»ºæ—¶é—´</th>
+			<td>${oldsalChance2.chcCreateDate}</td>
+		</tr>
+		<tr>
+			<th>æŒ‡æ´¾ç»™</th>
+			<td>${oldsalChance2.chcDueTo}</td>
+			<th>æŒ‡æ´¾æ—¶é—´</th>
+			<td><s:date name="#session.oldsalChance2.chcDueDate"
+					format="yyyy-MM-dd" />
+			</td>
+		</tr>
+	</table>
+	<br />
+
+	<table class="easyui-datagrid" style="width:880px;height:100px"
+		align="center"
+		data-options="
+				url:'<%=request.getContextPath()%>/findAll_SalPlan?chcId=${oldsalChance2.chcId}&time=<%=new Date().getTime() %>',
+	        	fitColumns:true,singleSelect:true,
+	        	loadMsg:'æ­£åœ¨åŠ è½½æ•°æ®ï¼Œè¯·ç¨å...',
+
+	        	pageList:[5,10,15,20]
+	        	
+        	"
+		id="tt">
+		<thead>
+			<tr>
+				<th
+					data-options="field:'plaDate',width:100,align:'center',formatter: function(value,row,index){
+														if (value){
+															return value.substring(0,10);
+														} else {
+															return value;
+														}
+													}">æ—¥æœŸ</th>
+				<th
+					data-options="field:'op',width:380,align:'left',formatter: function(value,row,index){
+										return '<form id='+row.plaId+' method=post><input size=50 name=salplan.plaTodo value='+row.plaTodo+' />'
+											+'<input type=hidden name=salplan.plaId value='+row.plaId+' />'
+											+'<input type=hidden name=salplan.salChance.chcId value='+row.salChance.chcId+' />'
+											+'<input type=hidden name=salplan.plaDate value='+row.plaDate+' />'
+											+' <button class=common_button onclick=update('+row.plaId+')>ä¿å­˜</button>' 
+											+'<button class=common_button onclick=dodel(row.plaId)>åˆ é™¤</button>'
+											+'</form>'; 
+											} ">è®¡åˆ’é¡¹</th>
+
+			</tr>
+		</thead>
+	</table>
+
+
+	<form id="ff" method="post">
+		<div class="button_bar">
+			<button class="common_button" id="btsave">ä¿å­˜</button>
+		</div>
+		<table class="query_form_table" id="table2">
+			<tr>
+				<th>æ—¥æœŸ</th>
+				<td><input name="salplan.plaDate" class="easyui-datebox"
+					required /> <span class="red_star">*</span> <input
+					name="salplan.salChance.chcId" value="${oldsalChance2.chcId }"
+					type="hidden" /></td>
+				<th>è®¡åˆ’é¡¹</th>
+				<td><input name="salplan.plaTodo" size="30"
+					class="easyui-validatebox" data-options="required:true" /><span
+					class="red_star">*</span></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
