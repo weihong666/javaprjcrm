@@ -61,7 +61,7 @@ $(document).ready(function(){
 		<td><input id="pname" name="pname" /></td>
 		<th>型号</th>
 		<td><input id="ptype" name="ptype" /></td>
-		<th>批次</th>
+		<th>数量</th>
 		<td><input id="pbatch" name="pbatch"/></td>
 	</tr>
 </table>
@@ -83,7 +83,7 @@ $(document).ready(function(){
 	            <th data-options="field:'prodId',width:70,align:'center'">编号</th>   
 	            <th data-options="field:'prodName',width:200,align:'center'">名称</th>   
 	            <th data-options="field:'prodType',width:135,align:'center'">型号</th>   
-	            <th data-options="field:'prodBatch',width:135,align:'center'">等级/批次</th>   
+	            <th data-options="field:'prodBatch',width:135,align:'center'">数量</th>   
 	            <th data-options="field:'prodUnit',width:135,align:'center'">单位</th>
 	            <th data-options="field:'prodPrice',width:135,align:'center'">单价(元)</th>
 	            <th data-options="field:'prodMemo',width:135,align:'center'">备注</th>    

@@ -9,6 +9,7 @@ import com.biz.ICstActivityBiz;
 import com.biz.ICstCustomerBiz;
 import com.biz.ICstLinkmanBiz;
 import com.biz.ICstLostBiz;
+import com.biz.ICstServiceBiz;
 import com.biz.IOrdersBiz;
 import com.biz.IOrdersLineBiz;
 import com.biz.IProductBiz;
@@ -43,6 +44,18 @@ public class BizService {
 	private ISysUserBiz sysUserBiz;
 	
 	
+	@Resource(name="CstServiceBiz")
+	private ICstServiceBiz cstServiceBiz;
+	
+	
+
+	public ICstServiceBiz getCstServiceBiz() {
+		return cstServiceBiz;
+	}
+
+	public void setCstServiceBiz(ICstServiceBiz cstServiceBiz) {
+		this.cstServiceBiz = cstServiceBiz;
+	}
 
 	public ISysUserBiz getSysUserBiz() {
 		return sysUserBiz;

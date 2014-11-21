@@ -130,8 +130,8 @@ function dodelCallBack(msg){
 	            				width:100,
 	            				align:'center',
 	            				formatter:function(value,row,index){
-                                return '<a href=# onclick=dodel('+row.dictId+')>删除</a> '
-                                +'<a href=../../findById_BasDict.action?bid='+row.dictId+'&t=<%=new Date().getTime() %>>修改</a>'										
+                                return '<a href=# onclick=dodel('+row.dictId+')><img title=删除 src=../images/bt_del.gif class=op_buttons /></a> '
+                                +'<a href=../../findById_BasDict.action?bid='+row.dictId+'&t=<%=new Date().getTime() %>><img title=编辑 src=../images/bt_edit.gif class=op_button/></a>'										
 	            							}
 	            	
 	            ">操作</th>   

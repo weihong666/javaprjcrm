@@ -3,13 +3,17 @@ package com.dao;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Service;
 
+import com.po.CstLost;
 import com.po.CstService;
 
 /**
@@ -198,4 +202,13 @@ public class CstServiceDAO extends HibernateDaoSupport {
 	public static CstServiceDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (CstServiceDAO) ctx.getBean("CstServiceDAO");
 	}
+	//=========统计服务类型======================================
+	public List findByYear(String year){
+	
+		String sql="select svrType,count(svrType) from CstService group by svrType where svrCreateDate='1999-1-1'";
+		
+		Query qy=getSession().createQuery(sql);
+		return qy.list();
+	}
+	
 }

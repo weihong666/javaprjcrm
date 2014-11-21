@@ -247,4 +247,48 @@ public class CstLostAction implements ICstLostAction {
 		}
 		return out;
 	}
+	@Action(value = "findAllLost_CstLost")
+	public String findAllLost() {
+		page = page == 0 ? 1 : page;
+		rows = rows == 0 ? 5 : rows;
+		
+		// 获取总行数
+		int total = bizService.getLostBiz().findMaxRow(lstCustName, lstCustManagerName);
+		// 获取每页记录的集合
+		List<CstLost> lsLosts = bizService.getLostBiz().findAll(lstCustName, lstCustManagerName, page, rows);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("total", total);
+		map.put("rows", lsLosts);
+
+		// 编写属性过滤器,过滤掉集合属性
+		PropertyFilter propertyFilter = new PropertyFilter() {
+
+			public boolean apply(Object arg0, String pname, Object arg2) {
+				if (pname.equals("orderses")) {
+					return false;
+				}
+				if (pname.equals("cstLosts")) {
+					return false;
+				}
+				if (pname.equals("cstLinkmans")) {
+					return false;
+				}
+				if (pname.equals("cstActivities")) {
+					return false;
+				}
+				if (pname.equals("cstServices")) {
+					return false;
+				}
+				return true;
+			}
+		};
+
+		String lsusjsonstr = JSONObject.toJSONString(map, propertyFilter);
+
+		PrintWriter out = getOut();
+		out.print(lsusjsonstr);
+		return null;
+	}
 }

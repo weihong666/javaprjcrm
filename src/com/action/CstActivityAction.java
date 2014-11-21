@@ -164,6 +164,10 @@ public class CstActivityAction implements ICstActivityAction {
 	@Action(value = "findAll_CstActivity")
 	public String findAll() {
 		HttpSession session = ServletActionContext.getRequest().getSession();
+		session.setAttribute("custId", custId);
+		session.setAttribute("custName", bizService.getCustomerBiz()
+				.findById(custId).getCustName());
+		
 		page=page==0?1:page;
 		rows=rows==0?5:rows;
 		//获取总行数

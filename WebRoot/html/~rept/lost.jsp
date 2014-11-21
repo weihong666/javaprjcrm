@@ -1,74 +1,86 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech毕业设计项目</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptech姣曚笟璁捐椤圭洰</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" type="text/css"></link>
+<link rel="stylesheet" href="../../jquery-easyui-1.3.4/themes/icon.css" type="text/css"></link>
+<script type="text/javascript" src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
+
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../script/common.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//----缁勫悎鏌ヨ---------------------------------		
+	$("#select").click(function(){	
+
+		$("#tt").datagrid({
+			queryParams: {
+				lstCustName:$("#lstCustName").val(),
+				lstCustManagerName:$("#lstCustManagerName").val()
+
+
+			}
+		
+		}
+		); 
+
+		//娓呯┖鏌ヨ椤�
+		$("#lstCustName").val("");
+		$("#lstCustManagerName").val("");
+
+
+		
+});
+	
+	});
+</script>
 </head>
 <body>
 
-<div class="page_title">客户流失分析</div>
+<div class="page_title">瀹㈡埛娴佸け鍒嗘瀽</div>
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">帮助</button>
-	<button class="common_button" onclick="reload();">查询</button> 
+	<button class="common_button" onclick="help('');">甯姪</button>
+	<button class="common_button" type="submit" id="select">鏌ヨ</button> 
 	</div>
 	<table class="query_form_table" border="0" cellPadding="3" cellSpacing="0">
 			<tr>
-					<th>客户名称</th>
-	<td><input type="text" name="item.lstCustName" value=""></td>
-					<th>客户经理</th>
+					<th>瀹㈡埛鍚嶇О</th>
+	<td><input name="lstCustName" id="lstCustName"/></td>
+					<th>瀹㈡埛缁忕悊</th>
 
-	<td><input type="text" name="item.lstCustManagerName" value=""></td>
+	<td><input name="lstCustManagerName" id="lstCustManagerName"/></td>
 					
 			</tr>
 		</table><br />
-<table class="data_list_table">
-	<tr>
-		<th height="28">编号</th>
-		<th height="28">年份</th>
-		<th height="28">客户</th>
-		<th height="28">客户经理</th>
-		<th height="28">流失原因</th>
-	</tr>
-	<tr>
-		<td class="list_data_number" height="27">1</td>
-		<td class="list_data_text" height="27">2006</td>
-		<td class="list_data_text" height="27">大空纶纺</td>
-		<td class="list_data_text" height="27">小满</td>
-		<td class="list_data_ltext" height="27">客户厂址迁移</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">2</td>
-		<td class="list_data_text">2006</td>
-		<td class="list_data_text">星星广告</td>
-		<td class="list_data_text">郭小美</td>
-		<td class="list_data_ltext">客户公司被收购</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">3</td>
-		<td class="list_data_text">2005</td>
-		<td class="list_data_text">和满记餐饮</td>
-		<td class="list_data_text">周结论</td>
-		<td class="list_data_ltext">没有采购需求</td>
-	</tr>
-	<tr>
-		<th colspan="7" class="pager">
-<div class="pager">
-	共59条记录 每页<input value="10" size="2" />条
-	第<input value="1" size="2"/>页/共5页
-	<a href="#">第一页</a>
-	<a href="#">上一页</a>
-	<a href="#">下一页</a>
-	<a href="#">最后一页</a>
-	转到<input value="1" size="2" />页
-	<button width="20" onclick="reload();">GO</button>
-</div>
-		</th>
-	</tr>
+<table  class="easyui-datagrid" style="height:425px;"   
+        data-options="
+        url:'../../findAllLost_CstLost.action?t=<%=new Date().getTime() %>',
+        fitColumns:true, 
+        singleSelect:true"         
+        pagination="true" 
+        rownumbers="true" 
+        pageSize="10" 
+        pageList="[10,20,30,40]" 
+        loadMsg="姝ｅ湪鍦ㄥ姞杞借繙绋嬫暟鎹紝璇风◢鍚�......"
+        align="center" id="tt"
+        >   
+	    <thead>   
+	        <tr>   
+	            <th data-options="field:'lstId',width:50,align:'center'">缂栧彿</th>   
+	            <th data-options="field:'lstLostDate',width:100,align:'center'">骞翠唤</th>   
+	            <th data-options="field:'lstCustName',width:50,align:'center'">瀹㈡埛</th>   
+	            <th data-options="field:'lstCustManagerName',width:120,align:'center'">瀹㈡埛缁忕悊</th>   
+	            <th data-options="field:'lstReason',width:100,align:'center' ">娴佸け鍘熷洜</th>   
 
-	</table>
+	        </tr>   
+	    </thead>   
+	</table> 
+
 </body>
 </html>

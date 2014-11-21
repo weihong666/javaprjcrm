@@ -78,5 +78,16 @@ public class CstLostBiz implements ICstLostBiz {
 		// TODO Auto-generated method stub
 		return daoService.getLostdao().findMaxRow(lstCustName, lstCustManagerName, lstStatus);
 	}
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public int findMaxRow(String lstCustName, String lstCustManagerName) {
+		// TODO Auto-generated method stub
+		return daoService.getLostdao().findMaxRow(lstCustName, lstCustManagerName);
+	}
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public List<CstLost> findAll(String lstCustName, String lstCustManagerName,
+			int page, int rows) {
+		// TODO Auto-generated method stub
+		return daoService.getLostdao().findAll(lstCustName, lstCustManagerName, page, rows);
+	}
 
 }

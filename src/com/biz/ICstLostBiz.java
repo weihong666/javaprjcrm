@@ -13,4 +13,6 @@ public interface ICstLostBiz {
 	public List<CstLost> findAll(int page,int rows);
 	public List<CstLost> findAll(String lstCustName,String lstCustManagerName,String lstStatus,int page,int rows);
 	public int findMaxRow(String lstCustName,String lstCustManagerName,String lstStatus);
+	public int findMaxRow(String lstCustName,String lstCustManagerName);
+	public List<CstLost> findAll(String lstCustName,String lstCustManagerName,int page,int rows);
 }

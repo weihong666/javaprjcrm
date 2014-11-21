@@ -81,7 +81,7 @@
 				<th data-options="field:'oddUnit',width:100,align:'center',
 				formatter: function(value,row,index){
 						if (row.product){
-							return row.product.prodBatch;
+							return row.product.prodUnit;
 						} else {
 							return value;
 							}

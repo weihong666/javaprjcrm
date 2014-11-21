@@ -6,4 +6,5 @@ public interface ICstLostAction {
 	public String delById();
 	public String findById();
 	public String findAll();
+	public String findAllLost();
 }

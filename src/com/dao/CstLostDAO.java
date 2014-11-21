@@ -210,4 +210,43 @@ public class CstLostDAO extends HibernateDaoSupport {
 				qy.setMaxResults(rows);
 				return qy.list();
 			}
+			
+			//===================流失统计查询===================================================
+			
+			
+			//===============获取最大行数=====================
+			public int findMaxRow(String lstCustName,String lstCustManagerName){
+				int maxrow=0;
+				String sql="select count(*) from CstLost where lstStatus='已流失' and 1=1";
+				if(lstCustName!=null&&!lstCustName.trim().equals("")){
+					String sql1=" and lstCustName='"+lstCustName+"'";
+					sql+=sql1;
+				}
+				if(lstCustManagerName!=null&&!lstCustManagerName.trim().equals("")){
+					String sql2=" and lstCustManagerName='"+lstCustManagerName+"'";
+					sql+=sql2;
+				}
+				
+				Query qy=getSession().createQuery(sql);
+				maxrow=Integer.parseInt(qy.list().get(0).toString());
+				return maxrow;
+			}
+			public List<CstLost> findAll(String lstCustName,String lstCustManagerName,int page,int rows){
+				System.out.println("=============CstCustomer================");
+				String sql="from CstLost where lstStatus='已流失' and 1=1";
+				if(lstCustName!=null&&!lstCustName.trim().equals("")){
+					String sql1=" and lstCustName='"+lstCustName+"'";
+					sql+=sql1;
+				}
+				if(lstCustManagerName!=null&&!lstCustManagerName.trim().equals("")){
+					String sql2=" and lstCustManagerName='"+lstCustManagerName+"'";
+					sql+=sql2;
+				}
+				
+				
+				Query qy=getSession().createQuery(sql);
+				qy.setFirstResult((page-1)*rows);
+				qy.setMaxResults(rows);
+				return qy.list();
+			}
 }
