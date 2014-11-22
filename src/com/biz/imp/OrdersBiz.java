@@ -1,6 +1,7 @@
 package com.biz.imp;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.biz.IOrdersBiz;
+import com.po.CstService;
 import com.po.Orders;
 import com.po.OrdersLine;
 import com.service.DaoService;
@@ -117,6 +119,13 @@ public class OrdersBiz implements IOrdersBiz {
 	public List<Orders> findAll(Integer odrId) {
 		// TODO Auto-generated method stub
 		return daoService.getOrdersdao().findAll(odrId);
+	}
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public List<Orders> findByTotal(String odrDate, String odrCustomer,Integer odrId) {
+		Orders orders=findById(odrId);
+		List<Orders> list=new ArrayList<Orders>();
+		list.set(1, orders);
+		return list;
 	}
 	
 }

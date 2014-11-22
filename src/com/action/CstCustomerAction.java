@@ -18,11 +18,13 @@ import org.springframework.stereotype.Controller;
 
 import com.po.BasDict;
 import com.po.CstCustomer;
+import com.po.CstService;
 import com.po.SysUser;
 import com.service.BizService;
 import com.service.DaoService;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.PropertyFilter;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 @Controller
 @Namespace("/")
@@ -35,11 +37,22 @@ public class CstCustomerAction implements ICstCustomerAction {
 	private String custRegion;
 	private String custManagerName;
 	private String custLevelLabel;
-
+	private String str;
 	private int page;
 	private int rows;
 	@Resource(name = "BizService")
 	private BizService bizService;
+
+	
+	
+	
+	public String getStr() {
+		return str;
+	}
+
+	public void setStr(String str) {
+		this.str = str;
+	}
 
 	public String getCustNo() {
 		return custNo;
@@ -282,6 +295,48 @@ public class CstCustomerAction implements ICstCustomerAction {
 
 	public String findAllUser() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Action(value = "findAllCustomerOrders_CstCustomer")
+	public String findAllCustomerOrders() {
+		List<CstCustomer> lsCustomers = bizService.getCustomerBiz().findAll(str);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+
+		map.put("rows", lsCustomers);
+
+		// 编写属性过滤器,过滤掉集合属性
+		PropertyFilter propertyFilter = new PropertyFilter() {
+
+			public boolean apply(Object arg0, String pname, Object arg2) {
+				if(pname.equals("orderses")){
+					return false;
+				}
+				if(pname.equals("cstLosts")){
+					return false;
+				}
+				if(pname.equals("cstLinkmans")){
+					return false;
+				}
+				if(pname.equals("cstActivities")){
+					return false;
+				}
+				if(pname.equals("cstServices")){
+					return false;
+				}
+				if(pname.equals("ordersLines")){
+					return false;
+				}
+				return true;
+			}
+		};
+
+		String lsusjsonstr=JSONObject.toJSONString(map,propertyFilter,SerializerFeature.DisableCircularReferenceDetect,SerializerFeature.WriteDateUseDateFormat);
+
+		PrintWriter out = getOut();
+		out.print(lsusjsonstr);
 		return null;
 	}
 

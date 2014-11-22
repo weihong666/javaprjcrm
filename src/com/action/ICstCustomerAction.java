@@ -7,4 +7,5 @@ public String delById();
 public String findById();
 public String findAll();
 public String findAllUser();
+public String findAllCustomerOrders();
 }

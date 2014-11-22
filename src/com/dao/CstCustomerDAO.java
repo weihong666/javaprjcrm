@@ -1,8 +1,6 @@
 package com.dao;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.slf4j.Logger;
@@ -286,4 +284,31 @@ public class CstCustomerDAO extends HibernateDaoSupport {
 			qy.setMaxResults(rows);
 			return qy.list();
 		}
+		/**统计客户报表*/
+		public List findAll(String str) {
+			log.debug("finding all CstCustomer instances");
+			System.out.println(str+"===============");
+			try {
+				if(str!=null&&str.trim().equals("按满意度")){
+					String queryString="select custSatisfy,count(*) from CstCustomer group by custSatisfy";
+					Query query=getSession().createQuery(queryString);
+					return query.list();
+				}
+				if(str!=null&&str.trim().equals("按信用度")){
+					String queryString="select custCredit,count(*) from CstCustomer group by custCredit";
+					Query query=getSession().createQuery(queryString);
+					return query.list();
+				}
+				if(str==null||str.trim().equals("按等级")){
+					String queryString="select custLevelLabel,count(*) from CstCustomer group by custLevelLabel";
+					Query query=getSession().createQuery(queryString);
+					return query.list();
+				}
+				return null;
+			} catch (RuntimeException re) {
+				log.error("find all failed", re);
+				throw re;
+			}
+		}
+		
 }

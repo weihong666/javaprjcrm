@@ -203,12 +203,18 @@ public class CstServiceDAO extends HibernateDaoSupport {
 		return (CstServiceDAO) ctx.getBean("CstServiceDAO");
 	}
 	//=========统计服务类型======================================
-	public List findByYear(String year){
-	
-		String sql="select svrType,count(svrType) from CstService group by svrType where svrCreateDate='1999-1-1'";
+	/**根据服务类型统计*/
+	public List<CstService> findByYear(String svrCreateDate){
 		
+		String sql="select svrType,sum(1) from CstService where 1=1";
+		System.out.println(svrCreateDate+"=========");
+		if(svrCreateDate!=null&&!svrCreateDate.trim().equals("")&&!svrCreateDate.equals("全部")){
+			sql+=" and svrCreateDate >='1-1月-"+svrCreateDate+"' and svrCreateDate<='31-12月"+svrCreateDate+"'";
+		}
+		sql+=" group by svrType";
 		Query qy=getSession().createQuery(sql);
 		return qy.list();
 	}
+	
 	
 }

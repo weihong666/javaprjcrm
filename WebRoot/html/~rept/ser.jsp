@@ -14,26 +14,44 @@
 
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../script/common.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#index").click(function() { 
+        			$("#tt").datagrid({
+						queryParams: {
+							year: $('#year').val()
+						}
+					});
+					$('#year').val("");
+		});
+	});
+</script>
 </head>
 <body>
 
 <div class="page_title">客户服务分析</div>
 <div class="button_bar">
 	<button class="common_button" onclick="help('');">帮助</button>
-	<button class="common_button" onclick="reload();">查询</button> 
+	<button class="common_button" onclick="reload();" id="index">查询</button> 
 	</div>
 <table class="query_form_table">
 	<tr>
 		<th>年份</th>
 		<td>
-			<select>
-				<option>全部</option>
-				<option>2005</option>
-				<option>2006</option>
-				<option>2007</option>
-				<option>2008</option>
-				<option>2009</option>
-				<option>2010</option>
+			<select name="year" id="year">
+				<option value="">全部</option>
+				<option value="2005">2005</option>
+				<option value="2006">2006</option>
+				<option value="2007">2007</option>
+				<option value="2008">2008</option>
+				<option value="2009">2009</option>
+				<option value="1999">1999</option>
+				<option value="2000">2000</option>
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
 			</select>
 		</td>
 		<th>&nbsp;</th>
@@ -45,7 +63,7 @@
 <br />
 <table  class="easyui-datagrid" style="height:425px;"   
         data-options="
-        url:'../../.action?t=<%=new Date().getTime() %>',
+        url:'../../findByYear_CstService.action?t=<%=new Date().getTime() %>',
         fitColumns:true, 
         singleSelect:true"         
         pagination="true" 
@@ -57,16 +75,22 @@
         >   
 	    <thead>   
 	        <tr>   
-	            <th data-options="field:'odrId',width:80,align:'center'">编号</th>   
+	             
 	           <th data-options="field:'custName',width:145,align:'center',
 	           											formatter: function(value,row,index){
-															if (row.cstCustomer){
-																return row.cstCustomer.custName;
+															if (row){
+																return row[0];
 															} 
 														}
 
 	            ">条目</th>   
-	            <th data-options="field:'total',width:180,align:'center'">服务数量</th>   
+	            <th data-options="field:'total',width:180,align:'center',
+	            formatter: function(value,row,index){
+															if (row){
+																return row[1];
+															} 
+														}
+	            ">服务数量</th>   
 	            <th data-options="field:'dictValue',width:60,align:'center'"></th>   
 	            <th data-options="field:'dictValue',width:60,align:'center'"></th>   
 	 

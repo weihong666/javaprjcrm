@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Service;
 
+import com.po.CstService;
 import com.po.Orders;
 
 /**
@@ -162,16 +164,34 @@ public class OrdersDAO extends HibernateDaoSupport {
 	public static OrdersDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (OrdersDAO) ctx.getBean("OrdersDAO");
 	}
-	
-	//-------------------------------------
+
+	// -------------------------------------
 	public List findAll(int custId) {
 		log.debug("finding all Orders instances");
 		try {
 			String queryString = "from Orders where cstCustomer.custId=?";
-			return getHibernateTemplate().find(queryString,custId);
+			return getHibernateTemplate().find(queryString, custId);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
 			throw re;
 		}
+	}
+
+	// =========统计服务类型======================================
+	/** 根据服务类型统计 */
+	public List<Orders> findByTotal(String odrDate, String odrCustomer,Integer odrId) {
+
+		String sql = "select odrId,odrCustomer,sum(1) from Orders where 1=1";
+		System.out.println(odrDate + "=========");
+		if (odrDate != null && !odrDate.trim().equals("")
+				&& !odrDate.equals("全部")) {
+			sql += " and odrDate='"+odrDate +"'";
+		}
+		if (odrCustomer != null && !odrCustomer.trim().equals("")) {
+			sql += " and odrCustomer='" + odrCustomer + "'";
+		}
+		sql += " group by odrCustomer";
+		Query qy = getSession().createQuery(sql);
+		return qy.list();
 	}
 }

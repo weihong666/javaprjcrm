@@ -26,7 +26,7 @@ public class CstServiceBiz implements ICstServiceBiz {
 	}
 
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
-	public List findByYear(String year) {
+	public List<CstService> findByYear(String year) {
 		// TODO Auto-generated method stub
 		return daoService.getServicedao().findByYear(year);
 	}

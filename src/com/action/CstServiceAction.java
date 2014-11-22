@@ -50,12 +50,12 @@ public class CstServiceAction implements ICstServiceAction {
 //==========================================
 	@Action(value="findByYear_CstService")
 	public String findByYear() {
-		List total = bizService.getCstServiceBiz().findByYear(year);
+		List<CstService> lsServices = bizService.getCstServiceBiz().findByYear(year);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
 
-		map.put("rows", total);
+		map.put("rows", lsServices);
 
 		// 编写属性过滤器,过滤掉集合属性
 		PropertyFilter propertyFilter = new PropertyFilter() {

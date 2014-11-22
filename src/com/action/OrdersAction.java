@@ -20,6 +20,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.PropertyFilter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.po.CstLinkman;
+import com.po.CstService;
 import com.po.Orders;
 import com.service.BizService;
 
@@ -33,12 +34,30 @@ public class OrdersAction implements IOrdersAction {
 	private int page;
 	private int rows;
 	private int custId;
+	private String odrDate;
+	private String odrCustomer;
 	@Resource(name = "BizService")
 	private BizService bizService;
 //------------------------------------------------------------		
 
 	public Orders getOrders() {
 		return orders;
+	}
+
+	public String getOdrDate() {
+		return odrDate;
+	}
+
+	public void setOdrDate(String odrDate) {
+		this.odrDate = odrDate;
+	}
+
+	public String getOdrCustomer() {
+		return odrCustomer;
+	}
+
+	public void setOdrCustomer(String odrCustomer) {
+		this.odrCustomer = odrCustomer;
 	}
 
 	public void setOrders(Orders orders) {
@@ -217,6 +236,47 @@ public class OrdersAction implements IOrdersAction {
 			e.printStackTrace();
 		}
 		return out;
+	}
+	@Action(value = "findByTotal_Orders")
+	public String findByTotal() {
+		List<Orders> lsOrders = bizService.getOrdersBiz().findByTotal(odrDate, odrCustomer,orders.getOdrId());
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+
+		map.put("rows", lsOrders);
+
+		// 编写属性过滤器,过滤掉集合属性
+		PropertyFilter propertyFilter = new PropertyFilter() {
+
+			public boolean apply(Object arg0, String pname, Object arg2) {
+				if(pname.equals("orderses")){
+					return false;
+				}
+				if(pname.equals("cstLosts")){
+					return false;
+				}
+				if(pname.equals("cstLinkmans")){
+					return false;
+				}
+				if(pname.equals("cstActivities")){
+					return false;
+				}
+				if(pname.equals("cstServices")){
+					return false;
+				}
+				if(pname.equals("ordersLines")){
+					return false;
+				}
+				return true;
+			}
+		};
+
+		String lsusjsonstr=JSONObject.toJSONString(map,propertyFilter,SerializerFeature.DisableCircularReferenceDetect,SerializerFeature.WriteDateUseDateFormat);
+
+		PrintWriter out = getOut();
+		out.print(lsusjsonstr);
+		return null;
 	}
 
 }

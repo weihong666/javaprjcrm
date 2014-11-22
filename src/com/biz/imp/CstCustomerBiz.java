@@ -85,5 +85,10 @@ public class CstCustomerBiz implements ICstCustomerBiz {
 		// TODO Auto-generated method stub
 		return daoService.getCustomerdao().findMaxRow(custNo, custName, custRegion, custManagerName, custLevelLabel);
 	}
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public List findAll(String str) {
+		// TODO Auto-generated method stub
+		return daoService.getCustomerdao().findAll(str);
+	}
 
 }

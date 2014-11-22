@@ -14,21 +14,36 @@
 
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../script/common.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#index").click(function() { 
+        			$("#tt").datagrid({
+						queryParams: {
+							custNo: $('#odrCustomer').val(),
+							ordDate:$('#odrDate').val()
+						}
+					});
+					$('#odrCustomer').val("");
+					$('#odrDate').val("全部");
+		});
+	});
+</script>
+
 </head>
 <body>
 
 <div class="page_title">客户贡献分析</div>
 <div class="button_bar">
 	<button class="common_button" onclick="help('');">帮助</button>
-	<button class="common_button" onclick="reload();">查询</button> 
+	<button class="common_button" id="index" type="submit" >查询</button> 
 	</div>
 <table class="query_form_table">
 	<tr>
 		<th>客户名称</th>
-		<td><input /></td>
+		<td><input name="odrCustomer" id="odrCustomer"/></td>
 		<th>年份</th>
 		<td>
-			<select>
+			<select name="odrDate" id="odrDate">
 				<option>全部</option>
 				<option>2005</option>
 				<option>2006</option>
@@ -43,7 +58,7 @@
 <br />
 <table  class="easyui-datagrid" style="height:425px;"   
         data-options="
-        url:'../../findAll_Orders.action?t=<%=new Date().getTime() %>',
+        url:'../../findByTotal_Orders.action?t=<%=new Date().getTime() %>',
         fitColumns:true, 
         singleSelect:true"         
         pagination="true" 
@@ -55,16 +70,22 @@
         >   
 	    <thead>   
 	        <tr>   
-	            <th data-options="field:'odrId',width:80,align:'center'">编号</th>   
+	            
 	           <th data-options="field:'custName',width:145,align:'center',
 	           											formatter: function(value,row,index){
-															if (row.cstCustomer){
-																return row.cstCustomer.custName;
+															if (row){
+																return row[0];
 															} 
 														}
 
 	            ">产品</th>   
-	            <th data-options="field:'total',width:180,align:'center'">总金额</th>   
+	            <th data-options="field:'total',width:180,align:'center',
+	            formatter: function(value,row,index){
+															if (row){
+																return row[1];
+															} 
+														}
+	            ">总金额</th>   
 	            <th data-options="field:'dictValue',width:60,align:'center'"></th>   
 	            <th data-options="field:'dictValue',width:60,align:'center'"></th>   
 	 
