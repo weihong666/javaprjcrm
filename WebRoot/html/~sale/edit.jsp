@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <s:if test="#session.oldsalChance==null">
@@ -7,8 +7,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css"
 	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css"
@@ -25,65 +25,65 @@
 </head>
 <body>
 
-<div class="page_title">ÏúÊÛ»ú»á¹ÜÀí&nbsp; &gt; ±à¼­ÏúÊÛ»ú»á</div>
+<div class="page_title">é”€å”®æœºä¼šç®¡ç†&nbsp; &gt; ç¼–è¾‘é”€å”®æœºä¼š</div>
 <form action="../../update_SalChance.action" method="post" name="form1" id="ff">
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="back();" type="button">·µ»Ø</button>
-	<button class="common_button" type="submit">±£´æ</button>  
+	<button class="common_button" onclick="help('');">å¸®åŠ©</button>
+	<button class="common_button" onclick="back();" type="button">è¿”å›ž</button>
+	<button class="common_button" type="submit">ä¿å­˜</button>  
 </div>
 <table class="query_form_table">
 	<tr>
-		<th>±àºÅ</th>
+		<th>ç¼–å·</th>
 		<td><s:textfield name="salChance.chcId" value="%{#session.oldsalChance.chcId}" readonly="true"/></td>
-		<th>»ú»áÀ´Ô´</th>
+		<th>æœºä¼šæ¥æº</th>
 		<td>
 			<s:textfield name="salChance.chcSource" size="20" value="%{#session.oldsalChance.chcSource}"/></td>
 	</tr>
 	<tr>
-		<th>¿Í»§Ãû³Æ</th>
+		<th>å®¢æˆ·åç§°</th>
 		<td><s:textfield name="salChance.chcCustName" value="%{#session.oldsalChance.chcCustName}"/><span class="red_star">*</span></td>
-		<th>³É¹¦»úÂÊ</th>
+		<th>æˆåŠŸæœºçŽ‡</th>
 		<td><s:textfield name="salChance.chcRate" value="%{#session.oldsalChance.chcRate}"/><span class="red_star">*</span></td>
 	</tr>	
 	<tr>
-		<th>¸ÅÒª</th>
+		<th>æ¦‚è¦</th>
 		<td colspan="3"><s:textfield name="salChance.chcTitle" size="52" value="%{#session.oldsalChance.chcTitle}"/><span class="red_star">*</span></td>
 	</tr>
 	<tr>
-		<th>ÁªÏµÈË</th>
+		<th>è”ç³»äºº</th>
 		<td><s:textfield name="salChance.chcLinkman" size="20" value="%{#session.oldsalChance.chcLinkman}"/></td>
-		<th>ÁªÏµÈËµç»°</th>
+		<th>è”ç³»äººç”µè¯</th>
 		<td><s:textfield name="salChance.chcTel" size="20" value="%{#session.oldsalChance.chcTel}"/></td>
 	</tr>
 	<tr>
-		<th>»ú»áÃèÊö</th>
+		<th>æœºä¼šæè¿°</th>
 		<td colspan="3"><s:textarea rows="6" cols="50" name="salChance.chcDesc" value="%{#session.oldsalChance.chcDesc}"></s:textarea><span class="red_star">*</span></td>
 	</tr>
 	<tr>
-		<th>´´½¨ÈË</th>
+		<th>åˆ›å»ºäºº</th>
 		<td>
-		<s:textfield name="salChance.chcCreateBy" value="»ÒÌ«ÀÇ" readonly="true" size="20" id="chcCreateBy" />
+		<s:textfield name="salChance.chcCreateBy" value="ç°å¤ªç‹¼" readonly="true" size="20" id="chcCreateBy" />
 		<s:hidden name="salChance.chcCreateId" id="chcCreateId" />
 		<s:hidden name="salChance.chcStatus" id="chcStatus" />
 		<span class="red_star">*</span>
 		</td>
-		<th>´´½¨Ê±¼ä</th>
+		<th>åˆ›å»ºæ—¶é—´</th>
 		<td><s:textfield id="t1" name="salChance.chcCreateDate" readonly="true" size="20" value="%{#session.oldsalChance.chcCreateDate}"/><span class="red_star">*</span></td>
 	</tr>
 </table>
 <br />
 <table disabled class="query_form_table" id="table1">
 	<tr>
-		<th>Ö¸ÅÉ¸ø</th>
+		<th>æŒ‡æ´¾ç»™</th>
 		<td>
 			<s:select name="salChance.chcDueId" list="#session.lisysuser"
 							listKey="usrId" listValue="usrName" value="usrId"
-							headerValue="ÇëÑ¡Ôñ..." headerKey="-1" id="dueId"/>
+							headerValue="è¯·é€‰æ‹©..." headerKey="-1" id="dueId"/>
 			<s:hidden name="salChance.chcDueId"></s:hidden>
 			<span class="red_star">*</span>
 			</td>
-		<th>Ö¸ÅÉÊ±¼ä</th>
+		<th>æŒ‡æ´¾æ—¶é—´</th>
 		<td>
 			<input id="t2" name="salChance.chcDueDate" readonly="true" size="20" /><span class="red_star">*</span></td>
 	</tr>
