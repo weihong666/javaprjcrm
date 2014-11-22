@@ -215,10 +215,11 @@ public class SalChanceAction implements ISalChanceAction {
 		String s=null;
 		SalChance oldsalChance2=bizservice.getSalchancebiz().findById(chcId);
 		HttpSession session=ServletActionContext.getRequest().getSession();
-		session.setAttribute("oldsalChance2", oldsalChance2);
+		
 		//=====================================
 		
 		oldsalChance2.setChcStatus(1);
+		session.setAttribute("oldsalChance2", oldsalChance2);
 		bizservice.getSalchancebiz().update(oldsalChance2);
 		path="html/~sale/dev.jsp";
 		return "ok";
@@ -231,6 +232,32 @@ public class SalChanceAction implements ISalChanceAction {
 		session.setAttribute("oldsalChance2", oldsalChance2);
 		//====================================
 		path="html/~sale/dev_detail.jsp";
+		return "ok";
+	}
+	/*@Action(value="finddetailabcdefgh_SalChance",results={@Result(name="ok",location="${path}",type="redirect")})
+	public String finddetailabcdefgh() {
+		System.out.println(">>>>>>>>>>>>");
+		SalChance oldsalChance2=bizservice.getSalchancebiz().findById(chcId);
+		HttpSession session=ServletActionContext.getRequest().getSession();
+		
+		//====================================
+		oldsalChance2.setChcStatus(2);
+		session.setAttribute("oldsalChance2", oldsalChance2);
+		bizservice.getSalchancebiz().update(oldsalChance2);
+		path="html/~sale/dev.jsp";
+		return "ok";
+	}*/
+	@Action(value="finddetailabcdefghl_SalChance",results={@Result(name="ok",location="${path}",type="redirect")})
+	public String finddetailabcdefghl() {
+		System.out.println(">>>>>>>>>>>>");
+		SalChance oldsalChance2=bizservice.getSalchancebiz().findById(chcId);
+		HttpSession session=ServletActionContext.getRequest().getSession();
+		
+		//====================================
+		oldsalChance2.setChcStatus(0);
+		session.setAttribute("oldsalChance2", oldsalChance2);
+		bizservice.getSalchancebiz().update(oldsalChance2);
+		path="html/~sale/dev.jsp";
 		return "ok";
 	}
 	@Action(value="save_SalChance",results={

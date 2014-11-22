@@ -19,7 +19,7 @@
 <script type="text/javascript"
 	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
-<script src="../script/common.js" charset="gb2312"></script>
+<script src="../script/common.js" charset="utf-8"></script>
 <script type="text/javascript">
 	function save() {
 		if (document.getElementById("chcCustName").value == "") {
@@ -54,9 +54,9 @@
 		id="ff">
 		<div class="button_bar">
 
-			<button class="common_button" onclick="help('');">帮助</button>
+			<button class="common_button" onclick="help('');" type="button">帮助</button>
 			<button class="common_button" onclick="back();" type="button">返回</button>
-			<button class="common_button" onclick="save()">保存</button>
+			<button class="common_button" onclick="save()" type="button">保存</button>
 		</div>
 		<table class="query_form_table">
 			<tr>
@@ -99,7 +99,7 @@
 			</tr>
 			<tr>
 				<th>创建人</th>
-				<td><input name="salChance.chcCreateBy" value="灰太狼" readonly
+				<td><input name="salChance.chcCreateBy" value=${user.usrName } readonly
 					size="20" id="chcCreateBy" /> <span class="red_star">*</span></td>
 				<th>创建时间</th>
 				<td><input id="t1" name="salChance.chcCreateDate" readonly

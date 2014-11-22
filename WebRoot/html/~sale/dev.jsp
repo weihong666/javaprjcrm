@@ -6,11 +6,17 @@
 <head>
 <title>jb-aptech毕业设计项目</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-     <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css"/>
-	<link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css"/>
-	<script type="text/javascript" src="../../easyui/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript"	src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+     <link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+	<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
 	<link href="../css/style.css" rel="stylesheet" type="text/css"/>
     <script src="../script/common.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
@@ -52,7 +58,7 @@
 <div class="page_title">客户开发计划</div>
 <div class="button_bar">
 	<button class="common_button" onclick="help('');">帮助</button>
-	<button class="common_button" id="find";">查询</button> 
+	<button class="common_button" id="find";" type="submit">查询</button> 
 	</div>
 <table class="query_form_table">
 	<tr>

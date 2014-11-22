@@ -6,11 +6,17 @@
 <head>
 <title>jb-aptech毕业设计项目</title>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css"/>
-	<link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css"/>
-	<script type="text/javascript" src="../../easyui/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript"	src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+	<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
    <link href="../css/style.css" rel="stylesheet" type="text/css">
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../script/common.js"></script>
@@ -62,7 +68,7 @@
 	</tr>
 	<tr>
 		<th>创建人</th>
-		<td>${oldSalChance2.chcCreateBy }</td>
+		<td>${user.usrName }</td>
 		<th>创建时间</th>
 		<td>${oldsalChance2.chcCreateDate}</td>
 	</tr>

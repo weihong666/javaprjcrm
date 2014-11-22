@@ -6,11 +6,17 @@
 <head>
 <title>jb-aptech毕业设计项目</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css"/>
-	<link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css"/>
-	<script type="text/javascript" src="../../easyui/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript"	src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+	<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
     <link href="../css/style.css" rel="stylesheet" type="text/css">
     <script src="../script/common.js" charset="gb2312"></script>
     <script type="text/javascript">
@@ -41,11 +47,11 @@
 
 <div class="page_title">客户开发计划 &gt; 执行计划</div>
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">帮助</button>
-	<button class="common_button" onclick="alert('开发失败，已归档。');window.location.href='../../finddetailabcdefghl_SalChance.action?chcId=${oldsalChance2.chcId}';">终止开发</button>
-	<button class="common_button" onclick="back();">返回</button>
-	<button class="common_button" onclick="to('dev_plan.jsp');">制定计划</button>
-	<button class="common_button" onclick="alert('用户开发成功，已添加新客户记录。');window.location.href='../../finddetailabcdef_SalChance.action?chcId=${oldsalChance2.chcId}';">开发成功</button>
+	<button class="common_button" onclick="help('');" type="button">帮助</button>
+	<button class="common_button" onclick="alert('开发失败，已归档。');window.location.href='../../finddetailabcdefghl_SalChance.action?chcId=${oldsalChance2.chcId}';" type="button">终止开发</button>
+	<button class="common_button" onclick="back();" type="button">返回</button>
+	<button class="common_button" onclick="to('dev_plan.jsp');" type="button">制定计划</button>
+	<button class="common_button" onclick="alert('用户开发成功，已添加新客户记录。');window.location.href='../../finddetailabcdef_SalChance.action?chcId=${oldsalChance2.chcId}';" type="button">开发成功</button>
 
 	</div>
 <table class="query_form_table">
@@ -77,7 +83,7 @@
 	</tr>
 	<tr>
 		<th>创建人</th>
-		<td>${oldSalChance2.chcCreateBy }</td>
+		<td>${user.usrName }</td>
 		<th>创建时间</th>
 		<td>${oldsalChance2.chcCreateDate}</td>
 	</tr>
@@ -116,7 +122,7 @@
 											+'<input type=hidden name=salplan.salChance.chcId value='+row.salChance.chcId+' />'
 											+'<input type=hidden name=salplan.plaDate value='+row.plaDate+' />'
 											+'<input type=hidden name=salplan.plaTodo value='+row.plaTodo+' />'
-											+' <button class=common_button onclick=update('+row.plaId+')>保存</button></form>';
+											+' <button class=common_button onclick=update(row.plaId)>保存</button></form>';
 									}
 					">执行效果</th>
 			

@@ -82,7 +82,7 @@
 			</tr>
 			<tr>
 				<th>创建人</th>
-				<td>灰太狼 <s:hidden name="salChance.chcCreateBy" value="'灰太狼'" />
+				<td>${user.usrName } <s:hidden name="salChance.chcCreateBy" value="'灰太狼'" />
 					<s:hidden name="salChance.chcCreateId"></s:hidden> <s:hidden
 						name="salChance.chcStatus"></s:hidden></td>
 				<th>创建时间</th>

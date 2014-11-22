@@ -63,7 +63,7 @@
 	<tr>
 		<th>创建人</th>
 		<td>
-		<s:textfield name="salChance.chcCreateBy" value="灰太狼" readonly="true" size="20" id="chcCreateBy" />
+		<s:textfield name="salChance.chcCreateBy" value="%{#session.user.usrName }" readonly="true" size="20" id="chcCreateBy" />
 		<s:hidden name="salChance.chcCreateId" id="chcCreateId" />
 		<s:hidden name="salChance.chcStatus" id="chcStatus" />
 		<span class="red_star">*</span>

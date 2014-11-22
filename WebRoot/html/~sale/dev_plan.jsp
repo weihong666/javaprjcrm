@@ -7,11 +7,17 @@
 <head>
 <title>jb-aptech毕业设计项目</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css"/>
-	<link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css"/>
-	<script type="text/javascript" src="../../easyui/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript"	src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.4/themes/icon.css">
+	<link rel="stylesheet" href="../../css/style.css" type="text/css"></link>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
    <link href="../css/style.css" rel="stylesheet" type="text/css">
     <script src="../script/common.js" charset="gb2312"></script>
 <script type="text/javascript">
@@ -108,7 +114,7 @@ $(document).ready(function() {
 	</tr>
 	<tr>
 		<th>创建人</th>
-		<td>${oldSalChance2.chcCreateBy }</td>
+		<td>${user.usrName }</td>
 		<th>创建时间</th>
 		<td>${oldsalChance2.chcCreateDate}</td>
 	</tr>
@@ -146,8 +152,8 @@ $(document).ready(function() {
 											+'<input type=hidden name=salplan.plaId value='+row.plaId+' />'
 											+'<input type=hidden name=salplan.salChance.chcId value='+row.salChance.chcId+' />'
 											+'<input type=hidden name=salplan.plaDate value='+row.plaDate+' />'
-											+' <button class=common_button onclick=update('+row.plaId+')>保存</button>'
-											+' <button class=common_button onclick=dodel('+row.plaId+')>删除</button></form>';
+											+' <button class=common_button onclick=update(row.plaId)>保存</button>'
+											+' <button class=common_button onclick=dodel(row.plaId)>删除</button></form>';
 									}
 					">计划项</th>
 			
