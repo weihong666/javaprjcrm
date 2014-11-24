@@ -23,6 +23,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.PropertyFilter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
+import com.po.CstCustomer;
 import com.po.SalChance;
 import com.po.SysUser;
 import com.service.BizService;
@@ -217,7 +218,23 @@ public class SalChanceAction implements ISalChanceAction {
 		HttpSession session=ServletActionContext.getRequest().getSession();
 		
 		//=====================================
-		
+		CstCustomer cstCustomer=new CstCustomer();
+		if(oldsalChance2.getChcCustName()!=null&&!oldsalChance2.getChcCustName().equals("")){
+			cstCustomer.setCustName(oldsalChance2.getChcCustName());
+		}
+		if(oldsalChance2.getChcLinkman()!=null&&!oldsalChance2.getChcLinkman().equals("")){
+			cstCustomer.setCustChieftain(oldsalChance2.getChcLinkman());
+		}
+		if(oldsalChance2.getChcTel()!=null&&!oldsalChance2.getChcTel().equals("")){
+			cstCustomer.setCustTel(oldsalChance2.getChcTel());
+		}
+		if(oldsalChance2.getChcDueTo()!=null&&!oldsalChance2.getChcDueTo().equals("")){
+			cstCustomer.setCustManagerName(oldsalChance2.getChcDueTo());
+		}
+		cstCustomer.setCustStatus(1);
+		bizservice.getCustomerBiz().save(cstCustomer);
+		path="html/~sale/dev.jsp";
+
 		oldsalChance2.setChcStatus(1);
 		session.setAttribute("oldsalChance2", oldsalChance2);
 		bizservice.getSalchancebiz().update(oldsalChance2);

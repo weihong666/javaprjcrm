@@ -180,10 +180,10 @@ public class CstCustomerAction implements ICstCustomerAction {
 		
 		
 		boolean bl = bizService.getCustomerBiz().update(customer);
-		path = "html/~cust/cust/list.jsp";
+		
 		if (bl) {
 			
-			if (!customer.getCustStatus().equals("1")) {
+			if (customer.getCustStatus().equals("0")) {
 				//客户状态不正常的时候，添加客户流失记录
 				CstLost cstLost=new CstLost();
 				if (customer!=null) {
@@ -208,11 +208,18 @@ public class CstCustomerAction implements ICstCustomerAction {
 					}
 					bizService.getLostBiz().save(cstLost);
 				}
+				path = "html/~cust/lost/list.jsp";
+				return "ok";
 				
+			}else{
+				
+				path = "html/~cust/cust/list.jsp";
+				return "fail";
 			}
-			return "ok";
+			
 		}
 		return null;
+		
 	}
 
 	/**

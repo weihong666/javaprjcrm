@@ -218,7 +218,6 @@ public class SysUserAction implements ISysUserAction {
 		// 获取每页记录的集合
 		List<SysUser> lsSysUsers = bizService.getSysUserBiz().findAll(usrId,usrName,usrRoleName,usrAlevel,
 				page, rows);
-
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("total", total);

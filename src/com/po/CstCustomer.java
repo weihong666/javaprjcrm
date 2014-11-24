@@ -45,7 +45,7 @@ public class CstCustomer implements java.io.Serializable {
 	private String custBankAccount;
 	private String custLocalTaxNo;
 	private String custNationalTaxNo;
-	private Short custStatus;
+	private Integer custStatus;
 	private Set<CstActivity> cstActivities = new HashSet<CstActivity>(0);
 	private Set<CstService> cstServices = new HashSet<CstService>(0);
 	private Set<CstLost> cstLosts = new HashSet<CstLost>(0);
@@ -67,7 +67,7 @@ public class CstCustomer implements java.io.Serializable {
 			String custLicenceNo, String custChieftain,
 			BigDecimal custBankroll, BigDecimal custTurnover, String custBank,
 			String custBankAccount, String custLocalTaxNo,
-			String custNationalTaxNo, Short custStatus,
+			String custNationalTaxNo, Integer custStatus,
 			Set<CstActivity> cstActivities, Set<CstService> cstServices,
 			Set<CstLost> cstLosts, Set<Orders> orderses,
 			Set<CstLinkman> cstLinkmans) {
@@ -313,11 +313,11 @@ public class CstCustomer implements java.io.Serializable {
 	}
 
 	@Column(name = "CUST_STATUS", precision = 4, scale = 0)
-	public Short getCustStatus() {
+	public Integer getCustStatus() {
 		return this.custStatus;
 	}
 
-	public void setCustStatus(Short custStatus) {
+	public void setCustStatus(Integer custStatus) {
 		this.custStatus = custStatus;
 	}
 
