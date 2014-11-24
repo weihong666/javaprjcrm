@@ -86,7 +86,20 @@ $(document).ready(function(){
 				<th data-options="field:'lstCustManagerName',width:100,align:'center'">客户经理</th>
 				<th data-options="field:'lstLastOrderDate',width:100,align:'center'">上次下单时间</th>
 				<th data-options="field:'lstLostDate',width:100,align:'center'">确认流失时间</th>
-				<th data-options="field:'lstStatus',width:100,align:'center'">状态</th>
+				<th data-options="field:'lstStatus',width:100,align:'center',
+				 formatter:function(value,row,index){
+	           if(value=='0'){
+	           return '预警';
+		        }
+		        if(value=='暂缓流失'){
+		         return '暂缓流失';
+		        }  
+		        if(value=='已流失'){
+		         return '已流失';
+		        }  
+	           }
+	           
+				">状态</th>
 				<th
 					data-options="field:'opt',
 	  			width:300,
@@ -96,7 +109,7 @@ $(document).ready(function(){
 	           return ' <a href=../../../delById_CstLost.action?id='+row.lstId+'&t=<%=new Date().getTime()%>><img title=暂缓流失 src=../../images/bt_relay.gif class=op_button /></a>';
 		          
 	           }
-	           else if(row.lstStatus=='预警'){
+	           else if(row.lstStatus=='0'){
 		           	return '<a href=../../../findById_CstLost.action?id='+row.lstId+'&t=<%=new Date().getTime()%>><img title=确认流失 src=../../images/bt_confirm.gif class=op_button /></a>'
 		           +' <a href=../../../delById_CstLost.action?id='+row.lstId+'&t=<%=new Date().getTime()%>><img title=暂缓流失 src=../../images/bt_relay.gif class=op_button /></a>';
 	           }

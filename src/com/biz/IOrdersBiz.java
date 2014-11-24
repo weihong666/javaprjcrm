@@ -1,5 +1,6 @@
 package com.biz;
 
+import java.util.Date;
 import java.util.List;
 
 import com.po.CstService;
@@ -14,5 +15,6 @@ public interface IOrdersBiz {
 	public int findMaxRow();
 	public List<Orders> findAll(Integer odrId);
 	public boolean saveOrder(Orders orders) ;
+	public Date findLastOrderDate(Integer custId);
 	public List<Orders> findByTotal(String odrDate, String odrCustomer,Integer odrId);
 }

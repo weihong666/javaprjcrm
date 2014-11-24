@@ -2,6 +2,8 @@ package com.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Controller;
 
 import com.po.BasDict;
 import com.po.CstCustomer;
+import com.po.CstLost;
 import com.po.CstService;
 import com.po.SysUser;
 import com.service.BizService;
@@ -38,6 +41,7 @@ public class CstCustomerAction implements ICstCustomerAction {
 	private String custManagerName;
 	private String custLevelLabel;
 	private String str;
+	private short custStatus;
 	private int page;
 	private int rows;
 	@Resource(name = "BizService")
@@ -46,6 +50,14 @@ public class CstCustomerAction implements ICstCustomerAction {
 	
 	
 	
+	public short getCustStatus() {
+		return custStatus;
+	}
+
+	public void setCustStatus(short custStatus) {
+		this.custStatus = custStatus;
+	}
+
 	public String getStr() {
 		return str;
 	}
@@ -142,10 +154,21 @@ public class CstCustomerAction implements ICstCustomerAction {
 		this.bizService = bizService;
 	}
 
+	@Action(value = "save_CstCustomer", results = {
+			@Result(name = "ok", location = "${path}", type = "redirect"),
+			@Result(name = "fail", location = "${path}", type = "redirect") })
 	public String save() {
-		
-		return null;
+		boolean bl = bizService.getCustomerBiz().save(customer);
+		path = "html/~cust/cust/list.jsp";
+		if (bl) {
+			
+			return "ok";
+		} else {
+			path = "error.jsp";
+			return "fail";
+		}
 	}
+
 
 	/**
 	 * 更新客户信息
@@ -157,14 +180,39 @@ public class CstCustomerAction implements ICstCustomerAction {
 		
 		
 		boolean bl = bizService.getCustomerBiz().update(customer);
+		path = "html/~cust/cust/list.jsp";
 		if (bl) {
 			
-			path = "html/~cust/cust/list.jsp";
+			if (!customer.getCustStatus().equals("1")) {
+				//客户状态不正常的时候，添加客户流失记录
+				CstLost cstLost=new CstLost();
+				if (customer!=null) {
+					cstLost.setCstCustomer(customer);
+					if(customer.getCustName()!=null&&!customer.getCustName().trim().equals("")){
+						cstLost.setLstCustName(customer.getCustName());
+					}
+					if(customer.getCustManagerId()!=null){
+						cstLost.setLstCustManagerId(customer.getCustManagerId());
+					}
+					if(customer.getCustManagerName()!=null&&!customer.getCustManagerName().trim().equals("")){
+						cstLost.setLstCustManagerName(customer.getCustManagerName());
+					}
+					//Date lstLastOrderDate=bizService.getOrdersBiz().findLastOrderDate(customer.getCustId());
+					cstLost.setLstLastOrderDate(new Date());
+					cstLost.setLstLostDate(new Date());
+						
+						
+					
+					if(customer.getCustStatus()!=null&&!customer.getCustStatus().equals("")){
+					cstLost.setLstStatus(customer.getCustStatus().toString());
+					}
+					bizService.getLostBiz().save(cstLost);
+				}
+				
+			}
 			return "ok";
-		} else {
-			path = "error.jsp";
-			return "fail";
 		}
+		return null;
 	}
 
 	/**

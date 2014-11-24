@@ -31,6 +31,7 @@
 		<s:textfield name="customer.custNo" value="%{#session.oldcustomer.custNo}"/>
 		<s:hidden name="customer.custId"  value="%{#session.oldcustomer.custId}"/>
 		
+		
 		</td>
 		<th>名称</th>
 		<td><s:textfield name="customer.custName" value="%{#session.oldcustomer.custName}"/><span class="red_star">*</span></td>
@@ -65,20 +66,21 @@
 		<th>客户等级</th>
 		<td>
 		<s:select name="customer.custLevelLabel"  list="#session.lscustLevelLabel" listKey="dictItem" listValue="dictItem" value="#session.oldcustomer.custLevelLabel"></s:select>
-			<%--<select name="customer.custLevelLabel">
-				<option>请选择...</option>
-				<option selected>战略合作伙伴</option>
-				<option>合作伙伴</option>
-				<option>大客户</option>
-				<option>重点开发客户</option>
-				<option>普通客户</option>
-			</select>
-			
-			--%><span class="red_star">*</span>
+			<span class="red_star">*</span>
 		</td>
-		<th>　</th>
-		<td>　</td>
+		<th>状态</th>
+
+		
+		
+		<td>
+		<select name="customer.custStatus">
+			<option value="1">正常</option>
+			<option value="0">预警</option>
+		</select>
+		</td>
+		
 	</tr>
+
 	<tr>
 		<th>客户满意度</th>
 		<td>

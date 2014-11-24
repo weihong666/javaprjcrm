@@ -2,6 +2,7 @@ package com.biz.imp;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -126,6 +127,11 @@ public class OrdersBiz implements IOrdersBiz {
 		List<Orders> list=new ArrayList<Orders>();
 		list.set(1, orders);
 		return list;
+	}
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public Date findLastOrderDate(Integer custId) {
+		// TODO Auto-generated method stub
+		return daoService.getOrdersdao().findLastOrderDate(custId);
 	}
 	
 }

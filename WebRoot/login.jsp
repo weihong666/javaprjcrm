@@ -82,7 +82,7 @@
         <tr> 
           <td>&nbsp;</td>
           <td>
-          <input type="submit" value="<img  src=html/images/login/login_button.jpg width=73 height=25>"/><%--
+          <input type="submit"  value="<img  src=html/images/login/login_button.jpg width=73 height=25>"/><%--
           <img  src="html/images/login/login_button.jpg" width="73" height="25">
           
           --%></td>

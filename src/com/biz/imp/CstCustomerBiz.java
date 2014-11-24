@@ -26,7 +26,13 @@ public class CstCustomerBiz implements ICstCustomerBiz {
 	}
 //--------------------------------------
 	public boolean save(CstCustomer customer) {
-		// TODO Auto-generated method stub
+		try {
+			daoService.getCustomerdao().save(customer);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 

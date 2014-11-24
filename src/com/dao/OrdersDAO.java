@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -59,7 +61,29 @@ public class OrdersDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
-
+	/**找该客户最新订单时间*/
+	public Date findLastOrderDate(Integer custId) {
+		log.debug("finding all CstCustomer instances");
+		try {
+			String queryString = "select max(odrDate) from Orders where cstCustomer.custId=?";
+			Query query=getSession().createQuery(queryString);
+			query.setParameter(0, custId);
+			
+			try {
+				Object obj=query.uniqueResult();
+				if (obj!=null&&!obj.equals("")) {
+					return new SimpleDateFormat("yyyy-MM-dd").parse(obj.toString());
+				}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+		return null;
+	}
 	public Orders findById(java.lang.Integer id) {
 		log.debug("getting Orders instance with id: " + id);
 		try {

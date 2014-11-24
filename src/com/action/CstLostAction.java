@@ -119,10 +119,21 @@ public class CstLostAction implements ICstLostAction {
 		this.rows = rows;
 	}
 //======================================================================
+	@Action(value = "save_CstLost", results = {
+			@Result(name = "ok", location = "${path}", type = "redirect"),
+			@Result(name = "fail", location = "${path}", type = "redirect") })
 	public String save() {
-		// TODO Auto-generated method stub
-		return null;
+		boolean bl = bizService.getLostBiz().save(cstLost);
+		if (bl) {
+			
+			path = "html/~cust/lost/list.jsp";
+			return "ok";
+		} else {
+			path = "error.jsp";
+			return "fail";
+		}
 	}
+	
 	/***
 	 * 已流失
 	 * **/
@@ -251,17 +262,17 @@ public class CstLostAction implements ICstLostAction {
 	public String findAllLost() {
 		page = page == 0 ? 1 : page;
 		rows = rows == 0 ? 5 : rows;
-		
+
 		// 获取总行数
 		int total = bizService.getLostBiz().findMaxRow(lstCustName, lstCustManagerName);
 		// 获取每页记录的集合
 		List<CstLost> lsLosts = bizService.getLostBiz().findAll(lstCustName, lstCustManagerName, page, rows);
-
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("total", total);
 		map.put("rows", lsLosts);
-
+	
 		// 编写属性过滤器,过滤掉集合属性
 		PropertyFilter propertyFilter = new PropertyFilter() {
 

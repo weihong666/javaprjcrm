@@ -27,7 +27,13 @@ public class CstLostBiz implements ICstLostBiz {
 	}
 
 	public boolean save(CstLost cstLost) {
-		// TODO Auto-generated method stub
+		try {
+			daoService.getLostdao().save(cstLost);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 //===================================
