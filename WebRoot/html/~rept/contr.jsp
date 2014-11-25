@@ -70,25 +70,10 @@
         >   
 	    <thead>   
 	        <tr>   
-	            
-	           <th data-options="field:'custName',width:145,align:'center',
-	           											formatter: function(value,row,index){
-															if (row){
-																return row[0];
-															} 
-														}
-
-	            ">产品</th>   
-	            <th data-options="field:'total',width:180,align:'center',
-	            formatter: function(value,row,index){
-															if (row){
-																return row[1];
-															} 
-														}
-	            ">总金额</th>   
-	            <th data-options="field:'dictValue',width:60,align:'center'"></th>   
-	            <th data-options="field:'dictValue',width:60,align:'center'"></th>   
-	 
+	           <th data-options="field:'dictId',width:50,align:'center'">编号</th>   
+	            <th data-options="field:'dictType',width:120,align:'center'">客户名称</th>   
+	            <th data-options="field:'dictItem',width:100,align:'center'">订单金额</th>   
+	            <th data-options="field:'dictValue',width:120,align:'center'"></th>   
 	        </tr>   
 	    </thead>   
 	</table> 
