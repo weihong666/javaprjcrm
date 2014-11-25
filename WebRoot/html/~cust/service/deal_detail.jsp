@@ -70,7 +70,7 @@
 	</tr>
 	<tr>
 		<th>处理人</th>
-		<td><input name="cstService.svrDealBy" value="刘颖" readonly size="20" /><span class="red_star">*</span></td>
+		<td><input name="cstService.svrDealBy" value="${user.usrName }" readonly size="20" /><span class="red_star">*</span></td>
 		<th>处理时间</th>
 		<td><input id="t3" name="cstService.svrDealDate" readonly size="20" /><span class="red_star">*</span></td>
 	</tr>

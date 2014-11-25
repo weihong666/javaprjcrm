@@ -47,7 +47,7 @@
 	</tr>
 	<tr>
 		<th>创建人</th>
-		<td><input name="cstService.svrCreateBy" value="刘颖" readonly size="20" /><span class="red_star">*</span></td>
+		<td><input name="cstService.svrCreateBy" value=${user.usrName } readonly size="20" /><span class="red_star">*</span></td>
 		<th>创建时间</th>
 		<td><input id="t1" type="text"name="cstService.svrCreateDate" value="<%=new Date().toLocaleString() %>"  readonly size="20" /><span class="red_star">*</span></td>
 	</tr>

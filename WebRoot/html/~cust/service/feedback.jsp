@@ -61,10 +61,10 @@ $(document).ready(function(){
 		<th height="28">服务类型</th>
 		<td>
 			<select name="cstService.svrType" id="svrType">
-				<option>全部</option>
-				<option>咨询</option>
-				<option>建议</option>
-				<option>投诉</option>
+				<option value="">全部</option>
+				<option value="咨询">咨询</option>
+				<option value="建议">建议</option>
+				<option value="投诉">投诉</option>
 			</select>
 		</td>
 	</tr>
@@ -74,9 +74,11 @@ $(document).ready(function(){
 			<input name="cstService.svrCreateDate" size="10"  id="svrCreateDate"/> - <input name="T1" size="10" /></td>
 		<th height="32">状态</th>
 		<td>
-			<select name="svrStatus" id="svrStatus">
+		<select name="cstService.svrStatus" id="svrStatus">
+			
 				<option value="已处理">已处理</option>
 			</select>
+			
 		</td>
 	</tr>
 </table>

@@ -135,7 +135,7 @@ $(document).ready(function(){
 		<th height="32">状态</th>
 		<td>
 			<select name="cstService.svrStatus" id="svrStatus">
-				<option value="已处理">已处理</option>
+				<option value="已归档">已归理</option>
 			</select>
 		</td>
 	</tr>
