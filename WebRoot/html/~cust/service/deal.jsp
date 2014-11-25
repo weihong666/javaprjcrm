@@ -1,186 +1,126 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<s:if test="#session."></s:if>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<% String path=request.getContextPath(); %>
+<link rel="stylesheet" href="../../../jquery-easyui-1.3.4/themes/default/easyui.css" type="text/css"></link>
+<link rel="stylesheet" href="../../../jquery-easyui-1.3.4/themes/icon.css" type="text/css"></link>
+<script type="text/javascript" src="../../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
+
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <script src="../../script/common.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+		
+		$("#select").click(function(){	
+alert($("#svrCustName").val());
+		$("#tt").datagrid({
+			queryParams: {
+				svrCustName:$("#svrCustName").val(),
+				svrTitle:$("#svrTitle").val(),
+				svrType:$("#svrType").val(),
+				svrCreateDate:$("#svrCreateDate").val(),
+				svrStatus:$("#svrStatus").val()
+				
+			}
+		
+		}
+		
+		); 
+
+		//æ¸…ç©ºæŸ¥è¯¢é¡¹
+		$("#svrCustName").val("");
+		$("#svrTitle").val("");
+		$("#svrType").val("");
+		$("#svrCreateDate").val("");
+		$("#svrStatus").val("");
+		
+		
+});
+		});
+</script>
 </head>
 <body>
 
-<div class="page_title">¿Í»§·þÎñ¹ÜÀí &gt; ·þÎñ´¦Àí</div>
+<div class="page_title">å®¢æˆ·æœåŠ¡ç®¡ç† &gt; æœåŠ¡å¤„ç†</div>
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="reload();">²éÑ¯</button>  
+	<button class="common_button" onclick="help('');">å¸®åŠ©</button>
+	<button class="common_button"  id="select">æŸ¥è¯¢</button>  
 </div>
 <table class="query_form_table">
 	<tr>
-		<th height="28">¿Í»§</th>
-		<td><input /></td>
-		<th height="28">¸ÅÒª</th>
-		<td><input /></td>
-		<th height="28">·þÎñÀàÐÍ</th>
+		<th height="28">å®¢æˆ·</th>
+		<td><input name="svrCustName" id="svrCustName"/></td>
+		<th height="28">æ¦‚è¦</th>
+		<td><input name="svrTitle" id="svrTitle"/></td>
+		<th height="28">æœåŠ¡ç±»åž‹</th>
 		<td>
-			<select name="D1">
-				<option>È«²¿</option>
-				<option>×ÉÑ¯</option>
-				<option>½¨Òé</option>
-				<option>Í¶Ëß</option>
+			<select name="cstService.svrType" id="svrType">
+				<option value="">å…¨éƒ¨</option>
+				<option value="å’¨è¯¢">å’¨è¯¢</option>
+				<option value="å»ºè®®">å»ºè®®</option>
+				<option value="æŠ•è¯‰">æŠ•è¯‰</option>
 			</select>
 		</td>
 	</tr>
 	<tr>
-		<th height="32">´´½¨ÈÕÆÚ</th>
+		<th height="32">åˆ›å»ºæ—¥æœŸ</th>
 		<td colspan="3">
-			<input name="T2" size="10" /> - <input name="T1" size="10" /></td>
-		<th height="32">×´Ì¬</th>
+			<input name="cstService.svrCreateDate" id="svrCreateDate" size="10" /> - <input name="T1" size="10" /></td>
+		<th height="32">çŠ¶æ€</th>
 		<td>
-			<select name="D1">
-				<option selected>ÒÑ·ÖÅä</option>
+			<select name="cstService.svrStatus" id="svrStatus">
+				<option selected value="å·²åˆ†é…">å·²åˆ†é…</option>
 			</select>
 		</td>
 	</tr>
 </table>
 <br />
-<table class="data_list_table">
-	<tr>
-		<th>±àºÅ</th>
-		<th>¿Í»§</th>
-		<th>¸ÅÒª</th>
-		<th>·þÎñÀàÐÍ</th>
-		<th>´´½¨ÈË</th>
-		<th>´´½¨ÈÕÆÚ</th>
-		<th>²Ù×÷</th>
-	</tr>
-	<tr>
-		<td class="list_data_number">456</td>
-		<td class="list_data_text">Ì«ÑôÒ©Òµ</td>
-		<td class="list_data_ltext">Ñ¯ÎÊÊÕÒô»ú¶©µ¥ÔË·Ñ³Ðµ£·½Ê½</td>
-		<td class="list_data_text">×ÉÑ¯</td>
-		<td class="list_data_text">Ð¡Ã÷</td>
-		<td class="list_data_text">2007Äê12ÔÂ02ÈÕ</td>
-		<td class="list_data_op">
-						
-			<img onclick="to('deal_detail.jsp');" title="´¦Àí" src="../../images/bt_deal.gif" class="op_button" />  
-			
-		</td>
-	</tr>
-	<tr>
-		<td class="list_data_number">455</td>
-		<td class="list_data_text">Ì«ÑôÒ©Òµ</td>
-		<td class="list_data_ltext">Ñ¯ÎÊÊÕÒô»ú¼Û¸ñ</td>
-		<td class="list_data_text">×ÉÑ¯</td>
-		<td class="list_data_text">Ð¡Ã÷</td>
-		<td class="list_data_text">2007Äê12ÔÂ02ÈÕ</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('deal_detail.jsp');" title="´¦Àí" src="../../images/bt_deal.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">454</td>
-		<td class="list_data_text">ÔÆÄÏÌìºÓÑÌ²Ý¹«Ë¾</td>
-		<td class="list_data_ltext">Ñ¯ÎÊÊÕÒô»ú¼Û¸ñ</td>
-		<td class="list_data_text">×ÉÑ¯</td>
-		<td class="list_data_text">Ð¡Ã÷</td>
-		<td class="list_data_text">2007Äê12ÔÂ02ÈÕ</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('deal_detail.jsp');" title="´¦Àí" src="../../images/bt_deal.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">453</td>
-		<td class="list_data_text">ÔÆÄÏÌìºÓÑÌ²Ý¹«Ë¾</td>
-		<td class="list_data_ltext">Ñ¯ÎÊÊÕÒô»ú¼Û¸ñ</td>
-		<td class="list_data_text">½¨Òé</td>
-		<td class="list_data_text">Ð¡Ã÷</td>
-		<td class="list_data_text">2007Äê12ÔÂ02ÈÕ</td>
+<table class="easyui-datagrid" style="height:410px;"
+		data-options="
+        url:'../../../findAll_CstService.action?t=<%=new Date().getTime() %>',
+        fitColumns:true, 
+        queryParams: {
+		svrStatus: 'å·²åˆ†é…'
+		}, 
 		
-		<td class="list_data_op">
-									
-			<img onclick="to('deal_detail.jsp');" title="´¦Àí" src="../../images/bt_deal.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">452</td>
-		<td class="list_data_text">ÔÆÄÏÌìºÓÑÌ²Ý¹«Ë¾</td>
-		<td class="list_data_ltext">Ñ¯ÎÊÊÕÒô»ú¼Û¸ñ</td>
-		<td class="list_data_text">×ÉÑ¯</td>
-		<td class="list_data_text">Ð¡Ã÷</td>
-		<td class="list_data_text">2007Äê12ÔÂ02ÈÕ</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('deal_detail.jsp');" title="´¦Àí" src="../../images/bt_deal.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">451</td>
-		<td class="list_data_text">ÔÆÄÏÌìºÓÑÌ²Ý¹«Ë¾</td>
-		<td class="list_data_ltext">Ñ¯ÎÊÊÕÒô»ú¼Û¸ñ</td>
-		<td class="list_data_text">Í¶Ëß</td>
-		<td class="list_data_text">Ð¡Ã÷</td>
-		<td class="list_data_text">2007Äê12ÔÂ02ÈÕ</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('deal_detail.jsp');" title="´¦Àí" src="../../images/bt_deal.gif" class="op_button" /></td>
-	</tr>	
-	<tr>
-		<td class="list_data_number" height="15">540</td>
-		<td class="list_data_text" height="15">ÔÆÄÏÌìºÓÑÌ²Ý¹«Ë¾</td>
-		<td class="list_data_ltext" height="15">Ñ¯ÎÊÊÕÒô»ú¼Û¸ñ</td>
-		<td class="list_data_text" height="15">½¨Òé</td>
-		<td class="list_data_text" height="15">Ð¡Ã÷</td>
-		<td class="list_data_text" height="15">2007Äê12ÔÂ02ÈÕ</td>
-		<td class="list_data_op" height="15">
-						
-			<img onclick="to('deal_detail.jsp');" title="´¦Àí" src="../../images/bt_deal.gif" class="op_button" /></td>
-	</tr>	
-	<tr>
-		<td class="list_data_number" height="35">439</td>
-		<td class="list_data_text" height="35">ÔÆÄÏÌìºÓÑÌ²Ý¹«Ë¾</td>
-		<td class="list_data_ltext" height="35">Ñ¯ÎÊÊÕÒô»ú¼Û¸ñ</td>
-		<td class="list_data_text" height="35">×ÉÑ¯</td>
-		<td class="list_data_text" height="35">Ð¡Ã÷</td>
-		<td class="list_data_text" height="35">2007Äê12ÔÂ02ÈÕ</td>
-		<td class="list_data_op" height="35">
-									
-			<img onclick="to('deal_detail.jsp');" title="´¦Àí" src="../../images/bt_deal.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">438</td>
-		<td class="list_data_text">ÔÆÄÏÌìºÓÑÌ²Ý¹«Ë¾</td>
-		<td class="list_data_ltext">Ñ¯ÎÊÊÕÒô»ú¼Û¸ñ</td>
-		<td class="list_data_text">½¨Òé</td>
-		<td class="list_data_text">Ð¡Ã÷</td>
-		<td class="list_data_text">2007Äê12ÔÂ02ÈÕ</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('deal_detail.jsp');" title="´¦Àí" src="../../images/bt_deal.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">437</td>
-		<td class="list_data_text">ÔÆÄÏÌìºÓÑÌ²Ý¹«Ë¾</td>
-		<td class="list_data_ltext">Ñ¯ÎÊÊÕÒô»ú¼Û¸ñ</td>
-		<td class="list_data_text">½¨Òé</td>
-		<td class="list_data_text">Ð¡Ã÷</td>
-		<td class="list_data_text">2007Äê12ÔÂ02ÈÕ</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('deal_detail.jsp');" title="´¦Àí" src="../../images/bt_deal.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<th colspan="7" class="pager">
-<div class="pager">
-	¹²59Ìõ¼ÇÂ¼ Ã¿Ò³<input value="10" size="2" />Ìõ
-	µÚ<input value="1" size="2"/>Ò³/¹²5Ò³
-	<a href="#">µÚÒ»Ò³</a>
-	<a href="#">ÉÏÒ»Ò³</a>
-	<a href="#">ÏÂÒ»Ò³</a>
-	<a href="#">×îºóÒ»Ò³</a>
-	×ªµ½<input value="1" size="2" />Ò³
-	<button width="20" onclick="reload();">GO</button>
-</div>
-		</th>
-	</tr>
-</table>
+        singleSelect:true"
+		pagination="true" rownumbers="true" pageSize="10"
+		pageList="[10,20,30,40]" 
+		loadMsg="æ­£åœ¨åœ¨åŠ è½½è¿œç¨‹æ•°æ®ï¼Œè¯·ç¨åŽ......" align="center"
+		id="tt">
+		<thead>
+			<tr>
+				<th data-options="field:'svrId',width:100,align:'center'">ç¼–å·</th>
+				<th data-options="field:'svrCustName',width:100,align:'center'">å®¢æˆ·</th>
+				<th data-options="field:'svrTitle',width:100,align:'center'">æ¦‚è¦</th>
+				<th data-options="field:'svrType',width:100,align:'center'">æœåŠ¡ç±»åž‹</th>
+				<th data-options="field:'svrCreateBy',width:100,align:'center'">åˆ›å»ºäºº</th>
+				 <th data-options="field:'svrCreateDate',width:140,align:'center',
+            								formatter: function(value,row,index){
+												if(value){
+														return value.substring(0,10);
+														}
+           									 		}
+            ">åˆ›å»ºæ—¥æœŸ</th>   
+				
+				<th
+					data-options="field:'opt',
+	  			width:300,
+	           align:'center',
+	           formatter:function(value,row,index){
+	           return '<a href=../../../findById_CstService.action?id='+row.svrId+'><img title=å¤„ç† src=../../images/bt_deal.gif class=op_buttons/></a>'
+						}
+            				 ">æ“ä½œ</th>   
+			</tr>
+		</thead>
+	</table>
 </body>
 </html>

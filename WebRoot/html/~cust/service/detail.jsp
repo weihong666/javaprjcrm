@@ -1,82 +1,105 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <script src="../../script/common.js"></script>
 </head>
 <body>
 
-<div class="page_title">¿Í»§·şÎñ¹ÜÀí &gt; ·şÎñ´¦Àí</div>
+<div class="page_title">å®¢æˆ·æœåŠ¡ç®¡ç† &gt; æœåŠ¡å¤„ç†</div>
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="back();">·µ»Ø</button>  
+	<button class="common_button" onclick="help('');">å¸®åŠ©</button>
+	<button class="common_button" onclick="back();">è¿”å›</button>  
 </div>
 <table class="query_form_table">
 	<tr>
-		<th>±àºÅ</th>
-		<td>456</td>
-		<th>·şÎñÀàĞÍ</th>
-		<td>
-			×ÉÑ¯</td>
+		<th>ç¼–å·</th>
+		<td>${oldcstService.svrId}</td>
+		<th>æœåŠ¡ç±»å‹</th>
+		<td>${oldcstService.svrType}</td>
 	</tr>
 	<tr>
-		<th>¸ÅÒª</th>
-		<td colspan="3">Ñ¯ÎÊÊÕÒô»ú¶©µ¥ÔË·Ñ³Ğµ£·½Ê½</td>
+		<th>æ¦‚è¦</th>
+		<td colspan="3">${oldcstService.svrTitle}</td>
 	</tr>	
 	<tr>
-		<th>¿Í»§</th>
-		<td>Ì«ÑôÒ©Òµ</td>
-		<th>×´Ì¬</th>
-		<td>ÒÑ·ÖÅä</td>
+		<th>å®¢æˆ·</th>
+		<td>${oldcstService.svrCustName}</td>
+		<th>çŠ¶æ€</th>
+		<td>${oldcstService.svrStatus}</td>
 	</tr>	
 	<tr>
-		<th>·şÎñÇëÇó</th>
-		<td colspan="3">ÊÕÒô»ú¶©µ¥ÔË·ÑÈçºÎ³Ğµ££¿<br>
-¡¡</td>
+		<th>æœåŠ¡è¯·æ±‚</th>
+		<td colspan="3">${oldcstService.svrRequest}<br>
+ã€€</td>
 	</tr>
 	<tr>
-		<th>´´½¨ÈË</th>
-		<td>Ğ¡Ã÷</td>
-		<th>´´½¨Ê±¼ä</th>
-		<td>2007Äê12ÔÂ02ÈÕ 15Ê±26·Ö58Ãë</td>
+		<th>åˆ›å»ºäºº</th>
+		<td>${oldcstService.svrCreateBy}</td>
+		<th>åˆ›å»ºæ—¶é—´</th>
+		<td>${oldcstService.svrCreateDate}</td>
 	</tr>
 	</table>
 <br />
 <table class="query_form_table" id="table3">
 	<tr>
-		<th>·ÖÅä¸ø</th>
+		<th>åˆ†é…ç»™</th>
 		<td>
-			Íú²Æ</td>
-		<th>·ÖÅäÊ±¼ä</th>
-		<td>2007Äê12ÔÂ02ÈÕ 15Ê±28·Ö06Ãë</td>
+			${oldcstService.svrDueTo}</td>
+		<th>åˆ†é…æ—¶é—´</th>
+		<td>${oldcstService.svrDueDate}</td>
 	</tr>
 </table>
 <br />	
 <table class="query_form_table" id="table1">
 	<tr>
-		<th>·şÎñ´¦Àí</th>
-		<td colspan="3">»Øµç»°¸øÁõ¾­Àí£º<br>
-		¸ù¾İÏà¹ØÖÆ¶È£¬7Ôª/¶Ö¡¤¹«ÀïÒÔÄÚÓÉÎÒÃÇ¸ºÔğ£¬Ö®ÍâÓÉ¿Í»§³Ğµ£¡£</td>
+		<th>æœåŠ¡å¤„ç†</th>
+		<td colspan="3">${oldcstService.svrDeal}</td>
 	</tr>
 	<tr>
-		<th>´¦ÀíÈË</th>
-		<td>¹ùĞ¡ÃÀ</td>
-		<th>´¦ÀíÊ±¼ä</th>
-		<td>2007Äê12ÔÂ02ÈÕ 17Ê±02·Ö18Ãë</td>
+		<th>å¤„ç†äºº</th>
+		<td>${oldcstService.svrDealBy}</td>
+		<th>å¤„ç†æ—¶é—´</th>
+		<td>${oldcstService.svrDealDate}</td>
 	</tr>
 </table>
 <br />
 <table class="query_form_table" id="table2">
 	<tr>
-		<th>´¦Àí½á¹û</th>
-		<td>Áõ¾­ÀíÍ¬ÒâÔË·Ñ¼ÆËã·½Ê½¡£</td>
-		<th>ÂúÒâ¶È</th>
+		<th>å¤„ç†ç»“æœ</th>
+		<td>${oldcstService.svrResult}</td>
+		<th>æ»¡æ„åº¦</th>
 		<td>
-			<img src="../../images/star.jpg" class="star_pic" /><img src="../../images/star.jpg" class="star_pic" /><img src="../../images/star.jpg" class="star_pic" /></td>
+		<c:if test="${oldcstService.svrSatisfy eq 5}">
+		<img src="../../images/star.jpg" class="star_pic" />
+		<img src="../../images/star.jpg" class="star_pic" />
+		<img src="../../images/star.jpg" class="star_pic" />
+		<img src="../../images/star.jpg" class="star_pic" />
+		<img src="../../images/star.jpg" class="star_pic" />
+		</c:if>
+		<c:if test="${oldcstService.svrSatisfy eq 4}">
+		<img src="../../images/star.jpg" class="star_pic" />
+		<img src="../../images/star.jpg" class="star_pic" />
+		<img src="../../images/star.jpg" class="star_pic" />
+		<img src="../../images/star.jpg" class="star_pic" />
+		</c:if>
+		<c:if test="${oldcstService.svrSatisfy eq 3}">
+		<img src="../../images/star.jpg" class="star_pic" />
+		<img src="../../images/star.jpg" class="star_pic" />
+		<img src="../../images/star.jpg" class="star_pic" />
+		</c:if>
+		<c:if test="${oldcstService.svrSatisfy eq 2}">
+		<img src="../../images/star.jpg" class="star_pic" />
+		<img src="../../images/star.jpg" class="star_pic" />
+		</c:if>
+		<c:if test="${oldcstService.svrSatisfy eq 1}">
+		<img src="../../images/star.jpg" class="star_pic" />
+		</c:if>
+		</td>
 	</tr>
 </table>
 </body>

@@ -1,91 +1,92 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags"  prefix="s" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <script src="../../script/common.js"></script>
 </head>
 <body>
 
-<div class="page_title">¿Í»§·þÎñ¹ÜÀí &gt; ·þÎñ´¦Àí</div>
+<div class="page_title">å®¢æˆ·æœåŠ¡ç®¡ç† &gt; æœåŠ¡å¤„ç†</div>
+<form  name="form1" action="../../../updateend_CstService.action" method="post" id="ff">
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="back();">·µ»Ø</button> 
-	<button class="common_button" onclick="save('deal.jsp');">±£´æ</button>  
+	<button class="common_button" onclick="help('');">å¸®åŠ©</button>
+	<button class="common_button" onclick="back();">è¿”å›ž</button> 
+	<input type="submit" name="btupdate" id="btupdate" value="ä¿å­˜"/> 
 </div>
 <table class="query_form_table">
 	<tr>
-		<th>±àºÅ</th>
-		<td>456</td>
-		<th>·þÎñÀàÐÍ</th>
+		<th>ç¼–å·</th>
+		<td>${oldcstService.svrId}<input type="hidden" name="cstService.svrId" value="${oldcstService.svrId}"/></td>
+		<th>æœåŠ¡ç±»åž‹</th>
 		<td>
-			×ÉÑ¯</td>
+			${oldcstService.svrType}<input type="hidden" name="cstService.svrType" value="${oldcstService.svrType}"/></td>
 	</tr>
 	<tr>
-		<th>¸ÅÒª</th>
-		<td colspan="3">Ñ¯ÎÊÊÕÒô»ú¶©µ¥ÔË·Ñ³Ðµ£·½Ê½</td>
+		<th>æ¦‚è¦</th>
+		<td colspan="3">${oldcstService.svrTitle}<input type="hidden" name="cstService.svrTitle" value="${oldcstService.svrTitle}"/></td>
 	</tr>	
 	<tr>
-		<th>¿Í»§</th>
-		<td>Ì«ÑôÒ©Òµ</td>
-		<th>×´Ì¬</th>
-		<td>ÒÑ·ÖÅä</td>
+		<th>å®¢æˆ·</th>
+		<td>${oldcstService.svrCustName}<input type="hidden" name="cstService.svrCustName" value="${oldcstService.svrCustName}"/></td>
+		<th>çŠ¶æ€</th>
+			<td><input type="hidden" name="cstService.svrStatus" value="å·²å½’æ¡£"/>${oldcstService.svrStatus}</td>
 	</tr>	
 	<tr>
-		<th>·þÎñÇëÇó</th>
-		<td colspan="3">ÊÕÒô»ú¶©µ¥ÔË·ÑÈçºÎ³Ðµ££¿<br>
-¡¡</td>
+		<th>æœåŠ¡è¯·æ±‚</th>
+		<td colspan="3">${oldcstService.svrRequest}<input type="hidden" name="cstService.svrRequest" value="${oldcstService.svrRequest}"/><br>
+ã€€</td>
 	</tr>
 	<tr>
-		<th>´´½¨ÈË</th>
-		<td>Ð¡Ã÷</td>
-		<th>´´½¨Ê±¼ä</th>
-		<td>2007Äê12ÔÂ02ÈÕ 15Ê±26·Ö58Ãë</td>
+		<th>åˆ›å»ºäºº</th>
+		<td>${oldcstService.svrCreateBy}<input type="hidden" name="cstService.svrCreateBy" value="${oldcstService.svrCreateBy}"/></td>
+		<th>åˆ›å»ºæ—¶é—´</th>
+		<td>${oldcstService.svrCreateDate}<input type="hidden" name="cstService.svrCreateDate" value="${oldcstService.svrCreateDate}"/></td>
 	</tr>
 	</table>
 <br />
 <table class="query_form_table" id="table3">
 	<tr>
-		<th>·ÖÅä¸ø</th>
-		<td>
-			Íú²Æ</td>
-		<th>·ÖÅäÊ±¼ä</th>
-		<td>2007Äê12ÔÂ02ÈÕ 15Ê±28·Ö06Ãë</td>
+		<th>åˆ†é…ç»™</th>
+		<td>${oldcstService.svrDueTo}<input type="hidden" name="cstService.svrDueTo" value="${oldcstService.svrDueTo}"/></td>
+		<th>åˆ†é…æ—¶é—´</th>
+		<td>${oldcstService.svrDueDate}<input type="hidden" name="cstService.svrDueDate" value="${oldcstService.svrDueDate}"/></td>
 	</tr>
 </table>
 <br />	
 <table class="query_form_table" id="table1">
 	<tr>
-		<th>·þÎñ´¦Àí</th>
-		<td colspan="3">»Øµç»°¸øÁõ¾­Àí£º<br>
-		¸ù¾ÝÏà¹ØÖÆ¶È£¬7Ôª/¶Ö¡¤¹«ÀïÒÔÄÚÓÉÎÒÃÇ¸ºÔð£¬Ö®ÍâÓÉ¿Í»§³Ðµ£¡£</td>
+		<th>æœåŠ¡å¤„ç†</th>
+		<td colspan="3">${oldcstService.svrDeal}<input type="hidden" name="cstService.svrDeal" value="${oldcstService.svrDeal}"/></td>
 	</tr>
 	<tr>
-		<th>´¦ÀíÈË</th>
-		<td>¹ùÐ¡ÃÀ</td>
-		<th>´¦ÀíÊ±¼ä</th>
-		<td>2007Äê12ÔÂ02ÈÕ 17Ê±02·Ö18Ãë</td>
+		<th>å¤„ç†äºº</th>
+		<td>${oldcstService.svrDealBy}<input type="hidden" name="cstService.svrDealBy" value="${oldcstService.svrDealBy}"/></td>
+		<th>å¤„ç†æ—¶é—´</th>
+		<td>${oldcstService.svrDealDate}<input type="hidden" name="cstService.svrDealDate" value="${oldcstService.svrDealDate}"/></td>
 	</tr>
 </table>
 <br />
 <table class="query_form_table" id="table2">
 	<tr>
-		<th>´¦Àí½á¹û</th>
-		<td><input name="T10" size="20" /><span class="red_star">*</span></td>
-		<th>ÂúÒâ¶È</th>
+		<th>å¤„ç†ç»“æžœ</th>
+		<td><input name="cstService.svrResult" id="svrResult" size="20" /><span class="red_star">*</span></td>
+		<th>æ»¡æ„åº¦</th>
 		<td>
-			<select>
-				<option>ÇëÑ¡Ôñ...</option>
-				<option>¡î¡î¡î¡î¡î</option>
-				<option>¡î¡î¡î¡î</option>
-				<option>¡î¡î¡î</option>
-				<option>¡î¡î</option>
-				<option>¡î</option>
+			<select name="cstService.svrSatisfy" id="svrSatisfy">
+				<option value="0">è¯·é€‰æ‹©...</option>
+				<option value="5">â˜†â˜†â˜†â˜†â˜†</option>
+				<option value="4">â˜†â˜†â˜†â˜†</option>
+				<option value="3">â˜†â˜†â˜†</option>
+				<option value="2">â˜†â˜†</option>
+				<option value="1">â˜†</option>
 			</select><span class="red_star">*</span></td>
 	</tr>
 </table>
+</form>
 </body>
 </html>

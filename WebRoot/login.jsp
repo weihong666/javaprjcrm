@@ -72,8 +72,8 @@
           <th>用户名</th>
           <td>
           <input size="10" maxlength="20" name="sysUser.usrName" />
-          <input type="hidden" name="sysUser.usrId"/>
-          </td>
+          <%--<input type="hidden" name="sysUser.usrId"/>
+          --%></td>
         </tr>
         <tr> 
           <th>密码</th>

@@ -216,5 +216,56 @@ public class CstServiceDAO extends HibernateDaoSupport {
 		return qy.list();
 	}
 	
+	//最大行数
+	public int findMaxRows(String svrCustName,String svrTitle,String svrType,String svrStatus){
+		int maxrow=0;
+		String sql="select count(*) from CstService where 1=1";
+		if(svrCustName!=null&&!svrCustName.trim().equals("")){
+			String sql1=" and svrCustName='"+svrCustName+"'";
+			sql+=sql1;
+		}
+		if(svrTitle!=null&&!svrTitle.trim().equals("")){
+			String sql2=" and svrTitle='"+svrTitle+"'";
+			sql+=sql2;
+		}
+		if(svrType!=null&&!svrType.trim().equals("")){
+			String sql3=" and svrType='"+svrType+"'";
+			sql+=sql3;
+		}
+		if(svrStatus!=null&&!svrStatus.trim().equals("")){
+			String sql4 = " and svrStatus ='"+svrStatus+"'";
+			sql+=sql4;
+		}
+		
+		Query qy = getSession().createQuery(sql);
+		maxrow = Integer.parseInt(qy.list().get(0).toString());
+		return maxrow;
+	}
+	//每页记录数。
+	public List<CstService> findAll(String svrCustName,String svrTitle,String svrType,String svrStatus,int page,int rows){
+		String sql="from CstService where 1=1";
+		if(svrCustName!=null&&!svrCustName.trim().equals("")){
+			String sql1=" and svrCustName='"+svrCustName+"'";
+			sql+=sql1;
+		}
+		if(svrTitle!=null&&!svrTitle.trim().equals("")){
+			String sql2=" and svrTitle='"+svrTitle+"'";
+			sql+=sql2;
+		}
+		if(svrType!=null&&!svrType.trim().equals("")){
+			String sql3=" and svrType='"+svrType+"'";
+			sql+=sql3;
+		}
+		if(svrStatus!=null&&!svrStatus.trim().equals("")){
+			String sql4 = " and svrStatus ='"+svrStatus+"'";
+			sql+=sql4;
+		}
+		Query qy=getSession().createQuery(sql);
+		qy.setFirstResult((page-1)*rows);
+		qy.setMaxResults(rows);
+		return qy.list();
+
+		
+	}
 	
 }

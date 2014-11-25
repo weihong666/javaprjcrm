@@ -1,6 +1,6 @@
 package com.po;
 
-import java.math.BigDecimal;
+import java.math.*;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,14 +30,14 @@ public class CstService implements java.io.Serializable {
 	private String svrCustName;
 	private String svrStatus;
 	private String svrRequest;
-	private BigDecimal svrCreateId;
+	private Integer svrCreateId;
 	private String svrCreateBy;
 	private Date svrCreateDate;
-	private BigDecimal svrDueId;
+	private Integer svrDueId;
 	private String svrDueTo;
 	private Date svrDueDate;
 	private String svrDeal;
-	private BigDecimal svrDealId;
+	private Integer svrDealId;
 	private String svrDealBy;
 	private Date svrDealDate;
 	private String svrResult;
@@ -52,9 +52,9 @@ public class CstService implements java.io.Serializable {
 	/** full constructor */
 	public CstService(CstCustomer cstCustomer, String svrType, String svrTitle,
 			String svrCustName, String svrStatus, String svrRequest,
-			BigDecimal svrCreateId, String svrCreateBy, Date svrCreateDate,
-			BigDecimal svrDueId, String svrDueTo, Date svrDueDate,
-			String svrDeal, BigDecimal svrDealId, String svrDealBy,
+			Integer svrCreateId, String svrCreateBy, Date svrCreateDate,
+			Integer svrDueId, String svrDueTo, Date svrDueDate,
+			String svrDeal, Integer svrDealId, String svrDealBy,
 			Date svrDealDate, String svrResult, Integer svrSatisfy) {
 		this.cstCustomer = cstCustomer;
 		this.svrType = svrType;
@@ -145,11 +145,11 @@ public class CstService implements java.io.Serializable {
 	}
 
 	@Column(name = "SVR_CREATE_ID", precision = 22, scale = 0)
-	public BigDecimal getSvrCreateId() {
+	public Integer getSvrCreateId() {
 		return this.svrCreateId;
 	}
 
-	public void setSvrCreateId(BigDecimal svrCreateId) {
+	public void setSvrCreateId(Integer svrCreateId) {
 		this.svrCreateId = svrCreateId;
 	}
 
@@ -173,11 +173,11 @@ public class CstService implements java.io.Serializable {
 	}
 
 	@Column(name = "SVR_DUE_ID", precision = 22, scale = 0)
-	public BigDecimal getSvrDueId() {
+	public Integer getSvrDueId() {
 		return this.svrDueId;
 	}
 
-	public void setSvrDueId(BigDecimal svrDueId) {
+	public void setSvrDueId(Integer svrDueId) {
 		this.svrDueId = svrDueId;
 	}
 
@@ -210,11 +210,11 @@ public class CstService implements java.io.Serializable {
 	}
 
 	@Column(name = "SVR_DEAL_ID", precision = 22, scale = 0)
-	public BigDecimal getSvrDealId() {
+	public Integer getSvrDealId() {
 		return this.svrDealId;
 	}
 
-	public void setSvrDealId(BigDecimal svrDealId) {
+	public void setSvrDealId(Integer svrDealId) {
 		this.svrDealId = svrDealId;
 	}
 

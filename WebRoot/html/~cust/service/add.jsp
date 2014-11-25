@@ -1,102 +1,105 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags"  prefix="s" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech±ÏÒµÉè¼ÆÏîÄ¿</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptechæ¯•ä¸šè®¾è®¡é¡¹ç›®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <script src="../../script/common.js"></script>
 </head>
 <body>
-
-<div class="page_title">¿Í»§·þÎñ¹ÜÀí > ·þÎñ´´½¨</div>
+<s:form name="form1" action="../../../save_CstService.action" method="post" id="ff">
+<div class="page_title">å®¢æˆ·æœåŠ¡ç®¡ç† > æœåŠ¡åˆ›å»º</div>
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">°ïÖú</button>
-	<button class="common_button" onclick="add('add.jsp');">±£´æ</button>  
+	<button class="common_button" onclick="help('');">å¸®åŠ©</button>
+	<button class="common_button"  type="submit">ä¿å­˜</button>  
+  
 </div>
 <table class="query_form_table">
 	<tr>
-		<th>±àºÅ</th>
-		<td><input disabled /></td>
-		<th>·þÎñÀàÐÍ</th>
+		<th>ç¼–å·</th>
+		<td><input disabled="disabled"  value="ç³»ç»Ÿè‡ªå¢ž"/></td>
+		<th>æœåŠ¡ç±»åž‹</th>
 		<td>
-			<select>
-				<option>ÇëÑ¡Ôñ...</option>
-				<option>×ÉÑ¯</option>
-				<option>Í¶Ëß</option>
-				<option>½¨Òé</option>
+			<select name="cstService.svrType">
+				<option value="å’¨è¯¢">å’¨è¯¢</option>
+				<option value="æŠ•è¯‰">æŠ•è¯‰</option>
+				<option value="å»ºè®®">å»ºè®®</option>
 			</select><span class="red_star">*</span>
 		</td>
 	</tr>
 	<tr>
-		<th>¸ÅÒª</th>
-		<td colspan="3"><input size="53" /><span class="red_star">*</span></td>
+		<th>æ¦‚è¦</th>
+		<td colspan="3"><input name="cstService.svrTitle" /><span class="red_star">*</span></td>
 	</tr>	
 	<tr>
-		<th>¿Í»§</th>
-		<td><input name="T20" size="20" /><span class="red_star">*</span></td>
-		<th>×´Ì¬</th>
-		<td>ÐÂ´´½¨</td>
+		<th>å®¢æˆ·</th>
+		<td><input name="cstService.svrCustName" /><span class="red_star">*</span></td>
+		<th>çŠ¶æ€</th>
+		<td>æ–°åˆ›å»º<input  type="hidden" name="cstService.svrStatus" value="æ–°åˆ›å»º"/></td>
+		
 	</tr>	
 	<tr>
-		<th>·þÎñÇëÇó</th>
-		<td colspan="3"><textarea rows="6" cols="50"></textarea><span class="red_star">*</span></td>
+		<th>æœåŠ¡è¯·æ±‚</th>
+		<td colspan="3"><s:textarea  name="cstService.svrRequest"  rows="6" cols="50"/><span class="red_star">*</span></td>
 	</tr>
 	<tr>
-		<th>´´½¨ÈË</th>
-		<td><input name="T19" value="ÁõÓ±" readonly size="20" /><span class="red_star">*</span></td>
-		<th>´´½¨Ê±¼ä</th>
-		<td><input id="t1" name="T15" readonly size="20" /><span class="red_star">*</span></td>
+		<th>åˆ›å»ºäºº</th>
+		<td><input name="cstService.svrCreateBy" value="åˆ˜é¢–" readonly size="20" /><span class="red_star">*</span></td>
+		<th>åˆ›å»ºæ—¶é—´</th>
+		<td><input id="t1" type="text"name="cstService.svrCreateDate" value="<%=new Date().toLocaleString() %>"  readonly size="20" /><span class="red_star">*</span></td>
 	</tr>
 	</table>
 <br />
 <table disabled class="query_form_table" id="table3">
 	<tr>
-		<th>·ÖÅä¸ø</th>
+		<th>åˆ†é…ç»™</th>
 		<td>
-			<select>
-				<option>ÇëÑ¡Ôñ...</option>
-				<option>Ð¡Ã÷</option>
-				<option>Íú²Æ</option>
-				<option>ÇòÇò</option>
-				<option>ËïÐ¡ÃÀ</option>
-				<option>ÖÜ½àÂÖ</option>
+			<select name="cstService.svrDueTo">
+				<option>è¯·é€‰æ‹©...</option>
+				<option>å°æ˜Ž</option>
+				<option>æ—ºè´¢</option>
+				<option>çƒçƒ</option>
+				<option>å­™å°ç¾Ž</option>
+				<option>å‘¨æ´è½®</option>
 			</select> <span class="red_star">*</span></td>
-		<th>·ÖÅäÊ±¼ä</th>
-		<td><input id="t2" name="T18" readonly size="20" /><span class="red_star">*</span></td>
+		<th>åˆ†é…æ—¶é—´</th>
+		<td><input id="t2" name="cstService.svrDueDate" readonly size="20" /><span class="red_star">*</span></td>
 	</tr>
 </table>
 <br />	
 <table disabled class="query_form_table" id="table1">
 	<tr>
-		<th>·þÎñ´¦Àí</th>
-		<td colspan="3"><textarea rows="6" cols="50"></textarea><span class="red_star">*</span></td>
+		<th>æœåŠ¡å¤„ç†</th>
+		<td colspan="3"><textarea  name="cstService.svrDeal" rows="6" cols="50"></textarea><span class="red_star">*</span></td>
 	</tr>
 	<tr>
-		<th>´¦ÀíÈË</th>
-		<td><input name="T17" value="ÁõÓ±" readonly size="20" /><span class="red_star">*</span></td>
-		<th>´¦ÀíÊ±¼ä</th>
-		<td><input id="t3" name="T16" readonly size="20" /><span class="red_star">*</span></td>
+		<th>å¤„ç†äºº</th>
+		<td><input name="cstService.svrDealBy" value="åˆ˜é¢–" readonly size="20" /><span class="red_star">*</span></td>
+		<th>å¤„ç†æ—¶é—´</th>
+		<td><input id="t3" name="cstService.svrDealDate" readonly size="20" /><span class="red_star">*</span></td>
 	</tr>
 </table>
 <br />
 <table disabled class="query_form_table" id="table2">
 	<tr>
-		<th>´¦Àí½á¹û</th>
-		<td><input name="T10" size="20" /><span class="red_star">*</span></td>
-		<th>ÂúÒâ¶È</th>
+		<th>å¤„ç†ç»“æžœ</th>
+		<td><input name="cstService.svrResult" size="20" /><span class="red_star">*</span></td>
+		<th>æ»¡æ„åº¦</th>
 		<td>
-			<select name="D1">
-				<option>ÇëÑ¡Ôñ...</option>
-				<option>¡î¡î¡î¡î¡î</option>
-				<option>¡î¡î¡î¡î</option>
-				<option>¡î¡î¡î</option>
-				<option>¡î¡î</option>
-				<option>¡î</option>
+			<select name="cstService.svrSatisfy" id="svrSatisfy">
+				<option value="0">è¯·é€‰æ‹©...</option>
+				<option value="5">â˜†â˜†â˜†â˜†â˜†</option>
+				<option value="4">â˜†â˜†â˜†â˜†</option>
+				<option value="3">â˜†â˜†â˜†</option>
+				<option value="2">â˜†â˜†</option>
+				<option value="1">â˜†</option>
 			</select><span class="red_star">*</span></td>
 	</tr>
 </table>
+</s:form>
 <script>
 	setCurTime('t1');
 	setCurTime('t2');

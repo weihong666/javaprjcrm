@@ -236,6 +236,7 @@ public class SysUserAction implements ISysUserAction {
 			@Result(name = "ok", location = "${path}", type = "redirect"),
 			@Result(name = "fail", location = "${path}", type = "redirect") })
 	public String check() {
+		System.out.println("Ö´ÐÐaction:check_SysUser");
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		SysUser user = bizService.getSysUserBiz().check(sysUser);
 		if (user != null) {

@@ -1,201 +1,178 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>jb-aptech╠ор╣иХ╪фоНд©</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>jb-aptechФ╞∙Д╦ Х╝╬Х╝║И║╧Г⌡╝</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<% String path=request.getContextPath(); %>
+<link rel="stylesheet" href="../../../jquery-easyui-1.3.4/themes/default/easyui.css" type="text/css"></link>
+<link rel="stylesheet" href="../../../jquery-easyui-1.3.4/themes/icon.css" type="text/css"></link>
+<script type="text/javascript" src="../../../jquery-easyui-1.3.4/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../../../jquery-easyui-1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../jquery-easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
+
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
 <script src="../../script/common.js"></script>
+<!-- <script type="text/javascript">
+$(document).ready(function(){
+		
+		$("#select").click(function(){	
+
+		$("#tt").datagrid({
+			queryParams: {
+				svrCustName:$("#svrCustName").val(),
+				svrTitle:$("#svrTitle").val(),
+				svrType:$("#svrType").val(),
+				svrCreateDate:$("#svrCreateDate").val(),
+				svrStatus:$("#svrStatus").val()
+				
+			}
+		
+		}
+		
+		); 
+
+		//Ф╦┘Г╘╨Ф÷╔Х╞╒И║╧
+		$("#svrCustName").val("");
+		$("#svrTitle").val("");
+		$("#svrType").val("");
+		$("#svrCreateDate").val("");
+		$("#svrStatus").val("");
+		
+		
+});
+		});
+</script> -->
+<script type="text/javascript">
+$(document).ready(function(){
+		
+		$("#select").click(function(){	
+
+		$("#tt").datagrid({
+			queryParams: {
+				svrCustName:$("#svrCustName").val(),
+				svrTitle:$("#svrTitle").val(),
+				svrType:$("#svrType").val(),
+				svrCreateDate:$("#svrCreateDate").val(),
+				svrStatus:$("#svrStatus").val()
+				
+			}
+		
+		}
+		
+		); 
+
+		//Ф╦┘Г╘╨Ф÷╔Х╞╒И║╧
+		$("#svrCustName").val("");
+		$("#svrTitle").val("");
+		$("#svrType").val("");
+		$("#svrCreateDate").val("");
+		$("#svrStatus").val("");
+		
+		
+});
+		});
+</script>
 </head>
 <body>
 
-<div class="page_title">©м╩╖╥ЧнЯ╧эюМ &gt; ╥ЧнЯ╧И╣╣</div>
+<div class="page_title">Е╝╒Ф┬╥Ф°█Е┼║Г╝║Г░├ &gt; Ф°█Е┼║Е╫▓Ф║ё</div>
 <div class="button_bar">
-	<button class="common_button" onclick="help('');">╟ОжЗ</button>
-	<button class="common_button" onclick="reload();">╡Ия╞</button>  
+	<button class="common_button" onclick="help('');">Е╦╝Е┼╘</button>
+	<button class="common_button" type="submit" id="select">Ф÷╔Х╞╒</button> 
+<!-- 	<button class="common_button" type="submit" id="select">Ф÷╔Х╞╒</button>  -->  
 </div>
-<table class="query_form_table">
+<!-- <table class="query_form_table">
 	<tr>
-		<th height="28">©м╩╖</th>
-		<td><input /></td>
-		<th height="28">╦ер╙</th>
-		<td><input /></td>
-		<th height="28">╥ЧнЯюЮпм</th>
+		<th height="28">Е╝╒Ф┬╥</th>
+		<td><input name="cstService.svrCustName" id="svrCustName"/></td>
+		<th height="28">Ф╕┌Х╕│</th>
+		<td><input name="cstService.svrTitle" id="svrTitle"/></td>
+		<th height="28">Ф°█Е┼║Г╠╩Е·▀</th>
 		<td>
-			<select name="D1">
-				<option>х╚╡©</option>
-				<option>вия╞</option>
-				<option>╫╗рИ</option>
-				<option>м╤къ</option>
+			<select name="cstService.svrType" id="svrType">
+				<option>Е┘╗И┐╗</option>
+				<option>Е▓╗Х╞╒</option>
+				<option>Е╩╨Х╝╝</option>
+				<option>Ф┼∙Х╞┴</option>
 			</select>
 		</td>
 	</tr>
 	<tr>
-		<th height="32">╢╢╫╗хуфз</th>
+		<th height="32">Е┬⌡Е╩╨Ф≈╔Ф°÷</th>
 		<td colspan="3">
-			<input name="T2" size="10" /> - <input name="T1" size="10" /></td>
-		<th height="32">в╢л╛</th>
+			<input name="cstService.svrCreateDate" id="svrCreateDate" size="10" /> - <input name="T1" size="10" /></td>
+		<th height="32">Г┼╤Ф─│</th>
 		<td>
-			<select name="D1">
-				<option>х╚╡©</option>
-				<option>пб╢╢╫╗</option>
-				<option>ря╧И╣╣</option>
-				<option>ря╢╕юМ</option>
-				<option>ря╥╢ю║</option>
-				<option>ря╧И╣╣</option>
+			<select name="cstService.svrStatus" id="svrStatus">
+				<option value="Е╥╡Е╫▓Ф║ё">Е╥╡Е╫▓Ф║ё</option>
+			</select>
+		</td>
+	</tr>
+</table> -->
+<table class="query_form_table">
+	<tr>
+		<th height="28">Е╝╒Ф┬╥</th>
+		<td><input name="cstService.svrCustName" id="svrCustName"/></td>
+		<th height="28">Ф╕┌Х╕│</th>
+		<td><input name="cstService.svrTitle" id="svrTitle"/></td>
+		<th height="28">Ф°█Е┼║Г╠╩Е·▀</th>
+		<td>
+			<select name="cstService.svrType" id="svrType">
+				<option value="">Е┘╗И┐╗</option>
+				<option value="Е▓╗Х╞╒">Е▓╗Х╞╒</option>
+				<option value="Е╩╨Х╝╝">Е╩╨Х╝╝</option>
+				<option value="Ф┼∙Х╞┴">Ф┼∙Х╞┴</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th height="32">Е┬⌡Е╩╨Ф≈╔Ф°÷</th>
+		<td colspan="3">
+			<input name="cstService.svrCreateDate" size="10"  id="svrCreateDate"/> - <input name="T1" size="10" /></td>
+		<th height="32">Г┼╤Ф─│</th>
+		<td>
+			<select name="cstService.svrStatus" id="svrStatus">
+				<option value="Е╥╡Е╓└Г░├">Е╥╡Е╓└Г░├</option>
 			</select>
 		</td>
 	</tr>
 </table>
 <br />
-<table class="data_list_table">
-	<tr>
-		<th>╠Ю╨е</th>
-		<th>©м╩╖</th>
-		<th>╦ер╙</th>
-		<th>╥ЧнЯюЮпм</th>
-		<th>╢╢╫╗хк</th>
-		<th>╢╢╫╗хуфз</th>
-		<th>в╢л╛</th>
-		<th>╡ывВ</th>
-	</tr>
-	<tr>
-		<td class="list_data_number">456</td>
-		<td class="list_data_text">л╚яТр╘р╣</td>
-		<td class="list_data_ltext">я╞нййурТ╩З╤╘╣╔тк╥яЁп╣ё╥╫й╫</td>
-		<td class="list_data_text">вия╞</td>
-		<td class="list_data_text">п║цВ</td>
-		<td class="list_data_text">2007дЙ12тб02ху</td>
-		<td class="list_data_text">ря╧И╣╣</td>
-		<td class="list_data_op">
-						
-			<img onclick="to('detail.jsp');" title="╡И©╢" src="../../images/bt_detail.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">455</td>
-		<td class="list_data_text">л╚яТр╘р╣</td>
-		<td class="list_data_ltext">я╞нййурТ╩З╪ш╦Я</td>
-		<td class="list_data_text">вия╞</td>
-		<td class="list_data_text">п║цВ</td>
-		<td class="list_data_text">2007дЙ12тб02ху</td>
-		<td class="list_data_text">ря╧И╣╣</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('detail.jsp');" title="╡И©╢" src="../../images/bt_detail.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">454</td>
-		<td class="list_data_text">тфдолЛ╨сял╡щ╧╚к╬</td>
-		<td class="list_data_ltext">я╞нййурТ╩З╪ш╦Я</td>
-		<td class="list_data_text">вия╞</td>
-		<td class="list_data_text">п║цВ</td>
-		<td class="list_data_text">2007дЙ12тб02ху</td>
-		<td class="list_data_text">ря╧И╣╣</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('detail.jsp');" title="╡И©╢" src="../../images/bt_detail.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">453</td>
-		<td class="list_data_text">тфдолЛ╨сял╡щ╧╚к╬</td>
-		<td class="list_data_ltext">я╞нййурТ╩З╪ш╦Я</td>
-		<td class="list_data_text">╫╗рИ</td>
-		<td class="list_data_text">п║цВ</td>
-		<td class="list_data_text">2007дЙ12тб02ху</td>
-		
-		<td class="list_data_text">ря╧И╣╣</td>
-		
-		<td class="list_data_op">
-									
-			<img onclick="to('detail.jsp');" title="╡И©╢" src="../../images/bt_detail.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">452</td>
-		<td class="list_data_text">тфдолЛ╨сял╡щ╧╚к╬</td>
-		<td class="list_data_ltext">я╞нййурТ╩З╪ш╦Я</td>
-		<td class="list_data_text">вия╞</td>
-		<td class="list_data_text">п║цВ</td>
-		<td class="list_data_text">2007дЙ12тб02ху</td>
-		<td class="list_data_text">ря╧И╣╣</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('detail.jsp');" title="╡И©╢" src="../../images/bt_detail.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">451</td>
-		<td class="list_data_text">тфдолЛ╨сял╡щ╧╚к╬</td>
-		<td class="list_data_ltext">я╞нййурТ╩З╪ш╦Я</td>
-		<td class="list_data_text">м╤къ</td>
-		<td class="list_data_text">п║цВ</td>
-		<td class="list_data_text">2007дЙ12тб02ху</td>
-		<td class="list_data_text">ря╧И╣╣</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('detail.jsp');" title="╡И©╢" src="../../images/bt_detail.gif" class="op_button" /></td>
-	</tr>	
-	<tr>
-		<td class="list_data_number" height="15">540</td>
-		<td class="list_data_text" height="15">тфдолЛ╨сял╡щ╧╚к╬</td>
-		<td class="list_data_ltext" height="15">я╞нййурТ╩З╪ш╦Я</td>
-		<td class="list_data_text" height="15">╫╗рИ</td>
-		<td class="list_data_text" height="15">п║цВ</td>
-		<td class="list_data_text" height="15">2007дЙ12тб02ху</td>
-		<td class="list_data_text" height="15">ря╧И╣╣</td>
-		<td class="list_data_op" height="15">
-						
-			<img onclick="to('detail.jsp');" title="╡И©╢" src="../../images/bt_detail.gif" class="op_button" /></td>
-	</tr>	
-	<tr>
-		<td class="list_data_number" height="35">439</td>
-		<td class="list_data_text" height="35">тфдолЛ╨сял╡щ╧╚к╬</td>
-		<td class="list_data_ltext" height="35">я╞нййурТ╩З╪ш╦Я</td>
-		<td class="list_data_text" height="35">вия╞</td>
-		<td class="list_data_text" height="35">п║цВ</td>
-		<td class="list_data_text" height="35">2007дЙ12тб02ху</td>
-		<td class="list_data_text" height="35">ря╧И╣╣</td>
-		<td class="list_data_op" height="35">
-									
-			<img onclick="to('detail.jsp');" title="╡И©╢" src="../../images/bt_detail.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">438</td>
-		<td class="list_data_text">тфдолЛ╨сял╡щ╧╚к╬</td>
-		<td class="list_data_ltext">я╞нййурТ╩З╪ш╦Я</td>
-		<td class="list_data_text">╫╗рИ</td>
-		<td class="list_data_text">п║цВ</td>
-		<td class="list_data_text">2007дЙ12тб02ху</td>
-		<td class="list_data_text">ря╧И╣╣</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('detail.jsp');" title="╡И©╢" src="../../images/bt_detail.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<td class="list_data_number">437</td>
-		<td class="list_data_text">тфдолЛ╨сял╡щ╧╚к╬</td>
-		<td class="list_data_ltext">я╞нййурТ╩З╪ш╦Я</td>
-		<td class="list_data_text">╫╗рИ</td>
-		<td class="list_data_text">п║цВ</td>
-		<td class="list_data_text">2007дЙ12тб02ху</td>
-		<td class="list_data_text">ря╧И╣╣</td>
-		<td class="list_data_op">
-									
-			<img onclick="to('detail.jsp');" title="╡И©╢" src="../../images/bt_detail.gif" class="op_button" /></td>
-	</tr>
-	<tr>
-		<th colspan="8" class="pager">
-<div class="pager">
-	╧╡59лУ╪гб╪ ц©рЁ<input value="10" size="2" />лУ
-	╣з<input value="1" size="2"/>рЁ/╧╡5рЁ
-	<a href="#">╣зр╩рЁ</a>
-	<a href="#">иор╩рЁ</a>
-	<a href="#">обр╩рЁ</a>
-	<a href="#">вН╨Ср╩рЁ</a>
-	в╙╣╫<input value="1" size="2" />рЁ
-	<button width="20" onclick="reload();">GO</button>
-</div>
-		</th>
-	</tr>
-</table>
+<table class="easyui-datagrid" style="height:410px;"
+		data-options="
+        url:'../../../findAll_CstService.action?t=<%=new Date().getTime() %>',
+        fitColumns:true, 
+         queryParams: {
+		svrStatus: 'Е╥╡Е╫▓Ф║ё'
+		}, 
+        singleSelect:true"
+		pagination="true" rownumbers="true" pageSize="10"
+		pageList="[10,20,30,40]" 
+		loadMsg="Ф╜ёЕ°╗Е°╗Е┼═Х╫╫Х©°Г╗▀Ф∙╟Ф█╝О╪▄Х╞╥Г╗█Е░▌......" align="center"
+		id="tt">
+		<thead>
+			<tr>
+				<th data-options="field:'svrId',width:100,align:'center'">Г╪√Е▐╥</th>
+				<th data-options="field:'svrCustName',width:100,align:'center'">Е╝╒Ф┬╥</th>
+				<th data-options="field:'svrTitle',width:100,align:'center'">Ф╕┌Х╕│</th>
+				<th data-options="field:'svrType',width:100,align:'center'">Ф°█Е┼║Г╠╩Е·▀</th>
+				<th data-options="field:'svrCreateBy',width:100,align:'center'">Е┬⌡Е╩╨Д╨╨</th>
+				<th data-options="field:'svrCreateDate',width:100,align:'center'">Е┬⌡Е╩╨Ф≈╔Ф°÷</th>
+				<th data-options="field:'svrStatus',width:100,align:'center'">Г┼╤Ф─│</th>
+				
+				<th
+					data-options="field:'opt',
+	  			width:300,
+	           align:'center',
+	           formatter:function(value,row,index){
+	           return '<a href=../../../findByIdDetail_CstService.action?id='+row.svrId+'><img title=Ф÷╔Г°▀ src=../../images/bt_detail.gif class=op_button /></a>'
+						}
+            				 ">Ф⌠█Д╫°</th>   
+			</tr>
+		</thead>
+	</table>
 </body>
 </html>
